@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from '@mui/material/styles'
 
 const theme = createTheme({
   palette: {
@@ -23,71 +23,71 @@ const theme = createTheme({
     MuiAppBar: {
       defaultProps: {
         color: 'default',
-      }
+      },
     },
     MuiButton: {
       defaultProps: {
         size: 'small',
-      }
+      },
     },
     MuiButtonGroup: {
       defaultProps: {
         size: 'small',
-      }
+      },
     },
     MuiCheckbox: {
       defaultProps: {
         size: 'small',
-      }
+      },
     },
     MuiFab: {
       defaultProps: {
         size: 'small',
-      }
+      },
     },
     MuiFormControl: {
       defaultProps: {
         margin: 'dense',
         size: 'small',
-      }
+      },
     },
     MuiFormHelperText: {
       defaultProps: {
         margin: 'dense',
-      }
+      },
     },
     MuiIconButton: {
       defaultProps: {
         size: 'small',
-      }
+      },
     },
     MuiInputBase: {
       defaultProps: {
         margin: 'dense',
-      }
+      },
     },
     MuiInputLabel: {
       defaultProps: {
         margin: 'dense',
-      }
+      },
     },
     MuiRadio: {
       defaultProps: {
         size: 'small',
-      }
+      },
     },
     MuiSwitch: {
       defaultProps: {
         size: 'small',
-      }
+      },
     },
     MuiTextField: {
       defaultProps: {
         margin: 'dense',
         size: 'small',
-      }
+      },
     },
   },
-});
+})
 
-export default theme;
+export default theme
