@@ -1,12 +1,11 @@
-import { Box, Container, Fade, Typography, Zoom } from '@mui/material'
+/* eslint-disable @next/next/no-img-element */
+import { Box, Container, Fade, Typography } from '@mui/material'
 import { LivroProps } from 'types/api'
 import Slider from 'react-slick'
 
-import Image from 'next/image'
 import slugify from 'slugify'
-import GraphCMSImageLoader from 'graphql/graphCMSImageLoader'
 import Link from 'components/link'
-import { useState } from 'react'
+import { CSSProperties, useState } from 'react'
 
 export default function ItemCarousel({ itens, titulo }: Props) {
   const settings = {
@@ -18,7 +17,7 @@ export default function ItemCarousel({ itens, titulo }: Props) {
     initialSlide: 0,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1380,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 2,
@@ -27,7 +26,7 @@ export default function ItemCarousel({ itens, titulo }: Props) {
         },
       },
       {
-        breakpoint: 730,
+        breakpoint: 1065,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -35,7 +34,7 @@ export default function ItemCarousel({ itens, titulo }: Props) {
         },
       },
       {
-        breakpoint: 500,
+        breakpoint: 680,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -54,17 +53,6 @@ export default function ItemCarousel({ itens, titulo }: Props) {
   })
   const [hover, setHover] = useState(initialHoverState)
 
-  const imageStyle = {
-    width: 'fit-content',
-    height: 'fit-content',
-    position: 'relative',
-  }
-
-  const hoveredImageStyle = {
-    ...imageStyle,
-    filter: 'blur(2px)',
-  }
-
   return (
     <>
       <Container
@@ -72,7 +60,9 @@ export default function ItemCarousel({ itens, titulo }: Props) {
           margin: '15px 0',
           height: '540px',
           maxWidth: '100vw !important',
-          justifyContent: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-evenly',
           alignItems: 'center',
           backgroundColor: 'background.paper',
         }}
@@ -81,7 +71,6 @@ export default function ItemCarousel({ itens, titulo }: Props) {
           sx={{
             letterSpacing: '5px',
             textTransform: 'uppercase',
-            paddingTop: '25px',
             marginRight: 'auto',
           }}
           variant="h4"
@@ -100,13 +89,33 @@ export default function ItemCarousel({ itens, titulo }: Props) {
         >
           <Slider {...settings}>
             {itens.map((item) => {
+              let bookHoverStyle: CSSProperties = {
+                objectFit: 'contain',
+                height: '280px',
+                width: 'auto',
+              }
+              if (item.capa.width > item.capa.height) {
+                bookHoverStyle = {
+                  objectFit: 'contain',
+                  height: 'auto',
+                  width: '280px',
+                }
+              }
               const slug = slugify(item?.titulo)
               return (
                 <Box key={slug}>
                   {/* TODO: LINK */}
                   <Link link={'/'}>
                     <div
-                      style={imageStyle}
+                      style={{
+                        position: 'relative',
+                        height: 'fit-content',
+                        width: 'fit-content',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        margin: 'auto',
+                      }}
                       onMouseEnter={() => {
                         setHover({
                           ...hover,
@@ -120,28 +129,52 @@ export default function ItemCarousel({ itens, titulo }: Props) {
                         })
                       }}
                     >
-                      <Image
-                        loader={GraphCMSImageLoader}
+                      <img
                         src={item?.capa?.url}
                         alt={'capa de ' + item?.titulo}
-                        objectFit={'contain'}
-                        width={200}
-                        height={400}
+                        style={{ ...bookHoverStyle }}
                       />
                       <Fade in={hover[slug]}>
                         <div
                           style={{
-                            width: 'calc(100% + 10px)',
-                            height: '101%',
+                            width: '100%',
+                            height: '100%',
                             position: 'absolute',
                             top: 0,
-                            left: '-5px',
                             backdropFilter: 'blur(3px)',
+                            backgroundColor: '#52525294',
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'center',
+                            textAlign: 'center',
                           }}
-                        ></div>
+                        >
+                          <div
+                            style={{
+                              width: '75%',
+                              margin: '0 auto',
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                fontWeight: '600',
+                                fontSize: '20px',
+                                color: 'primary.light',
+                              }}
+                            >
+                              {item.titulo}
+                            </Typography>
+                            <Typography
+                              sx={{
+                                fontWeight: '500',
+                                fontSize: '15px',
+                                color: 'white',
+                              }}
+                            >
+                              {item.editora.titulo} · {item.ano.ano}
+                            </Typography>
+                          </div>
+                        </div>
                       </Fade>
                     </div>
                   </Link>

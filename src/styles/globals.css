@@ -29,3 +29,8 @@ a {
 .slick-next:before {
   color: #e7c05f  !important;
 }
+
+.slick-initialized .slick-track {
+  display: flex;
+  align-items: center;
+}
