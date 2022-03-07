@@ -3,8 +3,8 @@ import { Box, Container, Fade, Typography } from '@mui/material'
 import { LivroProps } from 'types/api'
 import Slider from 'react-slick'
 
-import slugify from 'slugify'
 import Link from 'components/link'
+import universalSlugify from 'services/slugifyHelper'
 import { CSSProperties, useState } from 'react'
 
 export default function ItemCarousel({ itens, titulo }: Props) {
@@ -45,7 +45,7 @@ export default function ItemCarousel({ itens, titulo }: Props) {
 
   let initialHoverState = {} as HoverProps
   itens.forEach((item) => {
-    const slug = slugify(item.titulo)
+    const slug = universalSlugify(item.titulo)
     initialHoverState = {
       ...initialHoverState,
       [slug]: false,
@@ -101,7 +101,7 @@ export default function ItemCarousel({ itens, titulo }: Props) {
                   width: '280px',
                 }
               }
-              const slug = slugify(item?.titulo)
+              const slug = universalSlugify(item?.titulo)
               return (
                 <Box key={slug}>
                   {/* TODO: LINK */}

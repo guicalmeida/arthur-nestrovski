@@ -16,7 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
 
 import { useState } from 'react'
-import slugify from 'slugify'
+import universalSlugify from 'services/slugifyHelper'
 import Image from 'next/image'
 
 import logo from '../../public/logo.svg'
@@ -113,7 +113,10 @@ const NavDrawer = () => {
             const name = item[0]
             const hasSubItems = typeof item[1] !== 'boolean'
             return (
-              <div key={slugify(name)} style={{ position: 'relative' }}>
+              <div
+                key={universalSlugify(name)}
+                style={{ position: 'relative' }}
+              >
                 <ListItemButton onClick={toggleDrawer(false)}>
                   <ListItemText primary={name} />
                 </ListItemButton>
@@ -139,7 +142,7 @@ const NavDrawer = () => {
                       <Collapse
                         in={subItemsOpen[name]}
                         timeout="auto"
-                        key={slugify(subitem[0])}
+                        key={universalSlugify(subitem[0])}
                         unmountOnExit
                       >
                         <List component="div" disablePadding>

@@ -5,14 +5,7 @@ import LivrosPage from 'templates/home/livros'
 import { LivrosProps } from 'types/api'
 
 export default function Home({ livros, categoriasLivro }: LivrosProps) {
-  return (
-    <div>
-      <LivrosPage
-        categoriasLivro={categoriasLivro}
-        livros={livros}
-      ></LivrosPage>
-    </div>
-  )
+  return <LivrosPage categoriasLivro={categoriasLivro} livros={livros} />
 }
 
 export const getStaticProps: GetStaticProps = async () => {
