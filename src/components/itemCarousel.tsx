@@ -134,7 +134,10 @@ export default function ItemCarousel({ itens, titulo }: Props) {
                         alt={'capa de ' + item?.titulo}
                         style={{ ...bookHoverStyle }}
                       />
-                      <Fade in={hover[slug]}>
+                      <Fade
+                        in={hover[slug]}
+                        {...(hover ? { timeout: 400 } : {})}
+                      >
                         <div
                           style={{
                             width: '100%',
