@@ -12,6 +12,9 @@ const theme = createTheme({
       paper: '#f4f4f8',
       default: '#e6e6ec',
     },
+    text: {
+      secondary: '#3C4148',
+    },
   },
   typography: {
     fontFamily: 'Raleway',
