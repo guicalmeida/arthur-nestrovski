@@ -41,7 +41,17 @@ const NavDrawer = () => {
     return (
       <AppBar
         position="fixed"
-        sx={{ right: 'auto', left: 0, width: 80, height: '100vh' }}
+        sx={{
+          right: 'auto',
+          left: 0,
+          width: 80,
+          height: '100vh',
+          display: {
+            xs: 'none',
+            sm: 'none',
+            md: 'flex',
+          },
+        }}
       >
         <Toolbar
           sx={{
