@@ -1,12 +1,13 @@
 import { Box, Container, Typography } from '@mui/material'
-import { LivrosProps } from 'types/api'
+import { LivroProps } from 'types/api'
 import Slider from 'react-slick'
 
 import Image from 'next/image'
 import slugify from 'slugify'
 import GraphCMSImageLoader from 'graphql/graphCMSImageLoader'
+import Link from 'components/link'
 
-export default function ItemCarousel({ livros, categoriasLivro }: LivrosProps) {
+export default function ItemCarousel({ itens, titulo }: Props) {
   const settings = {
     dots: true,
     infinite: true,
@@ -44,62 +45,62 @@ export default function ItemCarousel({ livros, categoriasLivro }: LivrosProps) {
 
   return (
     <>
-      {categoriasLivro.map((categoria) => {
-        return (
-          <Container
-            key={slugify(categoria?.titulo)}
-            sx={{
-              marginTop: '15px',
-              height: '540px',
-              maxWidth: '100vw !important',
-              justifyContent: 'center',
-              alignItems: 'center',
-              backgroundColor: 'background.paper',
-            }}
-          >
-            <Typography
-              sx={{
-                letterSpacing: '5px',
-                textTransform: 'uppercase',
-                paddingTop: '25px',
-                marginRight: 'auto',
-              }}
-              variant="h4"
-              component="h2"
-              color="text.secondary"
-            >
-              {categoria?.titulo}
-            </Typography>
-            <Box
-              sx={{
-                width: '90%',
-                maxWidth: '1200px',
-                margin: '0 auto',
-                textAlign: 'center',
-              }}
-            >
-              <Slider {...settings}>
-                {livros.map((livro) => {
-                  if (livro?.categoriaLivro?.titulo === categoria?.titulo) {
-                    return (
-                      <Box key={slugify(livro?.titulo)}>
-                        <Image
-                          loader={GraphCMSImageLoader}
-                          src={livro?.capa?.url}
-                          alt={'capa do livro ' + livro?.titulo}
-                          objectFit={'contain'}
-                          width={200}
-                          height={400}
-                        />
-                      </Box>
-                    )
-                  }
-                })}
-              </Slider>
-            </Box>
-          </Container>
-        )
-      })}
+      <Container
+        sx={{
+          margin: '15px 0',
+          height: '540px',
+          maxWidth: '100vw !important',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'background.paper',
+        }}
+      >
+        <Typography
+          sx={{
+            letterSpacing: '5px',
+            textTransform: 'uppercase',
+            paddingTop: '25px',
+            marginRight: 'auto',
+          }}
+          variant="h4"
+          component="h2"
+          color="text.secondary"
+        >
+          {titulo}
+        </Typography>
+        <Box
+          sx={{
+            width: '90%',
+            maxWidth: '1200px',
+            margin: '0 auto',
+            textAlign: 'center',
+          }}
+        >
+          <Slider {...settings}>
+            {itens.map((item) => {
+              return (
+                <Box key={slugify(item?.titulo)}>
+                  <Link link={'/'}>
+                    <Image
+                      loader={GraphCMSImageLoader}
+                      src={item?.capa?.url}
+                      alt={'capa de ' + item?.titulo}
+                      objectFit={'contain'}
+                      width={200}
+                      height={400}
+                    />
+                  </Link>
+                </Box>
+              )
+            })}
+          </Slider>
+        </Box>
+      </Container>
     </>
   )
+}
+
+interface Props {
+  titulo: string
+  itens: LivroProps[]
 }
