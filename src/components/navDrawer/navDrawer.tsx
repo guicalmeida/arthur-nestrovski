@@ -1,22 +1,23 @@
 import {
   AppBar,
   Box,
-  Divider,
+  Collapse,
   Drawer,
   IconButton,
   List,
-  ListItem,
-  ListItemIcon,
+  ListItemButton,
   ListItemText,
   Toolbar,
 } from '@mui/material'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
-import MailIcon from '@mui/icons-material/Mail'
 import { useState } from 'react'
 import Image from 'next/image'
 import logo from '../../../public/logo.svg'
+import sections from '../../services/sectionsHelper'
+import ExpandLess from '@mui/icons-material/ExpandLess'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import slugify from 'slugify'
 
 const NavDrawer = () => {
   const [drawer, setDrawer] = useState<boolean>(false)
@@ -61,41 +62,96 @@ const NavDrawer = () => {
     )
   }
 
-  const list = () => (
-    <Box
-      sx={{ width: 250 }}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  )
+  const [subItemsOpen, setSubItemsOpen] = useState<{
+    [index: string]: boolean
+  }>({
+    Música: true,
+    Textos: true,
+  })
+
+  const ListComp = () => {
+    const handleCollapseClick = (
+      item: (string | boolean | { [index: string]: boolean })[]
+    ) => {
+      const name = item[0] as string
+      const hasSubItems = typeof item[1] !== 'boolean'
+
+      if (hasSubItems) {
+        setSubItemsOpen({
+          ...subItemsOpen,
+          [name]: !subItemsOpen[name],
+        })
+      }
+    }
+
+    const expandArrowsStyle = {
+      position: 'absolute',
+      right: '10px',
+      top: '7px',
+    }
+    return (
+      <Box
+        sx={{ width: 250 }}
+        role="presentation"
+        onKeyDown={toggleDrawer(false)}
+      >
+        <List>
+          {Object.entries(sections).map((item) => {
+            const name = item[0]
+            const hasSubItems = typeof item[1] !== 'boolean'
+            return (
+              <div key={slugify(name)} style={{ position: 'relative' }}>
+                <ListItemButton onClick={toggleDrawer(false)}>
+                  <ListItemText primary={name} />
+                </ListItemButton>
+                {hasSubItems &&
+                  (subItemsOpen[name] ? (
+                    <IconButton
+                      onClick={() => handleCollapseClick(item)}
+                      sx={expandArrowsStyle}
+                    >
+                      <ExpandLess />
+                    </IconButton>
+                  ) : (
+                    <IconButton
+                      onClick={() => handleCollapseClick(item)}
+                      sx={expandArrowsStyle}
+                    >
+                      <ExpandMore />
+                    </IconButton>
+                  ))}
+                {hasSubItems &&
+                  Object.entries(item[1]).map((subitem) => {
+                    return (
+                      <Collapse
+                        in={subItemsOpen[name]}
+                        timeout="auto"
+                        key={slugify(subitem[0])}
+                        unmountOnExit
+                      >
+                        <List component="div" disablePadding>
+                          <ListItemButton
+                            sx={{ pl: 4 }}
+                            onClick={toggleDrawer(false)}
+                          >
+                            <ListItemText primary={subitem[0]} />
+                          </ListItemButton>
+                        </List>
+                      </Collapse>
+                    )
+                  })}
+              </div>
+            )
+          })}
+        </List>
+      </Box>
+    )
+  }
 
   return (
     <>
       <Drawer anchor="left" open={drawer} onClose={toggleDrawer(false)}>
-        {list()}
+        <ListComp />
       </Drawer>
       <SiteAppBar />
     </>
@@ -103,7 +159,3 @@ const NavDrawer = () => {
 }
 
 export default NavDrawer
-
-export interface NavDrawerProps {
-  open: boolean
-}
