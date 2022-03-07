@@ -6,6 +6,16 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+html {
+  margin-left: 80px;
+
+}
+@media screen and (max-width: 900px) {
+  html {
+    margin-left: 0px;    
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -13,4 +23,9 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #e7c05f  !important;
 }
