@@ -4,20 +4,24 @@ import type { GetStaticProps } from 'next'
 import LivrosPage from 'templates/home/livros'
 import { LivrosProps } from 'types/api'
 
-export default function Home({ livros }: LivrosProps) {
+export default function Home({ livros, categoriasLivro }: LivrosProps) {
   return (
     <div>
-      <LivrosPage></LivrosPage>
+      <LivrosPage
+        categoriasLivro={categoriasLivro}
+        livros={livros}
+      ></LivrosPage>
     </div>
   )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { livros } = await client.request(GET_LIVROS)
+  const { livros, categoriasLivro } = await client.request(GET_LIVROS)
 
   return {
     props: {
       livros,
+      categoriasLivro,
     },
   }
 }

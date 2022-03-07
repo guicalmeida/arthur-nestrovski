@@ -20,11 +20,16 @@ const GET_LIVROS = /* GraphQL */ `
       }
       capa {
         url
+        width
+        height
       }
       autor
       ano {
         ano
       }
+    }
+    categoriasLivro {
+      titulo
     }
   }
 `
