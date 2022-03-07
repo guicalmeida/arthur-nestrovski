@@ -1,5 +1,5 @@
-import NavDrawer from 'components/navDrawer/navDrawer'
-import NavHeader from 'components/navHeader/navHeader'
+import NavDrawer from 'components/navDrawer'
+import NavHeader from 'components/navHeader'
 
 const LivrosPage = () => {
   const bc = {

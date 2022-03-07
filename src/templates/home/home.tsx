@@ -1,5 +1,5 @@
-import HeroSection from 'components/heroSection/heroSection'
-import NavDrawer from 'components/navDrawer/navDrawer'
+import HeroSection from 'components/heroSection'
+import NavDrawer from 'components/navDrawer'
 
 const HomeContainer = () => {
   return (

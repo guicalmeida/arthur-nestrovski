@@ -9,15 +9,18 @@ import {
   ListItemText,
   Toolbar,
 } from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu'
-import SearchIcon from '@mui/icons-material/Search'
-import { useState } from 'react'
-import Image from 'next/image'
-import logo from '../../../public/logo.svg'
-import sections from '../../services/sectionsHelper'
+
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
+import MenuIcon from '@mui/icons-material/Menu'
+import SearchIcon from '@mui/icons-material/Search'
+
+import { useState } from 'react'
 import slugify from 'slugify'
+import Image from 'next/image'
+
+import logo from '../../public/logo.svg'
+import sections from '../services/sectionsHelper'
 
 const NavDrawer = () => {
   const [drawer, setDrawer] = useState<boolean>(false)

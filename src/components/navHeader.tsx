@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import { Container, Divider, Grid } from '@mui/material'
-import Link from '../link'
+import Link from './link'
 import { ReactNode } from 'react'
 
 export default function NavHeader({ breadcrumbs, children }: Props) {
