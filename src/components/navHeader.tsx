@@ -4,6 +4,8 @@ import { Container, Divider, Grid } from '@mui/material'
 import Link from './link'
 import { ReactNode } from 'react'
 
+//no objeto de breadcrumbs, a chave é a label e o valor o caminho para o router
+//além disso, as breadcrumbs serão mostradas na ordem do objeto, do 1º ao último
 export default function NavHeader({ breadcrumbs, children }: Props) {
   return (
     <>
