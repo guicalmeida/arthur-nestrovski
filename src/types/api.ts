@@ -27,7 +27,11 @@ export interface AnoProps {
 
 export interface LivrosProps {
   livros: LivroProps[]
-  categoriasLivro: TitleProps[]
+  categoriasLivro?: TitleProps[]
+}
+
+export interface LivroUnitProps {
+  livro: LivroProps
 }
 
 export interface ImageProps {
