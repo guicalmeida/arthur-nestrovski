@@ -23,9 +23,17 @@ export default function NavHeader({ breadcrumbs, children }: Props) {
               {Object.entries(breadcrumbs).map((item, i, arr) => {
                 const isCurrentPage = arr.length - 1 === i
                 if (!isCurrentPage) {
-                  return <Link link={item[1]}>{item}</Link>
+                  return (
+                    <Link link={item[1]} key={item[1]}>
+                      {item}
+                    </Link>
+                  )
                 } else {
-                  return <Typography color="text.primary">{item[0]}</Typography>
+                  return (
+                    <Typography color="text.primary" key={item[1]}>
+                      {item[0]}
+                    </Typography>
+                  )
                 }
               })}
             </Breadcrumbs>
