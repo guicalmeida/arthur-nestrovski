@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 
 export default function Link(props: Props) {
   return (
-    <div style={{ cursor: 'pointer' }}>
+    <div style={{ cursor: 'pointer', width: 'fit-content', margin: 'auto' }}>
       <Link2 href="/">
         <Link1 underline="hover" color="inherit">
           {props.children}
