@@ -1,4 +1,4 @@
-import ItemCarousel from 'components/itemCarousel/itemCarousel'
+import ItemCarousel from 'components/itemCarousel'
 import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
 import slugify from 'slugify'

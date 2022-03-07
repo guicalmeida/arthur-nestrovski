@@ -80,6 +80,7 @@ export default function ItemCarousel({ itens, titulo }: Props) {
             {itens.map((item) => {
               return (
                 <Box key={slugify(item?.titulo)}>
+                  {/* TODO: LINK */}
                   <Link link={'/'}>
                     <Image
                       loader={GraphCMSImageLoader}
