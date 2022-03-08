@@ -24,8 +24,8 @@ export default function NavHeader({ breadcrumbs, children }: Props) {
                 const isCurrentPage = arr.length - 1 === i
                 if (!isCurrentPage) {
                   return (
-                    <Link link={item[1]} key={item[1]}>
-                      {item}
+                    <Link link={`/${item[1]}`} key={item[1]}>
+                      {item[0]}
                     </Link>
                   )
                 } else {
@@ -43,7 +43,6 @@ export default function NavHeader({ breadcrumbs, children }: Props) {
               sx={{
                 fontWeight: 400,
                 letterSpacing: '5px',
-                textTransform: 'uppercase',
                 marginTop: '10px',
               }}
               variant="h2"

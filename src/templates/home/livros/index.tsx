@@ -12,7 +12,7 @@ const LivrosPage = ({ livros, categoriasLivro }: LivrosProps) => {
   return (
     <>
       <NavDrawer />
-      <NavHeader breadcrumbs={bc}>Livros</NavHeader>
+      <NavHeader breadcrumbs={bc}>LIVROS</NavHeader>
       {categoriasLivro?.map((categoria) => {
         const thisGenreBooks: LivroProps[] = []
         livros.map((livro) => {

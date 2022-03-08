@@ -4,7 +4,7 @@ import type { GetStaticProps } from 'next'
 import LivrosPage from 'templates/home/livros'
 import { LivrosProps } from 'types/api'
 
-export default function Home({ livros, categoriasLivro }: LivrosProps) {
+export default function Livros({ livros, categoriasLivro }: LivrosProps) {
   return <LivrosPage categoriasLivro={categoriasLivro} livros={livros} />
 }
 

@@ -2,11 +2,11 @@ import client from 'graphql/client'
 import GET_LIVROS from 'graphql/queries/getLivros'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import universalSlugify from 'services/slugifyHelper'
-import Livro from 'templates/home/livros/livro'
+import LivroTemplate from 'templates/home/livros/livro'
 import { LivroProps, LivrosProps, LivroUnitProps } from 'types/api'
 
-export default function livro({ livro }: LivroUnitProps) {
-  return <Livro livro={livro}></Livro>
+export default function Livro({ livro }: LivroUnitProps) {
+  return <LivroTemplate livro={livro}></LivroTemplate>
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
