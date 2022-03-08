@@ -5,7 +5,7 @@ import { ReactNode } from 'react'
 export default function Link({ link, children }: Props) {
   return (
     <div style={{ cursor: 'pointer', width: 'fit-content', margin: 'auto' }}>
-      <Link2 href={link}>
+      <Link2 href={link} passHref>
         <Link1 underline="hover" color="inherit">
           {children}
         </Link1>
