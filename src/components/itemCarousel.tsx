@@ -105,7 +105,7 @@ export default function ItemCarousel({ parentRoute, itens, titulo }: Props) {
               return (
                 <Box key={slug}>
                   <Link
-                    style={{ width: 'fit-content' }}
+                    style={{ width: 'fit-content', margin: 'auto' }}
                     link={parentRoute ? `/${parentRoute}/${slug}` : `/${slug}`}
                   >
                     <div

@@ -64,7 +64,9 @@ const NavDrawer = () => {
           }}
           disableGutters={true}
         >
-          <Image src={logo} alt="logo" height={60} width={60} />
+          <Link link={'/'}>
+            <Image src={logo} alt="logo" height={60} width={60} />
+          </Link>
           <IconButton color="inherit" onClick={() => setDrawer(true)}>
             <MenuIcon />
           </IconButton>

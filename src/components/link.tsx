@@ -8,7 +8,6 @@ export default function Link({ style = {}, link, children }: Props) {
       style={{
         ...style,
         cursor: 'pointer',
-        margin: 'auto',
       }}
     >
       <Link2 href={link} passHref>
