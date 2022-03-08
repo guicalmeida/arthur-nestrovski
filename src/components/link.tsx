@@ -1,10 +1,16 @@
 import Link1 from '@mui/material/Link'
 import Link2 from 'next/link'
-import { ReactNode } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 
-export default function Link({ link, children }: Props) {
+export default function Link({ style = {}, link, children }: Props) {
   return (
-    <div style={{ cursor: 'pointer', width: 'fit-content', margin: 'auto' }}>
+    <div
+      style={{
+        ...style,
+        cursor: 'pointer',
+        margin: 'auto',
+      }}
+    >
       <Link2 href={link} passHref>
         <Link1 underline="hover" color="inherit">
           {children}
@@ -17,4 +23,5 @@ export default function Link({ link, children }: Props) {
 type Props = {
   link: string
   children: ReactNode
+  style?: CSSProperties
 }

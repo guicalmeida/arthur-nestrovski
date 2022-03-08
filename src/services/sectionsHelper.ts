@@ -1,22 +1,22 @@
 const sections = {
-  Início: true,
-  Perfil: true,
-  Notícias: true,
-  Agenda: true,
-  Livros: true,
+  Início: '/',
+  Perfil: '/perfil',
+  Notícias: '/noticias',
+  Agenda: '/agenda',
+  Livros: '/livros',
   Textos: {
-    'Resenhas, artigos e ensaios': true,
+    'Resenhas, artigos e ensaios': '/resenhas-artigos-e-ensaios',
   },
   Música: {
-    CDs: true,
-    DVDs: true,
-    'Partituras e Cifras': true,
-    Letras: true,
+    CDs: '/cds',
+    DVDs: '/dvds',
+    'Partituras e Cifras': '/partituras-e-cifras',
+    Letras: '/letras',
   },
-  Videos: true,
-  Shows: true,
-  Galeria: true,
-  Contato: true,
+  Videos: '/videos',
+  Shows: '/shows',
+  Galeria: '/galeria',
+  Contato: '/contato',
 }
 
 export interface Sections {

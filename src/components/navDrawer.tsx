@@ -21,6 +21,7 @@ import Image from 'next/image'
 
 import logo from '../../public/logo.svg'
 import sections from '../services/sectionsHelper'
+import Link from './link'
 
 const NavDrawer = () => {
   const [drawer, setDrawer] = useState<boolean>(false)
@@ -84,10 +85,10 @@ const NavDrawer = () => {
 
   const ListComp = () => {
     const handleCollapseClick = (
-      item: (string | boolean | { [index: string]: boolean })[]
+      item: (string | { [index: string]: string })[]
     ) => {
       const name = item[0] as string
-      const hasSubItems = typeof item[1] !== 'boolean'
+      const hasSubItems = typeof item[1] !== 'string'
 
       if (hasSubItems) {
         setSubItemsOpen({
@@ -111,15 +112,15 @@ const NavDrawer = () => {
         <List>
           {Object.entries(sections).map((item) => {
             const name = item[0]
-            const hasSubItems = typeof item[1] !== 'boolean'
+            const slug = universalSlugify(name)
+            const hasSubItems = typeof item[1] !== 'string'
             return (
-              <div
-                key={universalSlugify(name)}
-                style={{ position: 'relative' }}
-              >
-                <ListItemButton onClick={toggleDrawer(false)}>
-                  <ListItemText primary={name} />
-                </ListItemButton>
+              <div key={slug} style={{ position: 'relative' }}>
+                <Link link={hasSubItems ? `/${slug}` : `/${item[1]}`}>
+                  <ListItemButton onClick={toggleDrawer(false)}>
+                    <ListItemText primary={name} />
+                  </ListItemButton>
+                </Link>
                 {hasSubItems &&
                   (subItemsOpen[name] ? (
                     <IconButton
@@ -146,12 +147,14 @@ const NavDrawer = () => {
                         unmountOnExit
                       >
                         <List component="div" disablePadding>
-                          <ListItemButton
-                            sx={{ pl: 4 }}
-                            onClick={toggleDrawer(false)}
-                          >
-                            <ListItemText primary={subitem[0]} />
-                          </ListItemButton>
+                          <Link link={`/${slug}/${subitem[1]}`}>
+                            <ListItemButton
+                              sx={{ pl: 4 }}
+                              onClick={toggleDrawer(false)}
+                            >
+                              <ListItemText primary={subitem[0]} />
+                            </ListItemButton>
+                          </Link>
                         </List>
                       </Collapse>
                     )
