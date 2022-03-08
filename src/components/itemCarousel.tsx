@@ -7,7 +7,7 @@ import Link from 'components/link'
 import universalSlugify from 'services/slugifyHelper'
 import { CSSProperties, useState } from 'react'
 
-export default function ItemCarousel({ itens, titulo }: Props) {
+export default function ItemCarousel({ parentRoute, itens, titulo }: Props) {
   const settings = {
     dots: true,
     infinite: true,
@@ -104,8 +104,9 @@ export default function ItemCarousel({ itens, titulo }: Props) {
               const slug = universalSlugify(item?.titulo)
               return (
                 <Box key={slug}>
-                  {/* TODO: LINK */}
-                  <Link link={'/'}>
+                  <Link
+                    link={parentRoute ? `/${parentRoute}/${slug}` : `/${slug}`}
+                  >
                     <div
                       style={{
                         position: 'relative',
@@ -194,6 +195,7 @@ export default function ItemCarousel({ itens, titulo }: Props) {
 interface Props {
   titulo: string
   itens: LivroProps[]
+  parentRoute?: string
 }
 
 interface HoverProps {

@@ -25,6 +25,7 @@ const LivrosPage = ({ livros, categoriasLivro }: LivrosProps) => {
             key={universalSlugify(categoria.titulo)}
             itens={thisGenreBooks}
             titulo={categoria.titulo}
+            parentRoute={'livros'}
           />
         )
       })}
