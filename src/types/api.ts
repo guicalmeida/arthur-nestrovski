@@ -39,3 +39,37 @@ export interface ImageProps {
   width: number
   height: number
 }
+
+export interface CDProps {
+  titulo: string
+  linkParaCompra: string
+  linkEmYoutubeMusic: string
+  linkEmTidal: string
+  linkEmSpotify: string
+  linkEmAppleMusic: string
+  linkEmDeezer: string
+  linkEmAmazonMusic: string
+  letra: {
+    composicao: string
+    copyright: string
+    tituloOriginal: string
+    titulo: string
+    letraOriginal: RichTextProps
+    letra: RichTextProps
+  }
+  faixas: string
+  descricao: RichTextProps
+  creditos: string
+  capa: ImageProps
+  ano: AnoProps
+}
+
+export interface CDsProps {
+  cDs: CDProps[]
+}
+
+export interface CDUnitProps {
+  cD: CDProps
+}
+
+export type AllTypes = CDProps[] | LivroProps[]
