@@ -1,7 +1,7 @@
 import client from 'graphql/client'
 import GET_CDS from 'graphql/queries/getCds'
 import type { GetStaticProps } from 'next'
-import CDsPage from 'templates/home/CDs'
+import CDsPage from 'templates/CDs'
 import { CDsProps } from 'types/api'
 
 export default function Musica({ cDs }: CDsProps) {

@@ -2,7 +2,7 @@ import client from 'graphql/client'
 import GET_LIVROS from 'graphql/queries/getLivros'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import universalSlugify from 'services/slugifyHelper'
-import LivroTemplate from 'templates/home/livros/livro'
+import LivroTemplate from 'templates/livros/livro'
 import { LivroProps, LivrosProps, LivroUnitProps } from 'types/api'
 
 export default function Livro({ livro }: LivroUnitProps) {
