@@ -40,8 +40,8 @@ export interface LivroUnitProps {
 
 export interface ImageProps {
   url: string
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
 
 export interface CDProps {
@@ -93,4 +93,19 @@ export interface DVDsProps {
 
 export interface DVDUnitProps {
   dvd: DVDProps
+}
+
+export interface PartituraECifraProps {
+  titulo: string
+  pdf: ImageProps
+  composicao: string
+  ano: AnoProps
+}
+
+export interface partiturasECifrasProps {
+  partiturasECifras: PartituraECifraProps[]
+}
+
+export interface PartituraECifraUnitProps {
+  partiturasECifras: PartituraECifraProps
 }
