@@ -13,6 +13,10 @@ export interface LivroProps {
   ano: AnoProps
 }
 
+export interface RealizacaoProps {
+  nome: string
+}
+
 export interface TitleProps {
   titulo: string
 }
@@ -72,4 +76,20 @@ export interface CDUnitProps {
   cD: CDProps
 }
 
-export type AllTypes = CDProps[] | LivroProps[]
+export interface DVDProps {
+  artistas: string
+  capa: ImageProps
+  descricao: RichTextProps
+  informacoesExtra: string
+  linkParaCompra: string
+  realizacao: RealizacaoProps
+  titulo: string
+}
+
+export interface DVDsProps {
+  dvds: DVDProps[]
+}
+
+export interface DVDUnitProps {
+  dvd: DVDProps
+}
