@@ -14,7 +14,7 @@ const DVDsPage = ({ dvds }: DVDsProps) => {
       <NavDrawer />
       <NavHeader breadcrumbs={bc}>DVDs</NavHeader>
       <div>
-        <ItemCard parentRoute="musica" />
+        <ItemCard dvds={dvds} breadcrumbs={bc} />
       </div>
     </>
   )

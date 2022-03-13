@@ -84,6 +84,7 @@ export interface DVDProps {
   linkParaCompra: string
   realizacao: RealizacaoProps
   titulo: string
+  ano: AnoProps
 }
 
 export interface DVDsProps {

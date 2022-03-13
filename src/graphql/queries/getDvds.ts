@@ -16,6 +16,9 @@ const GET_DVDS = /* GraphQL */ `
         nome
       }
       titulo
+      ano {
+        ano
+      }
     }
   }
 `

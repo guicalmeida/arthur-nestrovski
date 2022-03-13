@@ -15,7 +15,7 @@ import Spotify from 'icons/spotify'
 import YoutubeMusic from 'icons/YoutubeMusic'
 import Link from 'next/link'
 import { getShortDescription } from 'services/shortDescriptionHelper'
-import { CDProps, CDUnitProps, LivroProps } from 'types/api'
+import { CDProps, CDUnitProps, DVDProps, LivroProps } from 'types/api'
 import universalSlugify from 'services/slugifyHelper'
 
 const StyledCard = styled(Card)`
@@ -97,8 +97,8 @@ const CDsActionItems = ({ cD }: CDUnitProps) => {
   }
 }
 
-export default function ItemCard({ cDs, livros, parentRoute }: Props) {
-  const items = livros || cDs
+export default function ItemCard({ dvds, cDs, livros, breadcrumbs }: Props) {
+  const items = livros || cDs || dvds
   const sortedItems = items?.sort((a, b) => {
     return a?.ano?.ano > b?.ano?.ano ? -1 : 1
   })
@@ -112,7 +112,7 @@ export default function ItemCard({ cDs, livros, parentRoute }: Props) {
         {sortedItems?.map((item) => {
           const shortDesc = getShortDescription(item?.descricao?.html)
           const slug = universalSlugify(item?.titulo)
-          const url = parentRoute ? `/${parentRoute}/${slug}` : `/${slug}`
+          const url = `/${Object.values(breadcrumbs).join('/')}/${slug}`
           return (
             <Grid item key={slug}>
               <StyledCard>
@@ -158,5 +158,8 @@ export default function ItemCard({ cDs, livros, parentRoute }: Props) {
 interface Props {
   cDs?: CDProps[]
   livros?: LivroProps[]
-  parentRoute?: string
+  dvds?: DVDProps[]
+  breadcrumbs: {
+    [index: string]: string
+  }
 }

@@ -14,7 +14,7 @@ const CDsPage = ({ cDs }: CDsProps) => {
       <NavDrawer />
       <NavHeader breadcrumbs={bc}>CDs</NavHeader>
       <div>
-        <ItemCard cDs={cDs} parentRoute="musica" />
+        <ItemCard cDs={cDs} breadcrumbs={bc} />
       </div>
     </>
   )
