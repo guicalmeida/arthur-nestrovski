@@ -1,4 +1,4 @@
-import ItemCard from 'components/itemCard'
+import DividedView from 'components/dividedView'
 import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
 import { partiturasECifrasProps } from 'types/api'
@@ -16,7 +16,7 @@ export default function PartiturasECifrasPage({
       <NavDrawer />
       <NavHeader breadcrumbs={bc}>PARTITURAS E CIFRAS</NavHeader>
       <div>
-        <ItemCard breadcrumbs={bc} />
+        <DividedView partiturasECifras={partiturasECifras} />
       </div>
     </>
   )
