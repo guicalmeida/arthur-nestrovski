@@ -10,6 +10,7 @@ import {
   Typography,
 } from '@mui/material'
 import { styled } from '@mui/system'
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import AppleMusic from 'icons/appleMusic'
 import Spotify from 'icons/spotify'
 import YoutubeMusic from 'icons/YoutubeMusic'
@@ -120,7 +121,11 @@ export default function ItemCard({ dvds, cDs, livros, breadcrumbs }: Props) {
                   <a>
                     <div style={{ position: 'relative' }}>
                       <HoverOverlay>
-                        <Button variant="outlined" size="large">
+                        <Button
+                          variant="contained"
+                          size="large"
+                          endIcon={<ChevronRightIcon />}
+                        >
                           Ver
                         </Button>
                       </HoverOverlay>
