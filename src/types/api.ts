@@ -109,3 +109,20 @@ export interface partiturasECifrasProps {
 export interface PartituraECifraUnitProps {
   partiturasECifras: PartituraECifraProps
 }
+
+export interface LetraProps {
+  composicao: string
+  copyright: string
+  letra: RichTextProps
+  letraOriginal: RichTextProps
+  titulo: string
+  tituloOriginal: string
+}
+
+export interface LetrasProps {
+  letras: LetraProps[]
+}
+
+export interface LetraUnitProp {
+  letras: LetraProps
+}

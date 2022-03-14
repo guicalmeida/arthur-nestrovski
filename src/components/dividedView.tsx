@@ -13,11 +13,13 @@ import {
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import universalSlugify from 'services/slugifyHelper'
-import { partiturasECifrasProps } from 'types/api'
+import {
+  LetraProps,
+  PartituraECifraProps,
+  partiturasECifrasProps,
+} from 'types/api'
 
-export default function DividedView({
-  partiturasECifras,
-}: partiturasECifrasProps) {
+export default function DividedView({ partiturasECifras, letras }: Props) {
   const router = useRouter()
 
   const { query } = router
@@ -26,7 +28,7 @@ export default function DividedView({
   const [selectedIndex, setSelectedIndex] = useState<number>()
 
   useEffect(() => {
-    const thisPEC = partiturasECifras.find(
+    const thisPEC = partiturasECifras?.find(
       (pec) => universalSlugify(pec.titulo) === query.selecionado
     )
     setPdf(thisPEC?.pdf?.url)
@@ -58,7 +60,7 @@ export default function DividedView({
             height: '100%',
           }}
         >
-          {partiturasECifras.map((pec, i) => {
+          {partiturasECifras?.map((pec, i) => {
             const slug = universalSlugify(pec.titulo)
             return (
               <>
@@ -108,4 +110,9 @@ export default function DividedView({
       </Box>
     </Container>
   )
+}
+
+interface Props {
+  partiturasECifras?: PartituraECifraProps[]
+  letras?: LetraProps[]
 }
