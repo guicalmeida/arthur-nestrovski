@@ -31,9 +31,7 @@ export default function DividedView({
     )
     setPdf(thisPEC?.pdf?.url)
     setSelectedIndex(Number(query.index))
-
-    console.log('a')
-  }, [query])
+  }, [partiturasECifras, query])
 
   const handleListItemClick = (url: string, slug: string, index: number) => {
     setPdf(url)
