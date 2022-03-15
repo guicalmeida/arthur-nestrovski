@@ -14,7 +14,7 @@ export default function LetrasPage({ letras }: LetrasProps) {
       <NavDrawer />
       <NavHeader breadcrumbs={bc}>LETRAS</NavHeader>
       <div>
-        <DividedView partiturasECifras={partiturasECifras} />
+        <DividedView letras={letras} />
       </div>
     </>
   )

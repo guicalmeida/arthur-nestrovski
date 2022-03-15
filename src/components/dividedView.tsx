@@ -8,35 +8,60 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Typography,
 } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import universalSlugify from 'services/slugifyHelper'
-import {
-  LetraProps,
-  PartituraECifraProps,
-  partiturasECifrasProps,
-} from 'types/api'
+import { LetraProps, PartituraECifraProps } from 'types/api'
+import { SetLetraProps } from 'types/setLyrics'
+import RenderLyrics from './renderLyrics'
+import RenderPDF from './renderPDF'
 
 export default function DividedView({ partiturasECifras, letras }: Props) {
-  const router = useRouter()
+  const items = partiturasECifras || letras
 
+  const router = useRouter()
   const { query } = router
 
   const [pdf, setPdf] = useState<string>()
+  const [letra, setLetra] = useState<SetLetraProps>()
   const [selectedIndex, setSelectedIndex] = useState<number>()
+  const [original, setOriginal] = useState(false)
 
   useEffect(() => {
-    const thisPEC = partiturasECifras?.find(
-      (pec) => universalSlugify(pec.titulo) === query.selecionado
-    )
-    setPdf(thisPEC?.pdf?.url)
+    if (partiturasECifras) {
+      const thisPEC = partiturasECifras?.find(
+        (pec) => universalSlugify(pec.titulo) === query.selecionado
+      )
+      setPdf(thisPEC?.pdf?.url)
+    } else if (letras) {
+      const thisLetra = letras?.find(
+        (letra) => universalSlugify(letra.titulo) === query.selecionado
+      )
+      const { letra, letraOriginal, titulo, tituloOriginal } = thisLetra || {}
+      setLetra({
+        letra: letra?.html,
+        letraOriginal: letraOriginal?.html,
+        titulo,
+        tituloOriginal,
+        showOriginal: original,
+      })
+    }
     setSelectedIndex(Number(query.index))
-  }, [partiturasECifras, query])
+  }, [letras, original, partiturasECifras, query])
 
-  const handleListItemClick = (url: string, slug: string, index: number) => {
-    setPdf(url)
+  const handleListItemClick = (
+    slug: string,
+    index: number,
+    url?: string,
+    letras?: SetLetraProps
+  ) => {
+    if (url) {
+      setPdf(url)
+    } else if (letras) {
+      setLetra(letras)
+      setOriginal(false)
+    }
     setSelectedIndex(index)
     router.push(`?selecionado=${slug}&index=${index}`, undefined, {
       shallow: true,
@@ -60,17 +85,23 @@ export default function DividedView({ partiturasECifras, letras }: Props) {
             height: '100%',
           }}
         >
-          {partiturasECifras?.map((pec, i) => {
-            const slug = universalSlugify(pec.titulo)
+          {items?.map((item, i) => {
+            const slug = universalSlugify(item.titulo)
             return (
-              <>
+              <Fragment key={slug}>
                 <ListItem
                   sx={{
                     cursor: 'pointer',
                     minHeight: '100px',
                   }}
-                  key={slug}
-                  onClick={() => handleListItemClick(pec?.pdf?.url, slug, i)}
+                  onClick={() =>
+                    'letra' in item
+                      ? handleListItemClick(slug, i, undefined, {
+                          letra: item?.letra?.html,
+                          letraOriginal: item?.letraOriginal?.html,
+                        })
+                      : handleListItemClick(slug, i, item?.pdf?.url)
+                  }
                   selected={selectedIndex === i}
                 >
                   <ListItemAvatar>
@@ -78,33 +109,52 @@ export default function DividedView({ partiturasECifras, letras }: Props) {
                       <MusicNote />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText
-                    primary={pec?.titulo}
-                    secondary={pec?.composicao}
-                  />
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <ListItemText secondary={item?.composicao}>
+                      {'letra' in item && item?.tituloOriginal ? (
+                        <span style={{ fontStyle: 'italic' }}>
+                          {item?.tituloOriginal}/{' '}
+                        </span>
+                      ) : (
+                        ''
+                      )}
+                      {item?.titulo}
+                    </ListItemText>
+                    {'copyright' in item ? (
+                      <p
+                        style={{
+                          fontStyle: 'italic',
+                          fontSize: '11px',
+                          fontWeight: '300',
+                          margin: 0,
+                          color: '#979797',
+                        }}
+                      >
+                        {item.copyright}
+                      </p>
+                    ) : (
+                      ''
+                    )}
+                  </div>
                 </ListItem>
                 <Divider />
-              </>
+              </Fragment>
             )
           })}
         </List>
       </Box>
       <Box>
         <div style={{ height: '100%', width: '40vw', maxWidth: '650px' }}>
-          {pdf ? (
-            <object
-              data={pdf}
-              type="application/pdf"
-              style={{ height: '100%', width: '100%' }}
-            >
-              <iframe src={pdf} style={{ height: '100%', width: '100%' }}>
-                <p>This browser does not support PDF!</p>
-              </iframe>
-            </object>
+          {letras ? (
+            <RenderLyrics
+              letra={letra?.letra}
+              letraOriginal={letra?.letraOriginal}
+              titulo={letra?.titulo}
+              tituloOriginal={letra?.tituloOriginal}
+              showOriginal={letra?.showOriginal}
+            />
           ) : (
-            <Typography variant="h3" component="h2" sx={{ fontWeight: '100' }}>
-              Selecione uma música
-            </Typography>
+            <RenderPDF pdf={pdf} />
           )}
         </div>
       </Box>
