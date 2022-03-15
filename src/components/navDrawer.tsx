@@ -82,7 +82,7 @@ const NavDrawer = () => {
     [index: string]: boolean
   }>({
     Música: true,
-    Textos: true,
+    Escrita: true,
   })
 
   const ListComp = () => {
