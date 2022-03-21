@@ -1,5 +1,5 @@
 const GET_CDS = /* GraphQL */ `
-  query GET_CDS {
+  query GET_CDS(orderBy: createdAt_DESC) {
     cDs {
       titulo
       linkParaCompra
@@ -9,18 +9,6 @@ const GET_CDS = /* GraphQL */ `
       linkEmAppleMusic
       linkEmDeezer
       linkEmAmazonMusic
-      letra {
-        composicao
-        copyright
-        tituloOriginal
-        titulo
-        letraOriginal {
-          html
-        }
-        letra {
-          html
-        }
-      }
       faixas
       descricao {
         html
@@ -33,6 +21,12 @@ const GET_CDS = /* GraphQL */ `
       }
       ano {
         ano
+      }
+      letra {
+        titulo
+      }
+      realizacao {
+        nome
       }
     }
   }

@@ -1,5 +1,5 @@
 const GET_LYRICS = /* GraphQL */ `
-  query GET_LYRICS {
+  query GET_LYRICS(orderBy: createdAt_DESC) {
     letras {
       composicao
       copyright
@@ -11,6 +11,9 @@ const GET_LYRICS = /* GraphQL */ `
       }
       titulo
       tituloOriginal
+      ano {
+        ano
+      }
     }
   }
 `

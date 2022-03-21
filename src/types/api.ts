@@ -53,13 +53,9 @@ export interface CDProps {
   linkEmAppleMusic: string
   linkEmDeezer: string
   linkEmAmazonMusic: string
-  letra: {
-    composicao: string
-    copyright: string
-    tituloOriginal: string
-    titulo: string
-    letraOriginal: RichTextProps
-    letra: RichTextProps
+  letra: TitleProps
+  realizacao: {
+    nome: string
   }
   faixas: string
   descricao: RichTextProps
@@ -117,6 +113,7 @@ export interface LetraProps {
   letraOriginal: RichTextProps
   titulo: string
   tituloOriginal: string
+  ano: AnoProps
 }
 
 export interface LetrasProps {
@@ -125,4 +122,10 @@ export interface LetrasProps {
 
 export interface LetraUnitProp {
   letras: LetraProps
+}
+
+export interface GaleriaProps {
+  titulo?: string
+  descricao?: string
+  foto: ImageProps
 }
