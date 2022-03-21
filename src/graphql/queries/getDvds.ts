@@ -1,5 +1,5 @@
 const GET_DVDS = /* GraphQL */ `
-  query GET_DVDS(orderBy: createdAt_DESC) {
+  query GET_DVDS {
     dvds {
       artistas
       capa {

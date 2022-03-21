@@ -1,5 +1,5 @@
 const GET_CDS = /* GraphQL */ `
-  query GET_CDS(orderBy: createdAt_DESC) {
+  query GET_CDS {
     cDs {
       titulo
       linkParaCompra

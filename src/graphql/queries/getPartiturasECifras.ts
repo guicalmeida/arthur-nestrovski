@@ -1,5 +1,5 @@
 const GET_MUSICSHEET = /* GraphQL */ `
-  query GET_MUSICSHEET(orderBy: createdAt_DESC) {
+  query GET_MUSICSHEET {
     partiturasECifras {
       titulo
       pdf {

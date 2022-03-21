@@ -1,5 +1,5 @@
 const GET_LIVROS = /* GraphQL */ `
-  query GET_LIVROS(orderBy: createdAt_DESC) {
+  query GET_LIVROS {
     livros {
       titulo
       subtitulo
