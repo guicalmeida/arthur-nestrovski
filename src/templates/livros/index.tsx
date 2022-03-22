@@ -6,6 +6,7 @@ import { LivroProps, LivrosProps } from 'types/api'
 
 const LivrosPage = ({ livros, categoriasLivro }: LivrosProps) => {
   const bc = {
+    Escrita: 'escrita',
     Livros: 'livros',
   }
 

@@ -129,3 +129,22 @@ export interface GaleriaProps {
   descricao?: string
   foto: ImageProps
 }
+
+export interface TextoProps {
+  autores: string
+  linkOriginal: string
+  subtitulo: string
+  titulo: string
+  texto: RichTextProps
+  veiculoDeDivulgacao: string
+  createdAt: string
+  capa: ImageProps
+}
+
+export interface TextosProps {
+  textos: TextoProps[]
+}
+
+export interface TextoUnitProps {
+  textos: TextoProps
+}
