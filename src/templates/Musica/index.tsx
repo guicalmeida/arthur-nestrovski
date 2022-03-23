@@ -1,7 +1,21 @@
+import { styled } from '@mui/system'
 import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
 import SideItemCard from 'components/sideItemCard'
 import MusicProps from 'types/music'
+
+const StyledContainer = styled('div')`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  max-width: 1800px;
+  margin: auto;
+
+  @media (max-width: 1800px) {
+    margin: 24px;
+  }
+`
 
 const MusicPage = ({
   cDs,
@@ -28,15 +42,7 @@ const MusicPage = ({
     <>
       <NavDrawer />
       <NavHeader breadcrumbs={bc}>MÚSICA</NavHeader>
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: '24px',
-          margin: '24px',
-        }}
-      >
+      <StyledContainer>
         <SideItemCard
           latest={{
             imageUrl: latestCD?.capa.url,
@@ -79,7 +85,7 @@ const MusicPage = ({
         >
           Partituras e Cifras
         </SideItemCard>
-      </div>
+      </StyledContainer>
     </>
   )
 }
