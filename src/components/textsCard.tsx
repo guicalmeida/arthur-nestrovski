@@ -12,7 +12,6 @@ import { styled } from '@mui/system'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 import { formatIsoString } from 'services/datesHelper'
-import universalSlugify from 'services/slugifyHelper'
 import logo from '../../public/logo.svg'
 
 const StyledCard = styled(Card)`
@@ -37,9 +36,7 @@ const StyledBox = styled(Box)`
   margin: 0 8px 8px 8px;
 `
 
-export default function TextsCard({ children, text }: Props) {
-  const slug = universalSlugify(text?.title ?? '')
-
+export default function TextsCard({ children, text, path }: Props) {
   return (
     <StyledCard>
       <CardMedia
@@ -65,7 +62,7 @@ export default function TextsCard({ children, text }: Props) {
           <Typography>{children}</Typography>
         </CardContent>
         <CardActions>
-          <Link href={`${slug}`} passHref>
+          <Link href={path} passHref>
             <Button
               size="medium"
               sx={{ width: '150px' }}
@@ -90,4 +87,5 @@ interface Props {
     subtitle?: string
     content?: string
   }
+  path: string
 }

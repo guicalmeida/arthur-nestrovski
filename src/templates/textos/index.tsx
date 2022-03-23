@@ -8,7 +8,7 @@ import { TextosProps } from 'types/api'
 const TextosPage = ({ textos }: TextosProps) => {
   const bc = {
     Escrita: 'escrita',
-    Livros: 'livros',
+    Textos: 'textos',
   }
 
   return (
@@ -36,6 +36,7 @@ const TextosPage = ({ textos }: TextosProps) => {
                 subtitle: texto?.subtitulo,
                 date: texto?.createdAt,
               }}
+              path={`/escrita/textos/${slug}`}
             >
               {shortText}
             </TextsCard>
