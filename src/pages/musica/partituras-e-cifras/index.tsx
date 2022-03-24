@@ -4,7 +4,9 @@ import type { GetStaticProps } from 'next'
 import PartiturasECifrasPage from 'templates/PartiturasECifras'
 import { partiturasECifrasProps } from 'types/api'
 
-export default function DVDs({ partiturasECifras }: partiturasECifrasProps) {
+export default function PartiturasECifras({
+  partiturasECifras,
+}: partiturasECifrasProps) {
   return <PartiturasECifrasPage partiturasECifras={partiturasECifras} />
 }
 

@@ -4,7 +4,7 @@ import type { GetStaticProps } from 'next'
 import TextosPage from 'templates/textos'
 import { TextosProps } from 'types/api'
 
-export default function Livros({ textos }: TextosProps) {
+export default function Textos({ textos }: TextosProps) {
   return <TextosPage textos={textos} />
 }
 
