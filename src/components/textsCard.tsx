@@ -9,10 +9,10 @@ import {
   Typography,
 } from '@mui/material'
 import { styled } from '@mui/system'
-import Link from 'next/link'
 import { ReactNode } from 'react'
 import { formatIsoString } from 'services/datesHelper'
 import logo from '../../public/logo.svg'
+import Link from './link'
 
 const StyledCard = styled(Card)`
   max-width: 345px;
@@ -26,6 +26,7 @@ const StyledCard = styled(Card)`
 
     > img {
       width: 45%;
+      max-width: 350px;
     }
   }
 `
@@ -39,30 +40,41 @@ const StyledBox = styled(Box)`
 export default function TextsCard({ children, text, path }: Props) {
   return (
     <StyledCard>
-      <CardMedia
-        component="img"
-        image={text?.imageUrl ?? logo.src}
-        sx={{
-          maxHeight: 350,
-          width: [200, 350],
-          objectFit: 'scale-down',
-          margin: 'auto',
-        }}
-      />
+      <Link link={path} underline={false}>
+        <CardMedia
+          component="img"
+          image={text?.imageUrl ?? logo.src}
+          sx={{
+            cursor: 'pointer',
+            maxHeight: 350,
+            width: [200, 350],
+            objectFit: 'scale-down',
+            margin: 'auto',
+          }}
+        />
+      </Link>
       <StyledBox>
         <CardContent>
-          <Typography variant="h4" component="h2" color="text.secondary">
-            {text?.title}
-          </Typography>
-          <Typography sx={{ fontWeight: 500 }}>{text?.subtitle}</Typography>
-          <Typography sx={{ color: 'primary.main' }}>
-            {text?.date ? formatIsoString(text?.date) : ''}
-          </Typography>
+          <div style={{ cursor: 'pointer' }}>
+            <Link link={path} underline={false}>
+              <Typography variant="h4" component="h2" color="text.secondary">
+                {text?.title}
+              </Typography>
+            </Link>
+            <Link link={path} underline={false}>
+              <Typography sx={{ fontWeight: 500 }}>{text?.subtitle}</Typography>
+            </Link>
+            <Link link={path} underline={false}>
+              <Typography sx={{ color: 'primary.main' }}>
+                {text?.date ? formatIsoString(text?.date) : ''}
+              </Typography>
+            </Link>
+          </div>
           <br />
           <Typography>{children}</Typography>
         </CardContent>
         <CardActions>
-          <Link href={path} passHref>
+          <Link link={path} underline={false}>
             <Button
               size="medium"
               sx={{ width: '150px' }}
@@ -85,7 +97,6 @@ interface Props {
     title?: string
     date?: string
     subtitle?: string
-    content?: string
   }
   path: string
 }

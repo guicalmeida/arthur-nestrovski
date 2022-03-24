@@ -148,3 +148,19 @@ export interface TextosProps {
 export interface TextoUnitProps {
   textos: TextoProps
 }
+
+export interface NoticiaProps {
+  titulo: string
+  subtitulo: string
+  createdAt: string
+  texto: RichTextProps
+  capa: ImageProps
+}
+
+export interface NoticiasProps {
+  noticias: NoticiaProps[]
+}
+
+export interface NoticiaUnitProps {
+  noticias: NoticiaProps
+}

@@ -2,7 +2,12 @@ import Link1 from '@mui/material/Link'
 import Link2 from 'next/link'
 import { CSSProperties, ReactNode } from 'react'
 
-export default function Link({ style = {}, link, children }: Props) {
+export default function Link({
+  style = {},
+  underline = true,
+  link,
+  children,
+}: Props) {
   return (
     <div
       style={{
@@ -11,7 +16,7 @@ export default function Link({ style = {}, link, children }: Props) {
       }}
     >
       <Link2 href={link} passHref>
-        <Link1 underline="hover" color="inherit">
+        <Link1 underline={underline ? 'hover' : 'none'} color="inherit">
           {children}
         </Link1>
       </Link2>
@@ -21,6 +26,7 @@ export default function Link({ style = {}, link, children }: Props) {
 
 type Props = {
   link: string
+  underline: boolean
   children: ReactNode
   style?: CSSProperties
 }
