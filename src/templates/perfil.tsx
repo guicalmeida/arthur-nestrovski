@@ -62,7 +62,7 @@ export default function PerfilPage({ foto, cv }: PerfilProps) {
           <Box>
             <Tabs value={tab} onChange={handleChange}>
               <Tab label="Português"></Tab>
-              <Tab label="Inglês"></Tab>
+              <Tab label="English"></Tab>
             </Tabs>
           </Box>
           <TabPanel value={tab} index={0}>
