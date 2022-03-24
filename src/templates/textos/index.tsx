@@ -1,6 +1,7 @@
 import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
 import TextsCard from 'components/textsCard'
+import dayjs from 'dayjs'
 import { getShortDescription } from 'services/shortDescriptionHelper'
 import universalSlugify from 'services/slugifyHelper'
 import { TextosProps } from 'types/api'
@@ -10,6 +11,10 @@ const TextosPage = ({ textos }: TextosProps) => {
     Escrita: 'escrita',
     Textos: 'textos',
   }
+
+  const sorted = textos.sort((a, b) =>
+    dayjs(a.createdAt).isAfter(dayjs(b.createdAt)) ? -1 : 1
+  )
 
   return (
     <>
@@ -24,7 +29,7 @@ const TextosPage = ({ textos }: TextosProps) => {
           margin: '24px',
         }}
       >
-        {textos.map((texto) => {
+        {sorted.map((texto) => {
           const shortText = getShortDescription(texto?.texto.html)
           const slug = universalSlugify(texto.titulo)
           return (
