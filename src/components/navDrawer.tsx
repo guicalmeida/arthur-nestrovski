@@ -118,7 +118,7 @@ const NavDrawer = () => {
             const hasSubItems = typeof item[1] !== 'string'
             return (
               <div key={slug} style={{ position: 'relative' }}>
-                <Link link={hasSubItems ? `/${slug}` : `${item[1]}`}>
+                <Link link={hasSubItems ? `/${slug}` : `/${item[1]}`}>
                   <ListItemButton onClick={toggleDrawer(false)}>
                     <ListItemText primary={name} />
                   </ListItemButton>

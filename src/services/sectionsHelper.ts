@@ -1,5 +1,5 @@
 const sections = {
-  Início: '/',
+  Início: '',
   Perfil: 'perfil',
   Notícias: 'noticias',
   Agenda: 'agenda',
