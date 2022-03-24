@@ -164,3 +164,12 @@ export interface NoticiasProps {
 export interface NoticiaUnitProps {
   noticias: NoticiaProps
 }
+
+export interface PerfilProps {
+  cv: {
+    url: string
+  }
+  foto: {
+    url: string
+  }
+}
