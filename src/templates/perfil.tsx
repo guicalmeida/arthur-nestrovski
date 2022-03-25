@@ -40,6 +40,11 @@ export default function PerfilPage({ foto, cv }: PerfilProps) {
           elevation={4}
           sx={{
             display: 'flex',
+            flexDirection: {
+              xs: 'column',
+              sm: 'column',
+              md: 'row',
+            },
             alignItems: 'center',
             padding: '24px',
             gap: '48px',
@@ -53,7 +58,15 @@ export default function PerfilPage({ foto, cv }: PerfilProps) {
           <Typography
             component="h2"
             variant="h2"
-            sx={{ letterSpacing: '5px', color: 'primary.main' }}
+            sx={{
+              letterSpacing: '5px',
+              color: 'primary.main',
+              fontSize: {
+                xs: 40,
+                sm: 40,
+                md: 60,
+              },
+            }}
           >
             ARTHUR NESTROVSKI
           </Typography>
