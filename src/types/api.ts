@@ -173,3 +173,13 @@ export interface PerfilProps {
     url: string
   }
 }
+
+export interface VideoProps {
+  titulo: string
+  linkDoVideoYouTube: string
+  descricao: RichTextProps
+}
+
+export interface VideosProps {
+  videos: VideoProps[]
+}
