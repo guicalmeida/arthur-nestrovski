@@ -3,6 +3,7 @@ import { styled } from '@mui/system'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import Link from 'next/link'
 import { ReactNode } from 'react'
+import logo from '../../public/logo.svg'
 
 const StyledCard = styled(Card)`
   transition: all 0.2s ease-in-out;
@@ -55,7 +56,12 @@ export default function ItemCard({ children, url, imageUrl }: Props) {
                 Ver
               </Button>
             </HoverOverlay>
-            <CardMedia component="img" image={imageUrl} className="cardImage" />
+            <CardMedia
+              component="img"
+              image={imageUrl ?? logo.src}
+              className="cardImage"
+              sx={imageUrl ? {} : { p: '24px', width: '65%', margin: 'auto' }}
+            />
           </div>
         </a>
       </Link>

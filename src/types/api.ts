@@ -193,7 +193,7 @@ export interface ShowProps {
   artistas: string
   createdAt: string
   descricao: RichTextProps
-  fotos: ImageProps
+  fotos: ImageProps[]
   mapaDoPalco: ImageProps
   necessidadesTecnicas: RichTextProps
   repertorio: RichTextProps
