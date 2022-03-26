@@ -188,3 +188,20 @@ export interface VideoProps {
 export interface VideosProps {
   videos: VideoProps[]
 }
+
+export interface ShowProps {
+  artistas: string
+  createdAt: string
+  descricao: RichTextProps
+  fotos: ImageProps
+  mapaDoPalco: ImageProps
+  necessidadesTecnicas: RichTextProps
+  repertorio: RichTextProps
+  sobreOsArtistas: RichTextProps
+  tipo: string
+  titulo: string
+}
+
+export interface ShowsProps {
+  shows: ShowProps[]
+}
