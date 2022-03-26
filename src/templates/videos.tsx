@@ -20,7 +20,14 @@ export default function VideosPage({ videos }: VideosProps) {
     <>
       <NavDrawer />
       <NavHeader breadcrumbs={bc}>VÍDEOS</NavHeader>
-      <Container sx={{ display: 'flex', flexWrap: 'wrap', gap: '24px' }}>
+      <Container
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '24px',
+          justifyContent: 'center',
+        }}
+      >
         {videos.map((video) => {
           const embedUrl = getYoutubeEmbedLink(video.linkDoVideoYouTube)
           const slug = universalSlugify(video.titulo)
