@@ -128,6 +128,11 @@ export interface GaleriaProps {
   titulo?: string
   descricao?: string
   foto: ImageProps
+  createdAt?: string
+}
+
+export interface GaleriasProps {
+  galerias: GaleriaProps[]
 }
 
 export interface TextoProps {
