@@ -5,8 +5,8 @@ const GET_GALERIA = /* GraphQL */ `
       titulo
       foto {
         url
-        createdAt
       }
+      createdAt
     }
   }
 `
