@@ -32,7 +32,6 @@ const HoverOverlay = styled(Box)`
   &:hover {
     transition: all 0.2s ease-in-out;
     opacity: 1;
-    cursor: pointer;
 
     & + img {
       transition: all 0.2s ease-in-out;
@@ -44,27 +43,25 @@ const HoverOverlay = styled(Box)`
 export default function ItemCard({ children, url, imageUrl }: Props) {
   return (
     <StyledCard>
-      <Link href={url} passHref>
-        <a>
-          <div style={{ position: 'relative' }}>
-            <HoverOverlay>
-              <Button
-                variant="contained"
-                size="large"
-                endIcon={<ChevronRightIcon />}
-              >
-                Ver
-              </Button>
-            </HoverOverlay>
-            <CardMedia
-              component="img"
-              image={imageUrl ?? logo.src}
-              className="cardImage"
-              sx={imageUrl ? {} : { p: '24px', width: '65%', margin: 'auto' }}
-            />
-          </div>
-        </a>
-      </Link>
+      <div style={{ position: 'relative' }}>
+        <HoverOverlay>
+          <Link href={url} passHref>
+            <Button
+              variant="contained"
+              size="large"
+              endIcon={<ChevronRightIcon />}
+            >
+              Ver
+            </Button>
+          </Link>
+        </HoverOverlay>
+        <CardMedia
+          component="img"
+          image={imageUrl ?? logo.src}
+          className="cardImage"
+          sx={imageUrl ? {} : { p: '24px', width: '65%', margin: 'auto' }}
+        />
+      </div>
       <div>
         <CardContent>{children}</CardContent>
       </div>

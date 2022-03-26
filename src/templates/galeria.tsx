@@ -2,11 +2,18 @@
 import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
 import { GaleriasProps } from 'types/api'
-import { Container, ImageList, ImageListItem, Typography } from '@mui/material'
+import {
+  Button,
+  Container,
+  ImageList,
+  ImageListItem,
+  Typography,
+} from '@mui/material'
 import universalSlugify from 'services/slugifyHelper'
 import dayjs from 'dayjs'
 import { styled } from '@mui/system'
 import useWindowSize from 'hooks/useWindowResize'
+import { ChevronRight } from '@mui/icons-material'
 
 const HoverableImage = styled(ImageListItem)`
   position: relative;
@@ -92,6 +99,16 @@ export default function GaleriaPage({ galerias }: GaleriasProps) {
                           {foto.descricao}
                         </Typography>
                       )}
+                      <a href={`${foto.foto?.url}`} target="__blank">
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          endIcon={<ChevronRight />}
+                          sx={{ mt: '12px' }}
+                        >
+                          Tamanho real
+                        </Button>
+                      </a>
                     </div>
                   )}
                   <img

@@ -1,6 +1,7 @@
 import { Grid, Typography } from '@mui/material'
 import CDsActionItems from 'components/CDActionItems'
 import ItemCard from 'components/itemCard'
+import Link from 'components/link'
 import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
 import { getShortDescription } from 'services/shortDescriptionHelper'
@@ -34,14 +35,16 @@ const CDsPage = ({ cDs }: CDsProps) => {
           return (
             <Grid item key={slug}>
               <ItemCard imageUrl={item.capa.url} url={url}>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  component="h2"
-                  color="text.secondary"
-                >
-                  {item?.titulo}
-                </Typography>
+                <Link underline={false} link={url}>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="h2"
+                    color="text.secondary"
+                  >
+                    {item?.titulo}
+                  </Typography>
+                </Link>
                 <Typography variant="body2">{shortDesc}</Typography>
                 <CDsActionItems cD={item} />
               </ItemCard>
