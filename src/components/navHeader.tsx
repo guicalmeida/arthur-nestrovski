@@ -9,7 +9,9 @@ import { ReactNode } from 'react'
 export default function NavHeader({ breadcrumbs, children }: Props) {
   return (
     <>
-      <Container sx={{ height: '100%', marginTop: '15px' }}>
+      <Container
+        sx={{ height: '100%', marginTop: '15px', textAlign: 'center' }}
+      >
         <Grid
           container
           sx={{ height: '100%' }}
@@ -19,12 +21,14 @@ export default function NavHeader({ breadcrumbs, children }: Props) {
         >
           <Grid item>
             <Breadcrumbs aria-label="breadcrumb">
-              <Link link="/">Página inicial</Link>
+              <Link link="/" underline={true}>
+                Página inicial
+              </Link>
               {Object.entries(breadcrumbs).map((item, i, arr) => {
                 const isCurrentPage = arr.length - 1 === i
                 if (!isCurrentPage) {
                   return (
-                    <Link link={`/${item[1]}`} key={item[1]}>
+                    <Link underline={true} link={`/${item[1]}`} key={item[1]}>
                       {item[0]}
                     </Link>
                   )

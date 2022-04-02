@@ -205,3 +205,15 @@ export interface ShowProps {
 export interface ShowsProps {
   shows: ShowProps[]
 }
+
+export interface ProducaoIntelectualProps {
+  titulo: string
+  veiculo: string
+  observacao: string
+  data: string
+  autor: string
+}
+
+export interface ProducoesIntelectuaisProps {
+  producoesIntelectuais: ProducaoIntelectualProps[]
+}
