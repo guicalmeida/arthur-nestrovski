@@ -212,8 +212,10 @@ export interface ProducaoIntelectualProps {
   observacao: string
   data: string
   autor: string
+  tipo: string
 }
 
 export interface ProducoesIntelectuaisProps {
-  producoesIntelectuais: ProducaoIntelectualProps[]
+  page1: ProducaoIntelectualProps[]
+  page2?: ProducaoIntelectualProps[]
 }

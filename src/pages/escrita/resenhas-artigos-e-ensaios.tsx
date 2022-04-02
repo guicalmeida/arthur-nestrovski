@@ -4,18 +4,18 @@ import { GetStaticProps } from 'next'
 import IntelectualPage from 'templates/producoesIntelectuais'
 import { ProducoesIntelectuaisProps } from 'types/api'
 
-export default function Perfil({
-  producoesIntelectuais,
-}: ProducoesIntelectuaisProps) {
-  return <IntelectualPage producoesIntelectuais={producoesIntelectuais} />
+export default function Perfil({ page1, page2 }: ProducoesIntelectuaisProps) {
+  console.log(page1, page2)
+  return <IntelectualPage page1={page1} page2={page2} />
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { producoesIntelectuais } = await client.request(GET_INTELECTUAL)
+  const { page1, page2 } = await client.request(GET_INTELECTUAL)
 
   return {
     props: {
-      producoesIntelectuais,
+      page1,
+      page2,
     },
   }
 }
