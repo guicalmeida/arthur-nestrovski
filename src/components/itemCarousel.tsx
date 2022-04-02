@@ -114,7 +114,7 @@ export default function ItemCarousel({ parentRoute, itens, titulo }: Props) {
                 height: '280px',
                 width: 'auto',
               }
-              if (item.capa.width > item.capa.height) {
+              if (item?.capa?.width > item?.capa?.height) {
                 bookHoverStyle = {
                   objectFit: 'contain',
                   height: 'auto',
@@ -148,7 +148,7 @@ export default function ItemCarousel({ parentRoute, itens, titulo }: Props) {
                               color: 'primary.light',
                             }}
                           >
-                            {item.titulo}
+                            {item?.titulo}
                           </Typography>
                           <Typography
                             sx={{
@@ -157,7 +157,7 @@ export default function ItemCarousel({ parentRoute, itens, titulo }: Props) {
                               color: 'white',
                             }}
                           >
-                            {item.editora.titulo} · {item.ano.ano}
+                            {item?.editora?.titulo} · {item?.ano?.ano}
                           </Typography>
                         </div>
                       </Overlay>

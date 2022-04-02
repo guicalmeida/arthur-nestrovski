@@ -32,7 +32,7 @@ export default function IntelectualPage({
   let counter = 1
 
   allRows?.forEach((row) => {
-    const { autor, data, tipo, observacao, titulo, veiculo } = row
+    const { autor, data, tipo, observacao, titulo, veiculo } = row || {}
     emptyRows.push({
       id: counter,
       col1: titulo,
