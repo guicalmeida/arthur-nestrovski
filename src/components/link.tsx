@@ -26,7 +26,7 @@ export default function Link({
 
 type Props = {
   link: string
-  underline: boolean
+  underline?: boolean
   children: ReactNode
   style?: CSSProperties
 }

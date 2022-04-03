@@ -109,19 +109,24 @@ export default function ItemCarousel({ parentRoute, itens, titulo }: Props) {
         <StyledBox>
           <Slider {...settings}>
             {itens.map((item) => {
+              const { capa, ano, titulo, editora } = item || {}
               let bookHoverStyle: CSSProperties = {
                 objectFit: 'contain',
                 height: '280px',
                 width: 'auto',
               }
-              if (item?.capa?.width > item?.capa?.height) {
+
+              const width = capa?.width || 0
+              const height = capa?.height || 0
+
+              if (width > height) {
                 bookHoverStyle = {
                   objectFit: 'contain',
                   height: 'auto',
                   width: '280px',
                 }
               }
-              const slug = universalSlugify(item?.titulo)
+              const slug = universalSlugify(titulo)
               return (
                 <Box key={slug}>
                   <Link
@@ -130,8 +135,8 @@ export default function ItemCarousel({ parentRoute, itens, titulo }: Props) {
                   >
                     <ImageContainer>
                       <img
-                        src={item?.capa?.url}
-                        alt={'capa de ' + item?.titulo}
+                        src={capa?.url}
+                        alt={'capa de ' + titulo}
                         style={bookHoverStyle}
                       />
                       <Overlay>
@@ -148,7 +153,7 @@ export default function ItemCarousel({ parentRoute, itens, titulo }: Props) {
                               color: 'primary.light',
                             }}
                           >
-                            {item?.titulo}
+                            {titulo}
                           </Typography>
                           <Typography
                             sx={{
@@ -157,7 +162,7 @@ export default function ItemCarousel({ parentRoute, itens, titulo }: Props) {
                               color: 'white',
                             }}
                           >
-                            {item?.editora?.titulo} · {item?.ano?.ano}
+                            {editora?.titulo} · {ano?.ano}
                           </Typography>
                         </div>
                       </Overlay>
