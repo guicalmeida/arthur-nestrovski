@@ -5,7 +5,6 @@ import IntelectualPage from 'templates/producoesIntelectuais'
 import { ProducoesIntelectuaisProps } from 'types/api'
 
 export default function Perfil({ page1, page2 }: ProducoesIntelectuaisProps) {
-  console.log(page1, page2)
   return <IntelectualPage page1={page1} page2={page2} />
 }
 
