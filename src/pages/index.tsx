@@ -1,10 +1,10 @@
-import client from 'graphql/client'
-import GET_LIVROS from 'graphql/queries/getLivros'
-import type { GetStaticProps } from 'next'
+// import client from 'graphql/client'
+// import GET_LIVROS from 'graphql/queries/getLivros'
+// import type { GetStaticProps } from 'next'
 import HomeContainer from 'templates/home/home'
-import { LivrosProps } from 'types/api'
+// import { LivrosProps } from 'types/api'
 
-export default function Home({ livros }: LivrosProps) {
+export default function Home() {
   return (
     <div>
       <HomeContainer></HomeContainer>
