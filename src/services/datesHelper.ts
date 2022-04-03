@@ -9,6 +9,9 @@ export const formatIsoString = (date: string, format?: string) => {
   } else {
     const dia = dayjs(date).format('DD')
     const mesEAno = dayjs(date).format('MMMM, YYYY')
-    return `${dia} de ${mesEAno}`
+    if (dia !== 'Invalid Date' && mesEAno !== 'Invalid Date') {
+      return `${dia} de ${mesEAno}`
+    }
+    return
   }
 }
