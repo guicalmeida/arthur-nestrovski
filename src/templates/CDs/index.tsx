@@ -34,7 +34,7 @@ const CDsPage = ({ cDs }: CDsProps) => {
 
           return (
             <Grid item key={slug}>
-              <ItemCard imageUrl={item.capa.url} url={url}>
+              <ItemCard imageUrl={item?.capa?.url} url={url}>
                 <Link underline={false} link={url}>
                   <Typography
                     gutterBottom

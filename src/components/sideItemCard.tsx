@@ -35,14 +35,20 @@ const StyledBox = styled(Box)`
   margin: 0 8px 8px 8px;
 `
 
-export default function SideItemCard({ children, path, latest }: Props) {
-  const slug = universalSlugify(latest?.title ?? '')
-
+export default function SideItemCard({
+  children,
+  path,
+  imageUrl,
+  title,
+  showLatest = true,
+  latestTitle,
+}: Props) {
+  const slug = universalSlugify(latestTitle)
   return (
     <StyledCard>
       <CardMedia
         component="img"
-        image={latest.imageUrl}
+        image={imageUrl}
         sx={{ height: '350px', width: '350px', objectFit: 'cover' }}
       />
       <StyledBox>
@@ -53,50 +59,30 @@ export default function SideItemCard({ children, path, latest }: Props) {
             component="h2"
             color="text.secondary"
           >
-            {children}
+            {title}
           </Typography>
-          <Typography gutterBottom color="text.primary">
-            Mais recente:
-          </Typography>
-
-          <Typography>
-            <span style={{ fontWeight: 600 }}>{latest?.title}</span>
-            {latest?.year ? (
-              <span>
-                <br />
-                {latest?.year}
-              </span>
-            ) : (
-              ''
-            )}
-            {latest?.publisher ? (
-              <span>
-                <br />
-                {latest?.publisher}
-              </span>
-            ) : (
-              ''
-            )}
-          </Typography>
+          <Typography>{children}</Typography>
         </CardContent>
         <CardActions>
-          <Link href={`${path}/${slug}`} passHref>
-            <Button
-              size="medium"
-              variant="outlined"
-              endIcon={<ChevronRight />}
-              sx={{ mr: 2 }}
-            >
-              Ver
-            </Button>
-          </Link>
+          {showLatest && (
+            <Link href={`${path}/${slug}`} passHref>
+              <Button
+                size="medium"
+                variant="outlined"
+                endIcon={<ChevronRight />}
+                sx={{ mr: 2 }}
+              >
+                Ver
+              </Button>
+            </Link>
+          )}
           <Link href={path} passHref>
             <Button
               size="medium"
               variant="contained"
               endIcon={<ChevronRight />}
             >
-              Ver todos
+              Ver tudo
             </Button>
           </Link>
         </CardActions>
@@ -108,10 +94,8 @@ export default function SideItemCard({ children, path, latest }: Props) {
 interface Props {
   children: ReactNode
   path: string
-  latest: {
-    imageUrl?: string
-    title?: string
-    year?: number
-    publisher?: string
-  }
+  imageUrl?: string
+  title?: string
+  showLatest?: boolean
+  latestTitle?: string
 }

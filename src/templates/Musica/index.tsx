@@ -1,21 +1,9 @@
-import { styled } from '@mui/system'
+import MostRecent from 'components/mostRecent'
 import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
 import SideItemCard from 'components/sideItemCard'
-import MusicProps from 'types/music'
-
-const StyledContainer = styled('div')`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 24px;
-  max-width: 1800px;
-  margin: auto;
-
-  @media (max-width: 1800px) {
-    margin: 24px;
-  }
-`
+import StyledContainer from 'components/styledContainer'
+import MusicProps from 'types/groups'
 
 const MusicPage = ({
   cDs,
@@ -44,46 +32,52 @@ const MusicPage = ({
       <NavHeader breadcrumbs={bc}>MÚSICA</NavHeader>
       <StyledContainer>
         <SideItemCard
-          latest={{
-            imageUrl: latestCD?.capa.url,
-            publisher: latestCD?.realizacao?.nome,
-            title: latestCD?.titulo,
-            year: latestCD?.ano?.ano,
-          }}
+          imageUrl={latestCD?.capa.url}
+          title="CDs"
+          latestTitle={latestCD?.titulo}
           path="musica/cds"
         >
-          CDs
+          <MostRecent
+            publisher={latestCD?.realizacao?.nome}
+            title={latestCD?.titulo}
+            year={latestCD?.ano?.ano}
+          />
         </SideItemCard>
         <SideItemCard
-          latest={{
-            imageUrl: latestDVD?.capa.url,
-            publisher: latestDVD?.realizacao?.nome,
-            title: latestDVD?.titulo,
-            year: latestDVD?.ano?.ano,
-          }}
+          imageUrl={latestDVD?.capa.url}
+          title="DVDs"
+          latestTitle={latestDVD?.titulo}
           path="musica/dvds"
         >
-          DVDs
+          <MostRecent
+            publisher={latestDVD?.realizacao?.nome}
+            title={latestDVD?.titulo}
+            year={latestDVD?.ano?.ano}
+          />
         </SideItemCard>
         <SideItemCard
-          latest={{
-            imageUrl: letrasCover?.foto.url,
-            publisher: latestLyric?.composicao,
-            title: latestLyric?.titulo,
-          }}
+          imageUrl={letrasCover?.foto.url}
+          title="Letras"
+          latestTitle={latestLyric?.titulo}
           path="musica/letras"
         >
-          Letras
+          <MostRecent
+            publisher={latestLyric?.composicao}
+            title={latestLyric?.titulo}
+            year={latestLyric?.ano?.ano}
+          />
         </SideItemCard>
         <SideItemCard
-          latest={{
-            imageUrl: partiturasCover?.foto.url,
-            publisher: latestPartitura?.composicao,
-            title: latestPartitura?.titulo,
-          }}
+          imageUrl={partiturasCover?.foto.url}
+          title="Partituras e Cifras"
+          latestTitle={latestPartitura?.titulo}
           path="musica/partituras-e-cifras"
         >
-          Partituras e Cifras
+          <MostRecent
+            publisher={latestPartitura?.composicao}
+            title={latestPartitura?.titulo}
+            year={latestPartitura?.ano?.ano}
+          />
         </SideItemCard>
       </StyledContainer>
     </>

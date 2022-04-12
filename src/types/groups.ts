@@ -3,7 +3,10 @@ import {
   DVDProps,
   GaleriaProps,
   LetraProps,
+  LivrosProps,
   PartituraECifraProps,
+  ProducoesIntelectuaisProps,
+  TextosProps,
 } from './api'
 
 export default interface MusicProps {
@@ -13,4 +16,11 @@ export default interface MusicProps {
   partiturasECifras: PartituraECifraProps[]
   letrasCover: GaleriaProps
   partiturasCover: GaleriaProps
+}
+
+export interface EscritaProps {
+  partiturasCover: GaleriaProps
+  page1: ProducoesIntelectuaisProps
+  textos: TextosProps
+  livros: LivrosProps
 }
