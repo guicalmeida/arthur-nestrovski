@@ -29,7 +29,7 @@ const MostRecent = ({ publisher, title, year }: Props) => {
 
 interface Props {
   title?: string
-  year?: number
+  year?: number | string
   publisher?: string
 }
 

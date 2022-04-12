@@ -17,7 +17,7 @@ const Container = styled('div')`
 export default function StyledContainer({
   children,
 }: {
-  children: ReactChild[]
+  children: ReactChild[] | ReactChild
 }) {
   return <Container>{children}</Container>
 }

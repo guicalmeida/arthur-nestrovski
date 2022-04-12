@@ -6,7 +6,7 @@ import GET_COVERS from 'graphql/queries/getMusicCovers'
 import GET_MUSICSHEET from 'graphql/queries/getPartiturasECifras'
 import type { GetStaticProps } from 'next'
 import MusicPage from 'templates/Musica'
-import MusicProps from 'types/music'
+import MusicProps from 'types/groups'
 
 export default function Musica({
   cDs,

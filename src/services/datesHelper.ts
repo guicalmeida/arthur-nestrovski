@@ -15,3 +15,7 @@ export const formatIsoString = (date: string, format?: string) => {
     return
   }
 }
+
+export const isDate1AfterDate2 = (date1: string, date2: string) => {
+  return dayjs(date1).isAfter(dayjs(date2))
+}

@@ -12,6 +12,7 @@ import { styled } from '@mui/system'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 import universalSlugify from 'services/slugifyHelper'
+import logo from '../../public/logo.svg'
 
 const StyledCard = styled(Card)`
   max-width: 345px;
@@ -48,8 +49,12 @@ export default function SideItemCard({
     <StyledCard>
       <CardMedia
         component="img"
-        image={imageUrl}
-        sx={{ height: '350px', width: '350px', objectFit: 'cover' }}
+        image={imageUrl ?? logo.src}
+        sx={
+          imageUrl
+            ? { height: '350px', width: '350px', objectFit: 'cover' }
+            : { p: '24px', width: '350px', margin: 'auto' }
+        }
       />
       <StyledBox>
         <CardContent>
@@ -61,7 +66,7 @@ export default function SideItemCard({
           >
             {title}
           </Typography>
-          <Typography>{children}</Typography>
+          <Typography component="div">{children}</Typography>
         </CardContent>
         <CardActions>
           {showLatest && (
