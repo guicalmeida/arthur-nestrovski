@@ -142,6 +142,7 @@ export default function IntelectualPage({
   const isDesktop = (width || 0) > 900
 
   const bc = {
+    Escrita: 'escrita',
     'Resenhas, artigos e ensaios': 'resenhas-artigos-e-ensaios',
   }
 
