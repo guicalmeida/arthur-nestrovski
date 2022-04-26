@@ -12,6 +12,9 @@ const GET_EVENTOS = /* GraphQL */ `
       }
       titulo
       url
+      capa {
+        url
+      }
     }
   }
 `

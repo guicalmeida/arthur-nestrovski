@@ -230,6 +230,7 @@ export interface EventoProps {
   }
   titulo: string
   url: string
+  capa: ImageProps
 }
 
 export interface EventosProps {
