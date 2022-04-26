@@ -219,3 +219,19 @@ export interface ProducoesIntelectuaisProps {
   page1: ProducaoIntelectualProps[]
   page2?: ProducaoIntelectualProps[]
 }
+
+export interface EventoProps {
+  descricao: RichTextProps
+  fim: string
+  inicio: string
+  localizacao: {
+    latitude: number
+    longitude: number
+  }
+  titulo: string
+  url: string
+}
+
+export interface EventosProps {
+  eventos: EventoProps[]
+}
