@@ -2,6 +2,7 @@ import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
 import TextsCard from 'components/textsCard'
 import dayjs from 'dayjs'
+import { formatIsoString } from 'services/datesHelper'
 import { getShortDescription } from 'services/shortDescriptionHelper'
 import universalSlugify from 'services/slugifyHelper'
 import { NoticiasProps } from 'types/api'
@@ -37,7 +38,7 @@ export default function NoticiasPage({ noticias }: NoticiasProps) {
               text={{
                 title: noticia?.titulo,
                 subtitle: noticia?.subtitulo,
-                date: noticia?.createdAt,
+                date: formatIsoString(noticia?.createdAt),
                 imageUrl: noticia?.capa?.url,
               }}
               path={`/noticias/${slug}`}

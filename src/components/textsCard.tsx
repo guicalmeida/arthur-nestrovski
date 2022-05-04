@@ -10,7 +10,6 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/system'
 import { ReactNode } from 'react'
-import { formatIsoString } from 'services/datesHelper'
 import logo from '../../public/logo.svg'
 import Link from './link'
 
@@ -33,11 +32,16 @@ const StyledCard = styled(Card)`
 const StyledBox = styled(Box)`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin: 0 8px 8px 8px;
 `
 
-export default function TextsCard({ children, text, path }: Props) {
+export default function TextsCard({
+  children,
+  text,
+  path,
+  calendar = false,
+}: Props) {
   return (
     <StyledCard>
       <Link link={path} underline={false}>
@@ -65,8 +69,18 @@ export default function TextsCard({ children, text, path }: Props) {
               <Typography sx={{ fontWeight: 500 }}>{text?.subtitle}</Typography>
             </Link>
             <Link link={path} underline={false}>
-              <Typography sx={{ color: 'primary.main' }}>
-                {text?.date ? formatIsoString(text?.date) : ''}
+              <Typography
+                sx={
+                  calendar
+                    ? {
+                        color: 'primary.main',
+                        fontWeight: 600,
+                        fontSize: '18px',
+                      }
+                    : { color: 'primary.main' }
+                }
+              >
+                {text?.date}
               </Typography>
             </Link>
           </div>
@@ -99,4 +113,5 @@ interface Props {
     subtitle?: string
   }
   path: string
+  calendar?: boolean
 }

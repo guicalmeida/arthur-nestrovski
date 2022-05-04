@@ -2,6 +2,7 @@ import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
 import TextsCard from 'components/textsCard'
 import dayjs from 'dayjs'
+import { formatIsoString } from 'services/datesHelper'
 import { getShortDescription } from 'services/shortDescriptionHelper'
 import universalSlugify from 'services/slugifyHelper'
 import { TextosProps } from 'types/api'
@@ -39,7 +40,7 @@ const TextosPage = ({ textos }: TextosProps) => {
                 imageUrl: texto?.capa?.url,
                 title: texto?.titulo,
                 subtitle: texto?.subtitulo,
-                date: texto?.createdAt,
+                date: formatIsoString(texto?.createdAt),
               }}
               path={`/escrita/textos/${slug}`}
             >
