@@ -18,11 +18,9 @@ export default function AgendaPage({ eventos }: EventosProps) {
     Agenda: 'agenda',
   }
 
-  console.log(eventos)
-
   const months: { [key: string]: EventoProps[] } = {}
 
-  eventos.forEach((evento) => {
+  eventos?.forEach((evento) => {
     const dateIndex = dayjs(evento.inicio).format('MMMM YYYY')
 
     if (!Object.keys(months).includes(dateIndex)) {
@@ -31,8 +29,8 @@ export default function AgendaPage({ eventos }: EventosProps) {
     months[dateIndex].push(evento)
   })
 
-  const thisMonthEvents = eventos.filter((evento) =>
-    dayjs().isSame(dayjs(evento.inicio), 'month')
+  const thisMonthEvents = eventos?.filter((evento) =>
+    dayjs().isSame(dayjs(evento?.inicio), 'month')
   )
   const hasEventsThisMonth = thisMonthEvents && thisMonthEvents.length > 0
 
@@ -151,11 +149,10 @@ export default function AgendaPage({ eventos }: EventosProps) {
                     }}
                   >
                     {month[1].map((evento) => {
-                      const shortText = getShortDescription(
-                        evento?.descricao?.html
-                      )
-                      const slug = universalSlugify(evento?.titulo)
-                      const { inicio, fim } = evento || {}
+                      const { inicio, fim, descricao, titulo, capa, endereco } =
+                        evento || {}
+                      const shortText = getShortDescription(descricao?.html)
+                      const slug = universalSlugify(titulo)
 
                       const date = getEventDateInfo(inicio, fim)
 
@@ -163,13 +160,19 @@ export default function AgendaPage({ eventos }: EventosProps) {
                         <TextsCard
                           key={slug}
                           text={{
-                            title: evento?.titulo,
+                            title: titulo,
                             date,
-                            imageUrl: evento?.capa?.url,
+                            imageUrl: capa?.url,
                           }}
                           path={`/agenda/${slug}`}
                           calendar={true}
                         >
+                          {endereco && (
+                            <Typography sx={{ fontWeight: 600 }}>
+                              {endereco}
+                              <br />
+                            </Typography>
+                          )}
                           {shortText}
                         </TextsCard>
                       )

@@ -224,13 +224,14 @@ export interface EventoProps {
   descricao: RichTextProps
   fim: string
   inicio: string
-  localizacao: {
-    latitude: number
-    longitude: number
+  localizacao?: {
+    latitude?: number
+    longitude?: number
   }
   titulo: string
   url: string
   capa: ImageProps
+  endereco?: string
 }
 
 export interface EventosProps {

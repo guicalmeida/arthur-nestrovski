@@ -1,7 +1,7 @@
 import client from 'graphql/client'
 import GET_EVENTOS from 'graphql/queries/getEventos'
 import type { GetStaticProps } from 'next'
-import { EventosProps } from 'types/api'
+import { EventoProps, EventosProps } from 'types/api'
 import AgendaPage from 'templates/agenda'
 
 export default function Agenda({ eventos }: EventosProps) {
@@ -9,7 +9,30 @@ export default function Agenda({ eventos }: EventosProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { eventos } = await client.request(GET_EVENTOS)
+  let { eventos } = await client.request(GET_EVENTOS)
+  eventos = await Promise.all(
+    eventos.map(async (evento: EventoProps) => {
+      const { latitude, longitude } = evento?.localizacao ?? {}
+
+      const call = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+      )
+        .then((res) => res.json())
+        .catch(console.error)
+      const { amenity, house_number, road, suburb, city, town } =
+        (await call.address) || {}
+      const endereco = `${amenity ? amenity + ', ' : ''}${road ? road : ''}${
+        house_number ? ', ' + house_number : ''
+      }${suburb ? ' - ' + suburb : ''}${
+        city || town ? ', ' + (city || town) : ''
+      }`
+      const result = { ...evento, endereco }
+      const final = Object.fromEntries(
+        Object.entries(result).filter(([, v]) => v != null)
+      )
+      return final
+    })
+  )
 
   return {
     props: {
