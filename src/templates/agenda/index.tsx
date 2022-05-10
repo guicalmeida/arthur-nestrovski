@@ -9,6 +9,7 @@ import 'dayjs/locale/pt-br'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import { Container, Typography } from '@mui/material'
 import { getEventDateInfo } from 'services/datesHelper'
+import EventCard from 'components/eventCard'
 
 dayjs.locale('pt-br')
 dayjs.extend(customParseFormat)
@@ -151,31 +152,21 @@ export default function AgendaPage({ eventos }: EventosProps) {
                     {month[1].map((evento) => {
                       const { inicio, fim, descricao, titulo, capa, endereco } =
                         evento || {}
-                      const shortText = getShortDescription(descricao?.html)
-                      const slug = universalSlugify(titulo)
+
+                      const description = getShortDescription(descricao?.html)
+                      const path = universalSlugify(titulo)
 
                       const date = getEventDateInfo(inicio, fim)
+                      const props = {
+                        date,
+                        description,
+                        path,
+                        title: titulo,
+                        cover: capa?.url,
+                        address: endereco,
+                      }
 
-                      return (
-                        <TextsCard
-                          key={slug}
-                          text={{
-                            title: titulo,
-                            date,
-                            imageUrl: capa?.url,
-                          }}
-                          path={`/agenda/${slug}`}
-                          calendar={true}
-                        >
-                          {endereco && (
-                            <Typography sx={{ fontWeight: 600 }}>
-                              {endereco}
-                              <br />
-                            </Typography>
-                          )}
-                          {shortText}
-                        </TextsCard>
-                      )
+                      return <EventCard props={props} key={path} />
                     })}
                   </div>
                 </div>
