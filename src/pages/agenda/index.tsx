@@ -14,25 +14,33 @@ export const getStaticProps: GetStaticProps = async () => {
     eventos.map(async (evento: EventoProps) => {
       const { latitude, longitude } = evento?.localizacao ?? {}
 
-      const call = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-      )
-        .then((res) => res.json())
-        .catch(console.error)
-      const { amenity, house_number, road, suburb, city, town } =
-        (await call.address) || {}
-      const endereco = `${amenity ? amenity + ', ' : ''}${road ? road : ''}${
-        house_number ? ', ' + house_number : ''
-      }${suburb ? ' - ' + suburb : ''}${
-        city || town ? ', ' + (city || town) : ''
-      }`
-      const result = { ...evento, endereco }
-      const final = Object.fromEntries(
-        Object.entries(result).filter(([, v]) => v != null)
-      )
-      return final
+      if (latitude && longitude) {
+        const call = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+        )
+          .then((res) => {
+            return res.json()
+          })
+          .catch(console.error)
+        const { amenity, house_number, road, suburb, city, town } =
+          (await call?.address) || {}
+        const endereco = `${amenity ? amenity + ', ' : ''}${road ? road : ''}${
+          house_number ? ', ' + house_number : ''
+        }${suburb ? ' - ' + suburb : ''}${
+          city || town ? ', ' + (city || town) : ''
+        }`
+        const result = { ...evento, endereco }
+        const final = Object.fromEntries(
+          Object.entries(result).filter(([, v]) => v != null)
+        )
+        return final
+      } else {
+        return Object.fromEntries(
+          Object.entries(evento).filter(([, v]) => v != null)
+        )
+      }
     })
-  )
+  ).catch(console.error)
 
   return {
     props: {
