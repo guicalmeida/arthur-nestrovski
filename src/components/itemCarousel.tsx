@@ -1,15 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { Box, Container, Typography } from '@mui/material'
 import { LivroProps } from 'types/api'
-import Slider from 'react-slick'
-
 import Link from 'components/link'
 import universalSlugify from 'services/slugifyHelper'
 import { CSSProperties } from 'react'
 import { styled } from '@mui/system'
+import ItemSlider from './slider'
 
 const StyledContainer = styled(Container)`
-  margin: 15px 0;
+  margin: 16px 0;
   height: 540px;
   max-width: 100vw !important;
   display: flex;
@@ -56,41 +55,6 @@ const ImageContainer = styled('div')`
 `
 
 export default function ItemCarousel({ parentRoute, itens, titulo }: Props) {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 3,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1380,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 1065,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 680,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  }
-
   return (
     <>
       <StyledContainer sx={{ backgroundColor: 'background.paper' }}>
@@ -107,7 +71,7 @@ export default function ItemCarousel({ parentRoute, itens, titulo }: Props) {
           {titulo}
         </Typography>
         <StyledBox>
-          <Slider {...settings}>
+          <ItemSlider initialSlides={4}>
             {itens.map((item) => {
               const { capa, ano, titulo, editora } = item || {}
               let bookHoverStyle: CSSProperties = {
@@ -171,7 +135,7 @@ export default function ItemCarousel({ parentRoute, itens, titulo }: Props) {
                 </Box>
               )
             })}
-          </Slider>
+          </ItemSlider>
         </StyledBox>
       </StyledContainer>
     </>

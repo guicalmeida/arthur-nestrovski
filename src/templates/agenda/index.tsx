@@ -1,8 +1,6 @@
 import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
-import TextsCard from 'components/textsCard'
 import dayjs from 'dayjs'
-import { getShortDescription } from 'services/shortDescriptionHelper'
 import universalSlugify from 'services/slugifyHelper'
 import { EventoProps, EventosProps } from 'types/api'
 import 'dayjs/locale/pt-br'
@@ -10,6 +8,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat'
 import { Container, Typography } from '@mui/material'
 import { getEventDateInfo } from 'services/datesHelper'
 import EventCard from 'components/eventCard'
+import ItemSlider from 'components/slider'
 
 dayjs.locale('pt-br')
 dayjs.extend(customParseFormat)
@@ -64,37 +63,18 @@ export default function AgendaPage({ eventos }: EventosProps) {
               >
                 ESTE MÊS
               </Typography>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '24px',
-                  margin: '24px',
-                }}
-              >
-                {thisMonthEvents.map((evento) => {
-                  const shortText = getShortDescription(evento?.descricao?.html)
-                  const slug = universalSlugify(evento?.titulo)
-                  const { inicio, fim } = evento || {}
+              <div style={{ width: '100%' }}>
+                <ItemSlider
+                  initialSlides={
+                    thisMonthEvents.length > 3 ? 3 : thisMonthEvents.length
+                  }
+                >
+                  {thisMonthEvents.map((evento) => {
+                    const props = getEventProps(evento)
 
-                  const date = getEventDateInfo(inicio, fim)
-
-                  return (
-                    <TextsCard
-                      key={slug}
-                      text={{
-                        title: evento?.titulo,
-                        date,
-                        imageUrl: evento?.capa?.url,
-                      }}
-                      path={`/agenda/${slug}`}
-                      calendar={true}
-                    >
-                      {shortText}
-                    </TextsCard>
-                  )
-                })}
+                    return <EventCard props={props} key={props.title} />
+                  })}
+                </ItemSlider>
               </div>
               <div
                 role="separator"
@@ -127,12 +107,12 @@ export default function AgendaPage({ eventos }: EventosProps) {
             })
             .map((month) => {
               return (
-                <div key={month[0]}>
+                <div key={month[0]} style={{ width: '100%' }}>
                   <Typography
                     sx={{
                       fontWeight: 400,
                       letterSpacing: '5px',
-                      marginTop: '10px',
+                      margin: '16px 0',
                     }}
                     variant="h4"
                     component="h2"
@@ -140,35 +120,15 @@ export default function AgendaPage({ eventos }: EventosProps) {
                   >
                     {month[0].toUpperCase()}
                   </Typography>
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      gap: '24px',
-                      margin: '24px',
-                    }}
+                  <ItemSlider
+                    initialSlides={month[1].length > 3 ? 3 : month[1].length}
                   >
                     {month[1].map((evento) => {
-                      const { inicio, fim, descricao, titulo, capa, endereco } =
-                        evento || {}
+                      const props = getEventProps(evento)
 
-                      const description = getShortDescription(descricao?.html)
-                      const path = universalSlugify(titulo)
-
-                      const date = getEventDateInfo(inicio, fim)
-                      const props = {
-                        date,
-                        description,
-                        path,
-                        title: titulo,
-                        cover: capa?.url,
-                        address: endereco,
-                      }
-
-                      return <EventCard props={props} key={path} />
+                      return <EventCard props={props} key={props.title} />
                     })}
-                  </div>
+                  </ItemSlider>
                 </div>
               )
             })}
@@ -176,4 +136,19 @@ export default function AgendaPage({ eventos }: EventosProps) {
       </Container>
     </>
   )
+}
+
+const getEventProps = (evento: EventoProps) => {
+  const { inicio, fim, titulo, capa, endereco } = evento || {}
+
+  const path = universalSlugify(titulo)
+
+  const date = getEventDateInfo(inicio, fim)
+  return {
+    date,
+    path,
+    title: titulo,
+    cover: capa?.url,
+    address: endereco,
+  }
 }

@@ -13,16 +13,21 @@ import logo from '../../public/logo.svg'
 import Link from './link'
 
 const StyledCard = styled(Card)`
-  max-width: 450px;
+  width: 330px;
+  margin: 4px auto;
+  height: 530px;
+  display: flex;
+  flex-direction: column;
 `
 const StyledBox = styled(Box)`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  margin: 0 8px 8px 8px;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding: 0 16px 16px 16px;
 `
 export default function EventCard({ props }: Props) {
-  const { title, date, address, description, path, cover } = props || {}
+  const { title, date, address, path, cover } = props || {}
   const link = `agenda/${path}` || ''
   return (
     <StyledCard>
@@ -32,9 +37,9 @@ export default function EventCard({ props }: Props) {
           image={cover ?? logo.src}
           sx={{
             cursor: 'pointer',
-            maxHeight: 350,
+            maxHeight: 210,
             width: '100%',
-            objectFit: 'scale-down',
+            objectFit: cover ? 'cover' : 'scale-down',
             margin: 'auto',
           }}
         />
@@ -43,7 +48,7 @@ export default function EventCard({ props }: Props) {
         <CardContent>
           <div>
             <Link link={link} underline={false}>
-              <Typography variant="h4" component="h2" color="text.secondary">
+              <Typography variant="h5" component="h2" color="text.secondary">
                 {title}
               </Typography>
             </Link>
@@ -63,9 +68,6 @@ export default function EventCard({ props }: Props) {
               </Typography>
             )}
           </div>
-          {description && (
-            <Typography sx={{ mt: '16px' }}>{description}</Typography>
-          )}
         </CardContent>
         <CardActions>
           <Link link={link} underline={false}>
