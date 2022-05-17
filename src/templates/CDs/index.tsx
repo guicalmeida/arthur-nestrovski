@@ -1,5 +1,4 @@
 import { Grid, Typography } from '@mui/material'
-import CDsActionItems from 'components/CDActionItems'
 import ItemCard from 'components/itemCard'
 import Link from 'components/link'
 import NavDrawer from 'components/navDrawer'
@@ -46,7 +45,6 @@ const CDsPage = ({ cDs }: CDsProps) => {
                   </Typography>
                 </Link>
                 <Typography variant="body2">{shortDesc}</Typography>
-                <CDsActionItems cD={item} />
               </ItemCard>
             </Grid>
           )
