@@ -1,51 +1,86 @@
 import { CardActions, IconButton } from '@mui/material'
+import AmazonMusic from 'icons/AmazonMusic'
 import AppleMusic from 'icons/appleMusic'
+import Deezer from 'icons/Deezer'
 import Spotify from 'icons/spotify'
+import Tidal from 'icons/Tidal'
 import YoutubeMusic from 'icons/YoutubeMusic'
+import { ReactNode } from 'react'
 import { CDUnitProps } from 'types/api'
 
-export default function CDsActionItems({ cD }: CDUnitProps) {
-  const { linkEmYoutubeMusic, linkEmAppleMusic, linkEmSpotify } = cD || {}
+function CustomizedIcon({ children, linkUrl }: IconProps) {
+  if (linkUrl) {
+    return (
+      <IconButton
+        size="large"
+        color="primary"
+        href={linkUrl}
+        target="_blank"
+        sx={{ padding: '6px' }}
+      >
+        {children}
+      </IconButton>
+    )
+  } else {
+    return <></>
+  }
+}
+
+export default function CDsActionItems({ cD }: CDUnitProps, showAll = false) {
+  const {
+    linkEmYoutubeMusic,
+    linkEmAppleMusic,
+    linkEmSpotify,
+    linkEmAmazonMusic,
+    linkEmDeezer,
+    linkEmTidal,
+  } = cD || {}
   const hasActions = linkEmYoutubeMusic ?? linkEmAppleMusic ?? linkEmSpotify
   if (hasActions) {
     return (
       <CardActions sx={{ display: 'flex', justifyContent: 'center', pb: '0' }}>
         {linkEmAppleMusic ? (
-          <IconButton
-            size="large"
-            color="primary"
-            href={linkEmAppleMusic}
-            target="_blank"
-            sx={{ padding: '6px' }}
-          >
+          <CustomizedIcon linkUrl={linkEmAppleMusic}>
             <AppleMusic />
-          </IconButton>
+          </CustomizedIcon>
         ) : null}
         {linkEmSpotify ? (
-          <IconButton
-            size="large"
-            color="primary"
-            href={linkEmSpotify}
-            target="_blank"
-            sx={{ padding: '6px' }}
-          >
+          <CustomizedIcon linkUrl={linkEmSpotify}>
             <Spotify />
-          </IconButton>
+          </CustomizedIcon>
         ) : null}
         {linkEmYoutubeMusic ? (
-          <IconButton
-            size="large"
-            color="primary"
-            href={linkEmYoutubeMusic}
-            target="_blank"
-            sx={{ padding: '6px' }}
-          >
+          <CustomizedIcon linkUrl={linkEmYoutubeMusic}>
             <YoutubeMusic />
-          </IconButton>
+          </CustomizedIcon>
         ) : null}
+        {showAll && (
+          <>
+            {linkEmTidal ? (
+              <CustomizedIcon linkUrl={linkEmTidal}>
+                <Tidal />
+              </CustomizedIcon>
+            ) : null}
+            {linkEmAmazonMusic ? (
+              <CustomizedIcon linkUrl={linkEmAmazonMusic}>
+                <AmazonMusic />
+              </CustomizedIcon>
+            ) : null}
+            {linkEmDeezer ? (
+              <CustomizedIcon linkUrl={linkEmDeezer}>
+                <Deezer />
+              </CustomizedIcon>
+            ) : null}
+          </>
+        )}
       </CardActions>
     )
   } else {
-    return <span />
+    return <></>
   }
+}
+
+interface IconProps {
+  children: ReactNode
+  linkUrl?: string
 }
