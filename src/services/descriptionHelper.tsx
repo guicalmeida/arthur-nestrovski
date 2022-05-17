@@ -13,3 +13,17 @@ export const getShortDescription = (string = '', charcount = 240) => {
     return `${sliced}...`
   }
 }
+
+export function TurnHtmlStringToTag({ string }: Props) {
+  return (
+    <div
+      dangerouslySetInnerHTML={{
+        __html: string,
+      }}
+    ></div>
+  )
+}
+
+interface Props {
+  string: string
+}
