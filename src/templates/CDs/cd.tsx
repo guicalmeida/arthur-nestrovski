@@ -9,24 +9,34 @@ import { SpotifyEmbed } from 'services/spotfyEmbedHelper'
 import { CDUnitProps } from 'types/api'
 
 const CD = ({ cD }: CDUnitProps) => {
-  const slug = universalSlugify(cD?.titulo)
+  const {
+    ano,
+    capa,
+    creditos,
+    descricao,
+    faixas,
+    realizacao,
+    titulo,
+    linkEmSpotify,
+  } = cD || {}
+  const slug = universalSlugify(titulo)
 
   const bc = {
     Música: 'musica',
     CDs: 'cds',
-    [cD?.titulo]: slug,
+    [titulo]: slug,
   }
 
   const techInfo = {
-    production: cD?.realizacao?.nome,
-    year: cD?.ano?.ano,
+    production: realizacao?.nome,
+    year: ano?.ano,
   }
 
   return (
     <>
       <NavDrawer />
       <NavHeader breadcrumbs={bc} technicalInfo={techInfo}>
-        {cD?.titulo?.toUpperCase()}
+        {titulo?.toUpperCase()}
       </NavHeader>
       <Container>
         <div
@@ -46,8 +56,8 @@ const CD = ({ cD }: CDUnitProps) => {
               }}
             >
               <img
-                src={cD?.capa?.url}
-                alt={`capa do album ${cD.titulo}`}
+                src={capa?.url}
+                alt={`capa do album ${titulo}`}
                 style={{
                   maxWidth: '552px',
                   objectFit: 'contain',
@@ -59,18 +69,18 @@ const CD = ({ cD }: CDUnitProps) => {
           </div>
           <div>
             <Typography sx={{ whiteSpace: 'pre-line', padding: '24px' }}>
-              {cD.faixas}
+              {faixas}
             </Typography>
           </div>
         </div>
         <Paper sx={{ p: '24px', mt: '24px', mb: '24px' }}>
           <div style={{ width: '500px', margin: 'auto', height: '80px' }}>
-            <SpotifyEmbed url={cD.linkEmSpotify} />
+            <SpotifyEmbed url={linkEmSpotify} />
           </div>
           <Typography component="div" sx={{ mb: '24px' }}>
-            <TurnHtmlStringToTag string={cD?.descricao?.html} />
+            <TurnHtmlStringToTag string={descricao?.html} />
           </Typography>
-          {cD.creditos && (
+          {creditos && (
             <>
               <Divider />
 
@@ -78,7 +88,7 @@ const CD = ({ cD }: CDUnitProps) => {
                 sx={{ whiteSpace: 'pre-line', mt: '24px' }}
                 color="rgb(169 169 169)"
               >
-                {cD.creditos}
+                {creditos}
               </Typography>
             </>
           )}
