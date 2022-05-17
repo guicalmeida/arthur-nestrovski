@@ -6,8 +6,25 @@ import { ReactNode } from 'react'
 
 //no objeto de breadcrumbs, a chave é a label e o valor o caminho para o router
 //além disso, as breadcrumbs serão mostradas na ordem do objeto, do 1º ao último
-export default function NavHeader({ breadcrumbs, children }: Props) {
+export default function NavHeader({
+  breadcrumbs,
+  children,
+  technicalInfo,
+}: Props) {
   let wholeLink = ''
+
+  const { production, year } = technicalInfo || {}
+
+  const techText = () => {
+    if (production && year) {
+      return `${production} · ${year}`
+    } else if (production) {
+      return `${production}`
+    } else if (year) {
+      return `${year}`
+    }
+  }
+
   return (
     <>
       <Container
@@ -59,6 +76,11 @@ export default function NavHeader({ breadcrumbs, children }: Props) {
               {children}
             </Typography>
           </Grid>
+          {technicalInfo && (
+            <Grid item>
+              <Typography>{techText()}</Typography>
+            </Grid>
+          )}
           <Grid item>
             <Divider
               variant="middle"
@@ -81,5 +103,9 @@ interface Props {
   children: ReactNode
   breadcrumbs: {
     [index: string]: string
+  }
+  technicalInfo?: {
+    production: string
+    year: number
   }
 }
