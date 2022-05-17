@@ -2,7 +2,7 @@ import { Grid, Typography } from '@mui/material'
 import ItemCard from 'components/itemCard'
 import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
-import { getShortDescription } from 'services/shortDescriptionHelper'
+import { getShortDescription } from 'services/descriptionHelper'
 import universalSlugify from 'services/slugifyHelper'
 import { DVDsProps } from 'types/api'
 

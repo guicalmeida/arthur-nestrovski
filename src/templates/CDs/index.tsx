@@ -3,7 +3,7 @@ import ItemCard from 'components/itemCard'
 import Link from 'components/link'
 import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
-import { getShortDescription } from 'services/shortDescriptionHelper'
+import { getShortDescription } from 'services/descriptionHelper'
 import universalSlugify from 'services/slugifyHelper'
 import { CDsProps } from 'types/api'
 

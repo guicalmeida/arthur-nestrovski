@@ -3,7 +3,7 @@ import NavHeader from 'components/navHeader'
 import TextsCard from 'components/textsCard'
 import dayjs from 'dayjs'
 import { formatIsoString } from 'services/datesHelper'
-import { getShortDescription } from 'services/shortDescriptionHelper'
+import { getShortDescription } from 'services/descriptionHelper'
 import universalSlugify from 'services/slugifyHelper'
 import { NoticiasProps } from 'types/api'
 
