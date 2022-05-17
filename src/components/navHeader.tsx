@@ -7,6 +7,7 @@ import { ReactNode } from 'react'
 //no objeto de breadcrumbs, a chave é a label e o valor o caminho para o router
 //além disso, as breadcrumbs serão mostradas na ordem do objeto, do 1º ao último
 export default function NavHeader({ breadcrumbs, children }: Props) {
+  let wholeLink = ''
   return (
     <>
       <Container
@@ -26,15 +27,17 @@ export default function NavHeader({ breadcrumbs, children }: Props) {
               </Link>
               {Object.entries(breadcrumbs).map((item, i, arr) => {
                 const isCurrentPage = arr.length - 1 === i
+                wholeLink = wholeLink + `/${item[1]}`
+
                 if (!isCurrentPage) {
                   return (
-                    <Link underline={true} link={`/${item[1]}`} key={item[1]}>
+                    <Link underline={true} link={wholeLink} key={wholeLink}>
                       {item[0]}
                     </Link>
                   )
                 } else {
                   return (
-                    <Typography color="text.primary" key={item[1]}>
+                    <Typography color="text.primary" key={wholeLink}>
                       {item[0]}
                     </Typography>
                   )
