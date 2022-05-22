@@ -20,7 +20,7 @@ const DVD = ({ dvd }: DVDUnitProps) => {
 
   const bc = {
     Música: 'musica',
-    CDs: 'cds',
+    DVDs: 'dvds',
     [titulo]: slug,
   }
 
@@ -70,29 +70,27 @@ const DVD = ({ dvd }: DVDUnitProps) => {
               />
             </Box>
           </div>
-          <div style={{ maxWidth: '480px' }}>
-            <Typography
-              component="h2"
-              sx={{
-                color: 'primary.main',
-                pl: '24px',
-                pt: '24px',
-                fontSize: '20px',
-                fontWeight: 500,
-              }}
-            >
-              FAIXAS
+          <Paper sx={{ maxWidth: '500px', p: '24px', mt: '24px', mb: '24px' }}>
+            <Typography component="h2" sx={{ fontWeight: 600 }}>
+              Com {artistas}
             </Typography>
-            <Typography
-              sx={{ whiteSpace: 'pre-line', padding: '24px', pr: '0px' }}
-            ></Typography>
-          </div>
+            <Typography component="div" sx={{ mb: '24px' }}>
+              <TurnHtmlStringToTag string={descricao?.html} />
+            </Typography>
+            {informacoesExtra && (
+              <>
+                <Divider />
+
+                <Typography
+                  sx={{ whiteSpace: 'pre-line', mt: '24px' }}
+                  color="rgb(169 169 169)"
+                >
+                  {informacoesExtra}
+                </Typography>
+              </>
+            )}
+          </Paper>
         </div>
-        <Paper sx={{ p: '24px', mt: '24px', mb: '24px' }}>
-          <Typography component="div" sx={{ mb: '24px' }}>
-            <TurnHtmlStringToTag string={descricao?.html} />
-          </Typography>
-        </Paper>
       </Container>
     </>
   )
