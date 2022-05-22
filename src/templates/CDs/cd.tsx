@@ -43,6 +43,7 @@ const CD = ({ cD }: CDUnitProps) => {
           style={{
             display: 'flex',
             gap: '24px',
+            flexWrap: 'wrap',
           }}
         >
           <div>
@@ -62,19 +63,39 @@ const CD = ({ cD }: CDUnitProps) => {
                   maxWidth: '552px',
                   objectFit: 'contain',
                   padding: '24px',
+                  width: '100%',
                 }}
               />
               <CDsActionItems cD={cD} />
             </Box>
           </div>
           <div>
+            <Typography
+              component="h2"
+              sx={{
+                color: 'primary.main',
+                pl: '24px',
+                pt: '24px',
+                fontSize: '20px',
+                fontWeight: 500,
+              }}
+            >
+              FAIXAS
+            </Typography>
             <Typography sx={{ whiteSpace: 'pre-line', padding: '24px' }}>
               {faixas}
             </Typography>
           </div>
         </div>
         <Paper sx={{ p: '24px', mt: '24px', mb: '24px' }}>
-          <div style={{ width: '500px', margin: 'auto', height: '80px' }}>
+          <div
+            style={{
+              width: '100%',
+              maxWidth: '500px',
+              margin: 'auto',
+              height: '80px',
+            }}
+          >
             <SpotifyEmbed url={linkEmSpotify} />
           </div>
           <Typography component="div" sx={{ mb: '24px' }}>
