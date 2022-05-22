@@ -36,7 +36,7 @@ export default function VideosPage({ videos }: VideosProps) {
               <CardMedia
                 src={embedUrl}
                 component="iframe"
-                sx={{ height: '320px' }}
+                sx={{ height: '320px', border: 'none' }}
                 loading="lazy"
               />
               <CardContent
