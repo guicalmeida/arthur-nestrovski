@@ -34,3 +34,7 @@ a {
   display: flex;
   align-items: center;
 }
+
+.MuiBreadcrumbs-ol {
+  justify-content: center !important;
+}
