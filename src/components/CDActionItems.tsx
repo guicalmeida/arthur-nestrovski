@@ -16,7 +16,7 @@ function CustomizedIcon({ children, linkUrl }: IconProps) {
         color="primary"
         href={linkUrl}
         target="_blank"
-        sx={{ padding: '12px' }}
+        sx={{ padding: '8px' }}
       >
         {children}
       </IconButton>

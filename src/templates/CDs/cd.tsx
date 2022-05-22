@@ -32,6 +32,12 @@ const CD = ({ cD }: CDUnitProps) => {
     year: ano?.ano,
   }
 
+  const isMobile = () => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth <= 480
+    }
+  }
+
   return (
     <>
       <NavDrawer />
@@ -46,13 +52,12 @@ const CD = ({ cD }: CDUnitProps) => {
             flexWrap: 'wrap',
           }}
         >
-          <div>
+          <div style={isMobile() ? { width: '100%' } : {}}>
             <Box
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'space-between',
                 height: '100%',
               }}
             >
@@ -69,7 +74,7 @@ const CD = ({ cD }: CDUnitProps) => {
               <CDsActionItems cD={cD} />
             </Box>
           </div>
-          <div>
+          <div style={{ maxWidth: '480px' }}>
             <Typography
               component="h2"
               sx={{
@@ -82,7 +87,9 @@ const CD = ({ cD }: CDUnitProps) => {
             >
               FAIXAS
             </Typography>
-            <Typography sx={{ whiteSpace: 'pre-line', padding: '24px' }}>
+            <Typography
+              sx={{ whiteSpace: 'pre-line', padding: '24px', pr: '0px' }}
+            >
               {faixas}
             </Typography>
           </div>
