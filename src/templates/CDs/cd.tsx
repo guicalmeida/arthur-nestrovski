@@ -87,33 +87,35 @@ const CD = ({ cD }: CDUnitProps) => {
             </Typography>
           </div>
         </div>
-        <Paper sx={{ p: '24px', mt: '24px', mb: '24px' }}>
-          <div
-            style={{
-              width: '100%',
-              maxWidth: '500px',
-              margin: 'auto',
-              height: '80px',
-            }}
-          >
-            <SpotifyEmbed url={linkEmSpotify} />
-          </div>
-          <Typography component="div" sx={{ mb: '24px' }}>
-            <TurnHtmlStringToTag string={descricao?.html} />
-          </Typography>
-          {creditos && (
-            <>
-              <Divider />
+        {(linkEmSpotify || descricao?.html || creditos) && (
+          <Paper sx={{ p: '24px', mt: '24px', mb: '24px' }}>
+            <div
+              style={{
+                width: '100%',
+                maxWidth: '500px',
+                margin: 'auto',
+                height: '80px',
+              }}
+            >
+              <SpotifyEmbed url={linkEmSpotify} />
+            </div>
+            <Typography component="div" sx={{ mb: '24px' }}>
+              <TurnHtmlStringToTag string={descricao?.html} />
+            </Typography>
+            {creditos && (
+              <>
+                <Divider />
 
-              <Typography
-                sx={{ whiteSpace: 'pre-line', mt: '24px' }}
-                color="rgb(169 169 169)"
-              >
-                {creditos}
-              </Typography>
-            </>
-          )}
-        </Paper>
+                <Typography
+                  sx={{ whiteSpace: 'pre-line', mt: '24px' }}
+                  color="rgb(169 169 169)"
+                >
+                  {creditos}
+                </Typography>
+              </>
+            )}
+          </Paper>
+        )}
       </Container>
     </>
   )
