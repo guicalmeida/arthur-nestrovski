@@ -167,7 +167,7 @@ export interface NoticiasProps {
 }
 
 export interface NoticiaUnitProps {
-  noticias: NoticiaProps
+  noticia: NoticiaProps
 }
 
 export interface PerfilProps {

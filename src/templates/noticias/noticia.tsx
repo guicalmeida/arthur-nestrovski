@@ -1,27 +1,17 @@
 import { Container, Paper, Typography } from '@mui/material'
 import CustomBreadcrumbs from 'components/customBreadcrumbs'
-import Link from 'components/link'
 import NavDrawer from 'components/navDrawer'
 import { formatIsoString } from 'services/datesHelper'
 import { TurnHtmlStringToTag } from 'services/descriptionHelper'
 import universalSlugify from 'services/slugifyHelper'
-import { TextoUnitProps } from 'types/api'
+import { NoticiaUnitProps } from 'types/api'
 
-export default function Texto({ texto }: TextoUnitProps) {
-  const {
-    autores,
-    createdAt,
-    linkOriginal,
-    subtitulo,
-    texto: conteudo,
-    titulo,
-    veiculoDeDivulgacao,
-  } = texto
+export default function Noticia({ noticia }: NoticiaUnitProps) {
+  const { createdAt, subtitulo, texto: conteudo, titulo } = noticia
   const slug = universalSlugify(titulo)
   const date = createdAt ? formatIsoString(createdAt) : undefined
   const bc = {
-    Escrita: 'escrita',
-    Textos: 'textos',
+    Notícias: 'noticias',
     [titulo]: slug,
   }
 
@@ -46,22 +36,10 @@ export default function Texto({ texto }: TextoUnitProps) {
             {subtitulo}
           </Typography>
           <br />
-          <Typography sx={{ fontWeight: 500 }}>
-            {autores ? 'Por ' + autores : ''}
-          </Typography>
           <Typography sx={{ fontWeight: 500 }}>{date ? date : ''}</Typography>
           <Typography component="div">
             <TurnHtmlStringToTag string={conteudo?.html} />
           </Typography>
-          {veiculoDeDivulgacao && (
-            <>
-              <br />
-              <Typography>Publicado em {veiculoDeDivulgacao}</Typography>
-            </>
-          )}
-          {linkOriginal && (
-            <Link link={linkOriginal}>[link da publicação]</Link>
-          )}
         </Paper>
       </Container>
     </>
