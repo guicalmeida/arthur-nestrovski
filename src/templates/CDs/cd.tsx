@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Box, Container, Divider, Paper, Typography } from '@mui/material'
+import { styled } from '@mui/system'
 import CDsActionItems from 'components/CDActionItems'
 import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
@@ -7,6 +8,17 @@ import { TurnHtmlStringToTag } from 'services/descriptionHelper'
 import universalSlugify from 'services/slugifyHelper'
 import { SpotifyEmbed } from 'services/spotfyEmbedHelper'
 import { CDUnitProps } from 'types/api'
+
+const StyledPaper = styled(Paper)`
+  display: flex;
+  gap: 24px;
+  padding: 16px;
+
+  @media screen and (max-width: 900px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+`
 
 const CD = ({ cD }: CDUnitProps) => {
   const {
@@ -45,13 +57,7 @@ const CD = ({ cD }: CDUnitProps) => {
         {titulo?.toUpperCase()}
       </NavHeader>
       <Container>
-        <div
-          style={{
-            display: 'flex',
-            gap: '24px',
-            flexWrap: 'wrap',
-          }}
-        >
+        <StyledPaper>
           <div style={isMobile() ? { width: '100%' } : {}}>
             <Box
               sx={{
@@ -67,8 +73,8 @@ const CD = ({ cD }: CDUnitProps) => {
                 style={{
                   maxWidth: '552px',
                   objectFit: 'contain',
-                  padding: '24px',
                   width: '100%',
+                  maxHeight: '650px',
                 }}
               />
               <CDsActionItems cD={cD} />
@@ -80,7 +86,6 @@ const CD = ({ cD }: CDUnitProps) => {
               sx={{
                 color: 'primary.main',
                 pl: '24px',
-                pt: '24px',
                 fontSize: '20px',
                 fontWeight: 500,
               }}
@@ -93,7 +98,7 @@ const CD = ({ cD }: CDUnitProps) => {
               {faixas}
             </Typography>
           </div>
-        </div>
+        </StyledPaper>
         {(linkEmSpotify || descricao?.html || creditos) && (
           <Paper sx={{ p: '24px', mt: '24px', mb: '24px' }}>
             <div

@@ -1,10 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
 import { Box, Container, Divider, Paper, Typography } from '@mui/material'
+import { styled } from '@mui/system'
 import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
 import { TurnHtmlStringToTag } from 'services/descriptionHelper'
 import universalSlugify from 'services/slugifyHelper'
 import { DVDUnitProps } from 'types/api'
+
+const StyledPaper = styled(Paper)`
+  display: flex;
+  gap: 24px;
+  padding: 16px;
+
+  @media screen and (max-width: 900px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+`
 
 const DVD = ({ dvd }: DVDUnitProps) => {
   const {
@@ -42,13 +54,7 @@ const DVD = ({ dvd }: DVDUnitProps) => {
         {titulo?.toUpperCase()}
       </NavHeader>
       <Container>
-        <div
-          style={{
-            display: 'flex',
-            gap: '24px',
-            flexWrap: 'wrap',
-          }}
-        >
+        <StyledPaper>
           <div style={isMobile() ? { width: '100%' } : {}}>
             <Box
               sx={{
@@ -64,13 +70,13 @@ const DVD = ({ dvd }: DVDUnitProps) => {
                 style={{
                   maxWidth: '552px',
                   objectFit: 'contain',
-                  padding: '24px',
                   width: '100%',
+                  maxHeight: '650px',
                 }}
               />
             </Box>
           </div>
-          <Paper sx={{ maxWidth: '500px', p: '24px', mt: '24px', mb: '24px' }}>
+          <div style={{ maxWidth: '500px' }}>
             <Typography component="h2" sx={{ fontWeight: 600 }}>
               Com {artistas}
             </Typography>
@@ -89,8 +95,8 @@ const DVD = ({ dvd }: DVDUnitProps) => {
                 </Typography>
               </>
             )}
-          </Paper>
-        </div>
+          </div>
+        </StyledPaper>
       </Container>
     </>
   )
