@@ -151,7 +151,7 @@ export interface TextosProps {
 }
 
 export interface TextoUnitProps {
-  textos: TextoProps
+  texto: TextoProps
 }
 
 export interface NoticiaProps {
