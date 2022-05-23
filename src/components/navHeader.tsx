@@ -105,7 +105,7 @@ interface Props {
     [index: string]: string
   }
   technicalInfo?: {
-    production: string
-    year: number
+    production?: string
+    year?: number
   }
 }
