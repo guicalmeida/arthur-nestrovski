@@ -16,7 +16,7 @@ import Link from './link'
 const StyledCard = styled(Card)`
   max-width: 345px;
 
-  @media (min-width: 601px) {
+  @media (min-width: 750px) {
     display: flex;
     max-width: 1200px;
     width: 80vw;
