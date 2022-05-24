@@ -206,6 +206,10 @@ export interface ShowsProps {
   shows: ShowProps[]
 }
 
+export interface ShowUnitProps {
+  show: ShowProps
+}
+
 export interface ProducaoIntelectualProps {
   titulo: string
   veiculo: string
