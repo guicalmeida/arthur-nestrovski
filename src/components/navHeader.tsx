@@ -81,6 +81,6 @@ interface Props {
   }
   technicalInfo?: {
     production?: string
-    year?: number
+    year?: number | string
   }
 }
