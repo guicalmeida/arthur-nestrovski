@@ -275,6 +275,8 @@ export interface HomeProps {
     editora: {
       titulo: string
     }
+    titulo: string
+    subtitulo: string
   }[]
   noticias: {
     capa: ImageProps

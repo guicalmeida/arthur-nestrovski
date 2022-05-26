@@ -40,6 +40,8 @@ const GET_HOME = /* GraphQL */ `
       editora {
         titulo
       }
+      titulo
+      subtitulo
     }
     noticias(first: 1, orderBy: publishedAt_DESC) {
       capa {
