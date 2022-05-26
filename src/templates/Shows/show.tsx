@@ -3,7 +3,7 @@ import { Box, Button, Container, Paper, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
-import { ReactNode } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 import { TurnHtmlStringToTag } from 'services/descriptionHelper'
 import universalSlugify from 'services/slugifyHelper'
 import { ShowUnitProps } from 'types/api'
@@ -64,6 +64,8 @@ const Show = ({ show }: ShowUnitProps) => {
     mobile = window.innerWidth <= 480
   }
 
+  const noRepertorioStyle: CSSProperties = repertorio ? {} : { flexGrow: 1 }
+
   return (
     <>
       <NavDrawer />
@@ -72,7 +74,13 @@ const Show = ({ show }: ShowUnitProps) => {
       </NavHeader>
       <Container>
         <StyledPaper>
-          <div style={mobile ? { width: '100%' } : undefined}>
+          <div
+            style={
+              mobile
+                ? { ...noRepertorioStyle, width: '100%' }
+                : { ...noRepertorioStyle }
+            }
+          >
             <Box
               sx={{
                 display: 'flex',
@@ -93,12 +101,14 @@ const Show = ({ show }: ShowUnitProps) => {
               />
             </Box>
           </div>
-          <div style={{ maxWidth: '480px' }}>
-            <SecondaryTitle>REPERTÓRIO</SecondaryTitle>
-            <Typography component="div">
-              <TurnHtmlStringToTag string={repertorio.html} />
-            </Typography>
-          </div>
+          {repertorio && repertorio.html && (
+            <div style={{ maxWidth: '480px' }}>
+              <SecondaryTitle>REPERTÓRIO</SecondaryTitle>
+              <Typography component="div">
+                <TurnHtmlStringToTag string={repertorio?.html} />
+              </Typography>
+            </div>
+          )}
         </StyledPaper>
         <Paper sx={{ p: '24px', mt: '24px', mb: '24px' }}>
           {descricao && descricao.html && (
