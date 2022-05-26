@@ -1,6 +1,6 @@
 import Typography from '@mui/material/Typography'
 import { Container, Divider, Grid } from '@mui/material'
-import { ReactNode } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 import CustomBreadcrumbs from './customBreadcrumbs'
 
 //no objeto de breadcrumbs, a chave é a label e o valor o caminho para o router
@@ -9,6 +9,7 @@ export default function NavHeader({
   breadcrumbs,
   children,
   technicalInfo,
+  titleStyle,
 }: Props) {
   const { production, year } = technicalInfo || {}
 
@@ -25,7 +26,11 @@ export default function NavHeader({
   return (
     <>
       <Container
-        sx={{ height: '100%', marginTop: '16px', textAlign: 'center' }}
+        sx={{
+          height: '100%',
+          marginTop: '16px',
+          textAlign: 'center',
+        }}
       >
         <Grid
           container
@@ -40,6 +45,7 @@ export default function NavHeader({
           <Grid item>
             <Typography
               sx={{
+                ...titleStyle,
                 fontWeight: 400,
                 letterSpacing: '5px',
                 marginTop: '10px',
@@ -83,4 +89,5 @@ interface Props {
     production?: string
     year?: number | string
   }
+  titleStyle?: CSSProperties
 }
