@@ -245,3 +245,54 @@ export interface EventosProps {
 export interface EventoUnitProps {
   evento: EventoProps
 }
+
+export interface HomeProps {
+  cDs: {
+    titulo: string
+    capa: ImageProps
+    ano: AnoProps
+    realizacao: {
+      nome: string
+    }
+  }
+  eventos: {
+    capa: ImageProps
+    inicio: number
+    titulo: string
+    fim: number
+  }
+  galerias: {
+    foto: ImageProps
+  }
+  letras: {
+    titulo: string
+    composicao: string
+  }
+  livros: {
+    ano: AnoProps
+    autor: string
+    capa: ImageProps
+    editora: {
+      titulo: string
+    }
+  }
+  noticias: {
+    capa: ImageProps
+    subtitulo: string
+    titulo: string
+    texto: RichTextProps
+  }
+  partiturasECifras: {
+    composicao: string
+    titulo: string
+  }
+  textos: {
+    autores: string
+    titulo: string
+    texto: RichTextProps
+    subtitulo: string
+  }
+  videos: {
+    linkDoVideoYouTube: string
+  }
+}
