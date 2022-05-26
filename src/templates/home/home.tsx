@@ -1,10 +1,30 @@
 import { Box, Container, Typography } from '@mui/material'
 import HeroSection from 'components/heroSection'
+import MostRecent from 'components/mostRecent'
 import NavDrawer from 'components/navDrawer'
-import { HomeProps } from 'types/api'
+import SideItemCard from 'components/sideItemCard'
+import { GaleriaProps, HomeProps } from 'types/api'
 
-const HomeContainer = ({ home }: { home: HomeProps }) => {
-  console.log(home)
+const HomeContainer = ({
+  home,
+  letrasCover,
+  partiturasCover,
+}: {
+  home: HomeProps
+  letrasCover: GaleriaProps
+  partiturasCover: GaleriaProps
+}) => {
+  const {
+    cDs,
+    eventos,
+    galerias,
+    letras,
+    livros,
+    noticias,
+    partiturasECifras,
+    textos,
+    videos,
+  } = home || {}
   return (
     <>
       <HeroSection />
@@ -33,35 +53,7 @@ const HomeContainer = ({ home }: { home: HomeProps }) => {
               justifyContent: 'space-around',
               width: '100%',
             }}
-          >
-            <Box>
-              <Typography
-                component="h3"
-                variant="h4"
-                sx={{ fontWeight: 500, color: 'primary.dark' }}
-              >
-                CDs
-              </Typography>
-            </Box>
-            <Box>
-              <Typography
-                component="h3"
-                variant="h4"
-                sx={{ fontWeight: 500, color: 'primary.dark' }}
-              >
-                Letras
-              </Typography>
-            </Box>
-            <Box>
-              <Typography
-                component="h3"
-                variant="h4"
-                sx={{ fontWeight: 500, color: 'primary.dark' }}
-              >
-                Partituras & Cifras
-              </Typography>
-            </Box>
-          </Box>
+          ></Box>
         </Box>
       </Container>
     </>

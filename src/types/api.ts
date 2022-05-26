@@ -254,20 +254,20 @@ export interface HomeProps {
     realizacao: {
       nome: string
     }
-  }
+  }[]
   eventos: {
     capa: ImageProps
     inicio: number
     titulo: string
     fim: number
-  }
+  }[]
   galerias: {
     foto: ImageProps
-  }
+  }[]
   letras: {
     titulo: string
     composicao: string
-  }
+  }[]
   livros: {
     ano: AnoProps
     autor: string
@@ -275,24 +275,24 @@ export interface HomeProps {
     editora: {
       titulo: string
     }
-  }
+  }[]
   noticias: {
     capa: ImageProps
     subtitulo: string
     titulo: string
     texto: RichTextProps
-  }
+  }[]
   partiturasECifras: {
     composicao: string
     titulo: string
-  }
+  }[]
   textos: {
     autores: string
     titulo: string
     texto: RichTextProps
     subtitulo: string
-  }
+  }[]
   videos: {
     linkDoVideoYouTube: string
-  }
+  }[]
 }
