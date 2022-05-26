@@ -241,3 +241,7 @@ export interface EventoProps {
 export interface EventosProps {
   eventos: EventoProps[]
 }
+
+export interface EventoUnitProps {
+  evento: EventoProps
+}
