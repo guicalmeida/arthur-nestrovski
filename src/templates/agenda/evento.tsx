@@ -94,7 +94,6 @@ const Evento = ({ evento }: EventoUnitProps) => {
                 component="h2"
                 sx={{
                   color: 'primary.main',
-                  pl: '24px',
                   fontSize: '28px',
                   fontWeight: 500,
                 }}
