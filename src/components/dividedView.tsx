@@ -92,14 +92,14 @@ export default function DividedView({ partiturasECifras, letras }: Props) {
         display: 'flex',
         justifyContent: 'center',
         height: 'calc(91vh - 140px)',
-        margin: '48px auto 16px auto',
+        margin: hideView ? '0' : '48px auto 16px auto',
       }}
     >
       <Box>
         <List
           sx={{
             maxWidth: hideView ? '100%' : '450px',
-            marginRight: '48px',
+            marginRight: hideView ? '0' : '48px',
             overflow: 'auto',
             height: '100%',
           }}
@@ -182,7 +182,7 @@ export default function DividedView({ partiturasECifras, letras }: Props) {
                 </IconButton>
               </Toolbar>
             </AppBar>
-            <Box sx={{ mt: '24px' }}>
+            <Box sx={{ mt: '24px', p: '16px' }}>
               <RenderLyrics
                 letra={letra?.letra}
                 letraOriginal={letra?.letraOriginal}
