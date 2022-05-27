@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
   AppBar,
   Box,
@@ -22,6 +23,7 @@ import Image from 'next/image'
 import logo from '../../public/logo.svg'
 import sections from '../services/sectionsHelper'
 import Link from './link'
+import useWindowSize from 'hooks/useWindowResize'
 
 const NavDrawer = () => {
   const [drawer, setDrawer] = useState<boolean>(false)
@@ -38,41 +40,50 @@ const NavDrawer = () => {
       setDrawer(open)
     }
 
+  const { width } = useWindowSize() || {}
+  const isSmallScreen = width! <= 900
+
   const SiteAppBar = () => {
     return (
       <AppBar
         position="fixed"
         sx={{
-          right: 'auto',
+          right: 0,
           left: 0,
-          width: 80,
-          height: '100vh',
+          top: isSmallScreen ? 'auto' : 0,
+          bottom: isSmallScreen ? 0 : 'auto',
+          width: isSmallScreen ? '100vw' : 80,
+          height: isSmallScreen ? 70 : '100vh',
           display: {
-            xs: 'none',
-            sm: 'none',
             md: 'flex',
           },
         }}
       >
         <Toolbar
           sx={{
-            flexDirection: 'column',
+            flexDirection: isSmallScreen ? 'row' : 'column',
             justifyContent: 'space-between',
             height: '100%',
             width: '100%',
-            margin: '20px 0',
+            margin: isSmallScreen ? ' 0 16px' : '20px 0',
           }}
           disableGutters={true}
         >
-          <Link link={'/'}>
-            <Image src={logo} alt="logo" height={60} width={60} />
-          </Link>
-          <IconButton color="inherit" onClick={() => setDrawer(true)}>
-            <MenuIcon />
-          </IconButton>
-          <IconButton color="inherit">
-            <SearchIcon />
-          </IconButton>
+          <div style={{ order: isSmallScreen ? 2 : 1 }}>
+            <Link link={'/'}>
+              <Image src={logo} alt="logo" height={60} width={60} />
+            </Link>
+          </div>
+          <div style={{ order: isSmallScreen ? 1 : 2 }}>
+            <IconButton color="inherit" onClick={() => setDrawer(true)}>
+              <MenuIcon />
+            </IconButton>
+          </div>
+          <div style={{ order: 3 }}>
+            <IconButton color="inherit">
+              <SearchIcon />
+            </IconButton>
+          </div>
         </Toolbar>
       </AppBar>
     )

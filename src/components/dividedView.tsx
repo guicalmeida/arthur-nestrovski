@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { MusicNote } from '@mui/icons-material'
 import CloseIcon from '@mui/icons-material/Close'
 import {
@@ -14,6 +15,7 @@ import {
   AppBar,
   Dialog,
 } from '@mui/material'
+import useWindowSize from 'hooks/useWindowResize'
 import { useRouter } from 'next/router'
 import { Fragment, useEffect, useState } from 'react'
 import universalSlugify from 'services/slugifyHelper'
@@ -33,10 +35,8 @@ export default function DividedView({ partiturasECifras, letras }: Props) {
   const [original, setOriginal] = useState(false)
   const [openModal, setOpenModal] = useState(false)
 
-  let hideView = false
-  if (typeof window !== 'undefined') {
-    hideView = window.innerWidth <= 1000
-  }
+  const { width } = useWindowSize() || {}
+  const hideView = width! <= 1000
 
   useEffect(() => {
     if (partiturasECifras) {
