@@ -17,7 +17,7 @@ const StyledCard = styled(Card)`
   @media (min-width: 1200px) {
     display: flex;
     min-height: 350px;
-    max-width: 700px;
+    max-width: 740px;
   }
 `
 const StyledBox = styled(Box)`

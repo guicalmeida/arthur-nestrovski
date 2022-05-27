@@ -11,6 +11,21 @@ import { GaleriaProps, HomeProps } from 'types/api'
 import { getEventDateInfo } from 'services/datesHelper'
 import HomeEventCard from 'components/homeEventCard'
 
+const MainDivider = ({ margin }: { margin: string }) => {
+  return (
+    <Divider
+      variant="middle"
+      sx={{
+        width: '500px',
+        height: '3px',
+        borderTop: '2px solid',
+        borderColor: 'primary.main',
+        margin,
+      }}
+    />
+  )
+}
+
 const HomeContainer = ({
   home,
   letrasCover,
@@ -66,13 +81,31 @@ const HomeContainer = ({
           <Box
             sx={{
               mt: 3,
-              display: 'flex',
               width: '100%',
+              display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'flex-end',
             }}
           >
-            <Box>
+            <Box
+              sx={{
+                height: '530px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                alignItems: 'flex-end',
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  flexGrow: 1,
+                }}
+              >
+                <MainDivider margin="none" />
+              </div>
               <HomeTextCard
                 text={{
                   title: noticias?.[0]?.titulo,
@@ -93,6 +126,7 @@ const HomeContainer = ({
           id="secondRow"
           sx={{
             mt: 8,
+            mb: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -142,16 +176,6 @@ const HomeContainer = ({
             </HomeItemCard>
           </Box>
         </Box>
-        <Divider
-          variant="middle"
-          sx={{
-            width: '500px',
-            height: '3px',
-            borderTop: '2px solid',
-            borderColor: 'primary.main',
-            margin: '64px auto',
-          }}
-        />
         <Box
           id="thirdRow"
           sx={{
@@ -180,7 +204,7 @@ const HomeContainer = ({
                 year={livros?.[0]?.ano?.ano}
               />
             </HomeItemCard>
-            <Box>
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <HomeTextCard
                 text={{
                   title: textos?.[0]?.titulo,
@@ -192,6 +216,16 @@ const HomeContainer = ({
               >
                 {textShort}
               </HomeTextCard>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  flexGrow: 1,
+                }}
+              >
+                <MainDivider margin="none" />
+              </div>
             </Box>
           </Box>
         </Box>

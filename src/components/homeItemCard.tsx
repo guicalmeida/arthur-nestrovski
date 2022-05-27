@@ -15,7 +15,7 @@ import universalSlugify from 'services/slugifyHelper'
 import logo from '../../public/logo.svg'
 
 const StyledCard = styled(Card)`
-  max-width: 345px;
+  max-width: 330px;
   display: flex;
   flex-direction: column;
 `
