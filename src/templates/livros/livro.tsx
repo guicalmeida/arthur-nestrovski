@@ -65,7 +65,7 @@ const Livro = ({ livro }: LivroUnitProps) => {
       <NavHeader breadcrumbs={bc} technicalInfo={subtitle}>
         {titulo?.toUpperCase()}
       </NavHeader>
-      <Container>
+      <Container style={{ marginBottom: '100px' }}>
         <StyledPaper>
           <div style={isMobile() ? { width: '100%' } : {}}>
             <Box

@@ -38,7 +38,7 @@ export default function AgendaPage({ eventos }: EventosProps) {
     <>
       <NavDrawer />
       <NavHeader breadcrumbs={bc}>AGENDA</NavHeader>
-      <Container>
+      <Container style={{ marginBottom: '100px' }}>
         <div
           style={{
             display: 'flex',

@@ -26,6 +26,7 @@ export default function VideosPage({ videos }: VideosProps) {
           flexWrap: 'wrap',
           gap: '24px',
           justifyContent: 'center',
+          mb: '100px',
         }}
       >
         {videos.map((video) => {

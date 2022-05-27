@@ -28,6 +28,7 @@ const TextosPage = ({ textos }: TextosProps) => {
           alignItems: 'center',
           gap: '24px',
           margin: '24px',
+          marginBottom: '100px',
         }}
       >
         {sorted.map((texto) => {

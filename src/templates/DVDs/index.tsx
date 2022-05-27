@@ -23,7 +23,7 @@ const DVDsPage = ({ dvds }: DVDsProps) => {
       <Grid
         container
         justifyContent="center"
-        sx={{ maxWidth: '1200px', margin: '0 auto' }}
+        sx={{ maxWidth: '1200px', margin: '0 auto', mb: '100px' }}
       >
         {sortedItems?.map((item) => {
           const shortDesc = getShortDescription(item?.descricao?.html)

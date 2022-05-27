@@ -215,6 +215,9 @@ export default function IntelectualPage({
 
   const finalRows = emptyRows as GridRowsProp
 
+  const { width: clientWidth } = useWindowSize() || {}
+  const isSmallScreen = clientWidth! <= 900
+
   return (
     <>
       <NavDrawer />
@@ -222,11 +225,14 @@ export default function IntelectualPage({
       <div
         style={{
           display: 'flex',
+          flexDirection: 'column',
           height: '80vh',
           width: '100%',
           padding: '48px',
+          marginBottom: '100px',
         }}
       >
+        {isSmallScreen && <p>Visualize em um computador</p>}
         <div style={{ flexGrow: 1 }}>
           <DataGrid
             rows={finalRows}

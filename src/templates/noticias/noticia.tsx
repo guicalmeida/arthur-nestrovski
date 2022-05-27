@@ -21,7 +21,7 @@ export default function Noticia({ noticia }: NoticiaUnitProps) {
       <div style={{ margin: '16px 0', textAlign: 'center' }}>
         <CustomBreadcrumbs breadcrumbs={bc} />
       </div>
-      <Container>
+      <Container style={{ marginBottom: '100px' }}>
         <Paper sx={{ p: '24px' }}>
           <Typography
             variant="h3"

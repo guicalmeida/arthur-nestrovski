@@ -8,9 +8,11 @@ const Container = styled('div')`
   gap: 24px;
   max-width: 1800px;
   margin: auto;
+  margin-bottom: 100px;
 
   @media (max-width: 1800px) {
     margin: 24px;
+    margin-bottom: 100px;
   }
 `
 

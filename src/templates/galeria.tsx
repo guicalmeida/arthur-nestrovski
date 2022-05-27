@@ -69,7 +69,7 @@ export default function GaleriaPage({ galerias }: GaleriasProps) {
     <>
       <NavDrawer />
       <NavHeader breadcrumbs={bc}>GALERIA</NavHeader>
-      <Container>
+      <Container style={{ marginBottom: '100px' }}>
         <ImageList
           variant="masonry"
           cols={cols}

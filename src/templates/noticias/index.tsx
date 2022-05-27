@@ -33,18 +33,19 @@ export default function NoticiasPage({ noticias }: NoticiasProps) {
           const shortText = getShortDescription(noticia?.texto?.html)
           const slug = universalSlugify(noticia?.titulo)
           return (
-            <TextsCard
-              key={slug}
-              text={{
-                title: noticia?.titulo,
-                subtitle: noticia?.subtitulo,
-                date: formatIsoString(noticia?.createdAt),
-                imageUrl: noticia?.capa?.url,
-              }}
-              path={`/noticias/${slug}`}
-            >
-              {shortText}
-            </TextsCard>
+            <div style={{ marginBottom: '100px' }} key={slug}>
+              <TextsCard
+                text={{
+                  title: noticia?.titulo,
+                  subtitle: noticia?.subtitulo,
+                  date: formatIsoString(noticia?.createdAt),
+                  imageUrl: noticia?.capa?.url,
+                }}
+                path={`/noticias/${slug}`}
+              >
+                {shortText}
+              </TextsCard>
+            </div>
           )
         })}
       </div>

@@ -57,7 +57,7 @@ const Evento = ({ evento }: EventoUnitProps) => {
       <NavHeader breadcrumbs={bc} titleStyle={{ fontSize: '3rem' }}>
         {titulo?.toUpperCase()}
       </NavHeader>
-      <Container>
+      <Container style={{ marginBottom: '100px' }}>
         <StyledPaper>
           {latitude && longitude && (
             <div style={{ width: '100%' }}>

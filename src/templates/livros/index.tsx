@@ -14,22 +14,24 @@ const LivrosPage = ({ livros, categoriasLivro }: LivrosProps) => {
     <>
       <NavDrawer />
       <NavHeader breadcrumbs={bc}>LIVROS</NavHeader>
-      {categoriasLivro?.map((categoria) => {
-        const thisGenreBooks: LivroProps[] = []
-        livros.map((livro) => {
-          if (livro?.categoriaLivro?.titulo === categoria?.titulo) {
-            thisGenreBooks.push(livro)
-          }
-        })
-        return (
-          <ItemCarousel
-            key={universalSlugify(categoria.titulo)}
-            itens={thisGenreBooks}
-            titulo={categoria.titulo}
-            parentRoute={'escrita/livros'}
-          />
-        )
-      })}
+      <div style={{ marginBottom: '100px' }}>
+        {categoriasLivro?.map((categoria) => {
+          const thisGenreBooks: LivroProps[] = []
+          livros.map((livro) => {
+            if (livro?.categoriaLivro?.titulo === categoria?.titulo) {
+              thisGenreBooks.push(livro)
+            }
+          })
+          return (
+            <ItemCarousel
+              key={universalSlugify(categoria.titulo)}
+              itens={thisGenreBooks}
+              titulo={categoria.titulo}
+              parentRoute={'escrita/livros'}
+            />
+          )
+        })}
+      </div>
     </>
   )
 }

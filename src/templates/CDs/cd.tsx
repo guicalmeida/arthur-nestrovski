@@ -56,7 +56,7 @@ const CD = ({ cD }: CDUnitProps) => {
       <NavHeader breadcrumbs={bc} technicalInfo={techInfo}>
         {titulo?.toUpperCase()}
       </NavHeader>
-      <Container>
+      <Container style={{ marginBottom: '100px' }}>
         <StyledPaper>
           <div style={isMobile() ? { width: '100%' } : {}}>
             <Box
