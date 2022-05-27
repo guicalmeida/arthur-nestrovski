@@ -14,11 +14,10 @@ import Link from './link'
 const StyledCard = styled(Card)`
   max-width: 345px;
 
-  @media (min-width: 750px) {
+  @media (min-width: 1200px) {
     display: flex;
-    min-height: 280px;
     min-height: 350px;
-    width: 700px;
+    max-width: 700px;
   }
 `
 const StyledBox = styled(Box)`
@@ -38,6 +37,19 @@ export default function HomeTextCard({
     <StyledCard>
       <StyledBox>
         <CardContent>
+          <Typography
+            component="h2"
+            variant="h4"
+            sx={{
+              color: 'primary.dark',
+              fontWeight: 400,
+              letterSpacing: '2px',
+              mb: '24px',
+            }}
+          >
+            Textos
+          </Typography>
+
           <div style={{ cursor: 'pointer' }}>
             <Link link={path} underline={false}>
               <Typography variant="h4" component="h2" color="text.secondary">
@@ -83,7 +95,7 @@ export default function HomeTextCard({
               variant="contained"
               endIcon={<ChevronRight />}
             >
-              Ver tudo
+              Ver todos
             </Button>
           </Link>
         </CardActions>

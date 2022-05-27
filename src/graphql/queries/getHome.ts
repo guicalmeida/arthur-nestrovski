@@ -12,13 +12,17 @@ const GET_HOME = /* GraphQL */ `
         nome
       }
     }
-    eventos(first: 4, orderBy: publishedAt_DESC) {
+    eventos(first: 1, orderBy: publishedAt_DESC) {
       capa {
         url
       }
       inicio
       titulo
       fim
+      localizacao {
+        latitude
+        longitude
+      }
     }
     galerias(first: 4, orderBy: publishedAt_DESC) {
       foto {

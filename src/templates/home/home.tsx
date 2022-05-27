@@ -1,14 +1,15 @@
-import { Box, Container, Divider, Typography } from '@mui/material'
+import { Box, Container, Divider } from '@mui/material'
 import HeroSection from 'components/heroSection'
 import HomeItemCard from 'components/homeItemCard'
 import HomeTextCard from 'components/homeTextCard'
 import MostRecent from 'components/mostRecent'
 import NavDrawer from 'components/navDrawer'
-import TextsCard from 'components/textsCard'
 import { formatIsoString } from 'services/datesHelper'
 import { getShortDescription } from 'services/descriptionHelper'
 import universalSlugify from 'services/slugifyHelper'
 import { GaleriaProps, HomeProps } from 'types/api'
+import { getEventDateInfo } from 'services/datesHelper'
+import HomeEventCard from 'components/homeEventCard'
 
 const HomeContainer = ({
   home,
@@ -31,13 +32,59 @@ const HomeContainer = ({
     videos,
   } = home || {}
 
+  const { capa, fim, inicio, titulo: eventTitle, endereco } = eventos?.[0]
+  const eventSlug = universalSlugify(eventTitle)
+  const eventDate = getEventDateInfo(inicio, fim)
+
   const textSlug = universalSlugify(textos[0].titulo)
   const textShort = getShortDescription(textos?.[0]?.texto.html)
+
+  const eventProps = {
+    title: eventTitle,
+    date: eventDate,
+    address: endereco,
+    path: eventSlug,
+    cover: capa?.url,
+    startDate: inicio,
+  }
   return (
     <>
       <HeroSection />
       <NavDrawer />
       <Container sx={{ mb: '100px' }}>
+        <Box
+          id="secondRow"
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Box
+            sx={{
+              mt: 3,
+              display: 'flex',
+              width: '100%',
+              justifyContent: 'space-between',
+              alignItems: 'flex-end',
+            }}
+          >
+            <Box>
+              <HomeTextCard
+                text={{
+                  title: textos?.[0]?.titulo,
+                  subtitle: textos?.[0]?.subtitulo,
+                  date: formatIsoString(textos?.[0]?.createdAt),
+                }}
+                path={`/escrita/textos/${textSlug}`}
+              >
+                {textShort}
+              </HomeTextCard>
+            </Box>
+
+            <HomeEventCard props={eventProps}></HomeEventCard>
+          </Box>
+        </Box>
         <Box
           id="firstRow"
           sx={{
@@ -51,7 +98,7 @@ const HomeContainer = ({
             sx={{
               mt: 3,
               display: 'flex',
-              justifyContent: 'space-around',
+              justifyContent: 'space-between',
               width: '100%',
             }}
           >
@@ -100,7 +147,7 @@ const HomeContainer = ({
             borderColor: 'primary.main',
             margin: '64px auto',
           }}
-        />{' '}
+        />
         <Box
           id="secondRow"
           sx={{
@@ -130,18 +177,6 @@ const HomeContainer = ({
               />
             </HomeItemCard>
             <Box>
-              <Typography
-                component="h2"
-                variant="h4"
-                sx={{
-                  color: 'primary.main',
-                  fontWeight: 500,
-                  letterSpacing: '1px',
-                  mb: '24px',
-                }}
-              >
-                TEXTO MAIS RECENTE
-              </Typography>
               <HomeTextCard
                 text={{
                   title: textos?.[0]?.titulo,

@@ -52,7 +52,8 @@ export default function HomeItemCard({
             gutterBottom
             variant="h4"
             component="h2"
-            color="text.secondary"
+            color="primary.dark"
+            sx={{ letterSpacing: '2px' }}
           >
             {title}
           </Typography>

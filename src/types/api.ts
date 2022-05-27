@@ -225,7 +225,7 @@ export interface ProducoesIntelectuaisProps {
 }
 
 export interface EventoProps {
-  descricao: RichTextProps
+  descricao?: RichTextProps
   fim: string
   inicio: string
   localizacao?: {
@@ -233,7 +233,7 @@ export interface EventoProps {
     longitude?: number
   }
   titulo: string
-  url: string
+  url?: string
   capa: ImageProps
   endereco?: string
 }
@@ -255,12 +255,7 @@ export interface HomeProps {
       nome: string
     }
   }[]
-  eventos: {
-    capa: ImageProps
-    inicio: number
-    titulo: string
-    fim: number
-  }[]
+  eventos: EventoProps[]
   galerias: {
     foto: ImageProps
   }[]
