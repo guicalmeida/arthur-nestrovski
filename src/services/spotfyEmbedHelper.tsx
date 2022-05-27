@@ -1,5 +1,5 @@
 export function SpotifyEmbed({ url }: { url: string }) {
-  const src = url.replace('/album/', '/embed/album/')
+  const src = url?.replace('/album/', '/embed/album/')
   return (
     <iframe
       style={{ borderRadius: '12px' }}

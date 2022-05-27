@@ -254,6 +254,7 @@ export interface HomeProps {
     realizacao: {
       nome: string
     }
+    linkEmSpotify: string
   }[]
   eventos: EventoProps[]
   galerias: {

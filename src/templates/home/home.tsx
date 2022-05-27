@@ -1,4 +1,4 @@
-import { Box, Container, Divider } from '@mui/material'
+import { Box, Card, CardMedia, Container, Divider } from '@mui/material'
 import HeroSection from 'components/heroSection'
 import HomeItemCard from 'components/homeItemCard'
 import HomeTextCard from 'components/homeTextCard'
@@ -10,6 +10,8 @@ import universalSlugify from 'services/slugifyHelper'
 import { GaleriaProps, HomeProps } from 'types/api'
 import { getEventDateInfo } from 'services/datesHelper'
 import HomeEventCard from 'components/homeEventCard'
+import { SpotifyEmbed } from 'services/spotfyEmbedHelper'
+import { getYoutubeEmbedLink } from 'services/youtubeHelper'
 
 const MainDivider = ({ margin }: { margin: string }) => {
   return (
@@ -54,8 +56,10 @@ const HomeContainer = ({
   const textSlug = universalSlugify(textos[0].titulo)
   const textShort = getShortDescription(textos?.[0]?.texto.html)
 
-  const newsSlug = universalSlugify(noticias[0].titulo)
+  const newsSlug = universalSlugify(noticias?.[0]?.titulo)
   const newsShort = getShortDescription(noticias?.[0]?.texto?.html)
+
+  const youtubeEbed = getYoutubeEmbedLink(videos?.[0].linkDoVideoYouTube)
 
   const eventProps = {
     title: eventTitle,
@@ -69,6 +73,7 @@ const HomeContainer = ({
     <>
       <HeroSection />
       <NavDrawer />
+      <MainDivider margin="64px auto" />
       <Container sx={{ mb: '100px' }}>
         <Box
           id="firstRow"
@@ -98,13 +103,12 @@ const HomeContainer = ({
             >
               <div
                 style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  flexGrow: 1,
+                  width: '500px',
+                  maxHeight: '80px',
+                  margin: 'auto',
                 }}
               >
-                <MainDivider margin="none" />
+                <SpotifyEmbed url={cDs?.[0]?.linkEmSpotify} />
               </div>
               <HomeTextCard
                 text={{
@@ -224,12 +228,22 @@ const HomeContainer = ({
                   flexGrow: 1,
                 }}
               >
-                <MainDivider margin="none" />
+                <Card
+                  sx={{ width: '740px', margin: '36px 0', height: '450px' }}
+                >
+                  <CardMedia
+                    src={youtubeEbed}
+                    component="iframe"
+                    sx={{ height: '100%', border: 'none' }}
+                    loading="lazy"
+                  />
+                </Card>
               </div>
             </Box>
           </Box>
         </Box>
       </Container>
+      s
     </>
   )
 }

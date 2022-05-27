@@ -11,6 +11,7 @@ const GET_HOME = /* GraphQL */ `
       realizacao {
         nome
       }
+      linkEmSpotify
     }
     eventos(first: 1, orderBy: publishedAt_DESC) {
       capa {
@@ -74,7 +75,7 @@ const GET_HOME = /* GraphQL */ `
       }
       createdAt
     }
-    videos(first: 3, orderBy: publishedAt_DESC) {
+    videos(first: 1, orderBy: publishedAt_DESC) {
       linkDoVideoYouTube
     }
   }

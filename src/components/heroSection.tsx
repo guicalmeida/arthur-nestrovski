@@ -2,7 +2,7 @@ import { Paper, Container, Typography, Grid } from '@mui/material'
 
 const homeStyle = {
   paper: {
-    height: '90vh',
+    height: '100vh',
     backgroundImage:
       'url(https://www.arthurnestrovski.com.br/wp-content/uploads/2021/02/arthur-3-lq.jpg)',
     backgroundSize: 'cover',
