@@ -63,7 +63,7 @@ const GET_HOME = /* GraphQL */ `
       composicao
       titulo
     }
-    textos(first: 1) {
+    textos(first: 1, orderBy: publishedAt_DESC) {
       autores
       titulo
       texto {
