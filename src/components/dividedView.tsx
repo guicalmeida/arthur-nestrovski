@@ -1,4 +1,5 @@
 import { MusicNote } from '@mui/icons-material'
+import CloseIcon from '@mui/icons-material/Close'
 import {
   Avatar,
   Box,
@@ -8,6 +9,10 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
+  IconButton,
+  Toolbar,
+  AppBar,
+  Dialog,
 } from '@mui/material'
 import { useRouter } from 'next/router'
 import { Fragment, useEffect, useState } from 'react'
@@ -26,6 +31,12 @@ export default function DividedView({ partiturasECifras, letras }: Props) {
   const [pdf, setPdf] = useState<string>()
   const [letra, setLetra] = useState<SetLetraProps>()
   const [original, setOriginal] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
+
+  let hideView = false
+  if (typeof window !== 'undefined') {
+    hideView = window.innerWidth <= 1000
+  }
 
   useEffect(() => {
     if (partiturasECifras) {
@@ -53,12 +64,21 @@ export default function DividedView({ partiturasECifras, letras }: Props) {
     url?: string,
     letras?: SetLetraProps
   ) => {
-    if (url) {
-      setPdf(url)
-    } else if (letras) {
-      setLetra(letras)
-      setOriginal(false)
+    if (hideView) {
+      if (letras) {
+        setOpenModal(true)
+      } else if (url) {
+        window.open(url, '_blank')
+      }
+    } else {
+      if (url) {
+        setPdf(url)
+      } else if (letras) {
+        setLetra(letras)
+        setOriginal(false)
+      }
     }
+
     router.push(`?selecionado=${slug}`, undefined, {
       shallow: true,
     })
@@ -78,7 +98,7 @@ export default function DividedView({ partiturasECifras, letras }: Props) {
       <Box>
         <List
           sx={{
-            maxWidth: '450px',
+            maxWidth: hideView ? '100%' : '450px',
             marginRight: '48px',
             overflow: 'auto',
             height: '100%',
@@ -143,21 +163,57 @@ export default function DividedView({ partiturasECifras, letras }: Props) {
           })}
         </List>
       </Box>
-      <Box>
-        <div style={{ height: '100%', width: '40vw', maxWidth: '650px' }}>
-          {letras ? (
-            <RenderLyrics
-              letra={letra?.letra}
-              letraOriginal={letra?.letraOriginal}
-              titulo={letra?.titulo}
-              tituloOriginal={letra?.tituloOriginal}
-              showOriginal={letra?.showOriginal}
-            />
-          ) : (
-            <RenderPDF pdf={pdf} />
-          )}
-        </div>
-      </Box>
+      {hideView ? (
+        letras ? (
+          <Dialog
+            fullScreen={true}
+            open={openModal}
+            onClose={() => setOpenModal(false)}
+          >
+            <AppBar sx={{ position: 'relative' }}>
+              <Toolbar>
+                <IconButton
+                  edge="start"
+                  color="inherit"
+                  onClick={() => setOpenModal(false)}
+                  aria-label="close"
+                >
+                  <CloseIcon />
+                </IconButton>
+              </Toolbar>
+            </AppBar>
+            <Box sx={{ mt: '24px' }}>
+              <RenderLyrics
+                letra={letra?.letra}
+                letraOriginal={letra?.letraOriginal}
+                titulo={letra?.titulo}
+                tituloOriginal={letra?.tituloOriginal}
+                showOriginal={letra?.showOriginal}
+              />
+            </Box>
+          </Dialog>
+        ) : (
+          ''
+        )
+      ) : (
+        <Box>
+          <div style={{ height: '100%', width: '40vw', maxWidth: '650px' }}>
+            {letras ? (
+              <Box>
+                <RenderLyrics
+                  letra={letra?.letra}
+                  letraOriginal={letra?.letraOriginal}
+                  titulo={letra?.titulo}
+                  tituloOriginal={letra?.tituloOriginal}
+                  showOriginal={letra?.showOriginal}
+                />
+              </Box>
+            ) : (
+              <RenderPDF pdf={pdf} />
+            )}
+          </div>
+        </Box>
+      )}
     </Container>
   )
 }
