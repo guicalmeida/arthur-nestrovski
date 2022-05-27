@@ -12,6 +12,7 @@ import { getEventDateInfo } from 'services/datesHelper'
 import HomeEventCard from 'components/homeEventCard'
 import { SpotifyEmbed } from 'services/spotfyEmbedHelper'
 import { getYoutubeEmbedLink } from 'services/youtubeHelper'
+import HomeVideoCard from 'components/HomeVideoCard'
 
 const MainDivider = ({ margin }: { margin: string }) => {
   return (
@@ -40,7 +41,6 @@ const HomeContainer = ({
   const {
     cDs,
     eventos,
-    galerias,
     letras,
     livros,
     noticias,
@@ -59,7 +59,7 @@ const HomeContainer = ({
   const newsSlug = universalSlugify(noticias?.[0]?.titulo)
   const newsShort = getShortDescription(noticias?.[0]?.texto?.html)
 
-  const youtubeEbed = getYoutubeEmbedLink(videos?.[0].linkDoVideoYouTube)
+  const youtubeEmbed = getYoutubeEmbedLink(videos?.[0].linkDoVideoYouTube)
 
   const eventProps = {
     title: eventTitle,
@@ -104,8 +104,8 @@ const HomeContainer = ({
               <div
                 style={{
                   width: '500px',
-                  maxHeight: '80px',
-                  margin: 'auto',
+                  maxHeight: '160px',
+                  margin: '0 0 auto auto',
                 }}
               >
                 <SpotifyEmbed url={cDs?.[0]?.linkEmSpotify} />
@@ -196,18 +196,29 @@ const HomeContainer = ({
               justifyContent: 'space-between',
             }}
           >
-            <HomeItemCard
-              imageUrl={livros?.[0]?.capa?.url}
-              title="Livros"
-              latestTitle={livros?.[0]?.titulo}
-              path="escrita/livros"
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}
             >
-              <MostRecent
-                publisher={livros?.[0]?.editora?.titulo}
-                title={livros?.[0]?.titulo}
-                year={livros?.[0]?.ano?.ano}
-              />
-            </HomeItemCard>
+              <HomeItemCard
+                imageUrl={livros?.[0]?.capa?.url}
+                title="Livros"
+                latestTitle={livros?.[0]?.titulo}
+                path="escrita/livros"
+              >
+                <MostRecent
+                  publisher={livros?.[0]?.editora?.titulo}
+                  title={livros?.[0]?.titulo}
+                  year={livros?.[0]?.ano?.ano}
+                />
+              </HomeItemCard>
+              <HomeVideoCard>
+                <MostRecent title={videos?.[0]?.titulo} />
+              </HomeVideoCard>
+            </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <HomeTextCard
                 text={{
@@ -228,11 +239,9 @@ const HomeContainer = ({
                   flexGrow: 1,
                 }}
               >
-                <Card
-                  sx={{ width: '740px', margin: '36px 0', height: '450px' }}
-                >
+                <Card sx={{ width: '740px', mt: '36px', height: '450px' }}>
                   <CardMedia
-                    src={youtubeEbed}
+                    src={youtubeEmbed}
                     component="iframe"
                     sx={{ height: '100%', border: 'none' }}
                     loading="lazy"
@@ -243,7 +252,6 @@ const HomeContainer = ({
           </Box>
         </Box>
       </Container>
-      s
     </>
   )
 }

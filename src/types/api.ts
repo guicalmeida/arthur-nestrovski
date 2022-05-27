@@ -257,9 +257,6 @@ export interface HomeProps {
     linkEmSpotify: string
   }[]
   eventos: EventoProps[]
-  galerias: {
-    foto: ImageProps
-  }[]
   letras: {
     titulo: string
     composicao: string
@@ -295,5 +292,6 @@ export interface HomeProps {
   }[]
   videos: {
     linkDoVideoYouTube: string
+    titulo: string
   }[]
 }

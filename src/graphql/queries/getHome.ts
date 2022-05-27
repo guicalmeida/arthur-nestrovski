@@ -25,11 +25,6 @@ const GET_HOME = /* GraphQL */ `
         longitude
       }
     }
-    galerias(first: 4, orderBy: publishedAt_DESC) {
-      foto {
-        url
-      }
-    }
     letras(first: 1, orderBy: publishedAt_DESC) {
       titulo
       composicao
@@ -77,6 +72,7 @@ const GET_HOME = /* GraphQL */ `
     }
     videos(first: 1, orderBy: publishedAt_DESC) {
       linkDoVideoYouTube
+      titulo
     }
   }
 `
