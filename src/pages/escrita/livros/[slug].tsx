@@ -1,12 +1,20 @@
 import client from 'graphql/client'
 import GET_LIVROS from 'graphql/queries/getLivros'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
 import universalSlugify from 'services/slugifyHelper'
 import Livro from 'templates/livros/livro'
 import { LivroProps, LivrosProps, LivroUnitProps } from 'types/api'
 
 export default function LivroUnit({ livro }: LivroUnitProps) {
-  return <Livro livro={livro}></Livro>
+  return (
+    <>
+      <Head>
+        <title>{livro.titulo} · Arthur Nestrovski</title>
+      </Head>
+      <Livro livro={livro}></Livro>
+    </>
+  )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

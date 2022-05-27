@@ -2,6 +2,7 @@ import client from 'graphql/client'
 import GET_HOME from 'graphql/queries/getHome'
 import GET_COVERS from 'graphql/queries/getMusicCovers'
 import type { GetStaticProps } from 'next'
+import Head from 'next/head'
 import HomeContainer from 'templates/home/home'
 import { EventoProps, GaleriaProps, HomeProps } from 'types/api'
 
@@ -15,13 +16,18 @@ export default function Home({
   partiturasCover: GaleriaProps
 }) {
   return (
-    <div>
-      <HomeContainer
-        home={home}
-        letrasCover={letrasCover}
-        partiturasCover={partiturasCover}
-      ></HomeContainer>
-    </div>
+    <>
+      <Head>
+        <title>Página inicial · Arthur Nestrovski</title>
+      </Head>
+      <div>
+        <HomeContainer
+          home={home}
+          letrasCover={letrasCover}
+          partiturasCover={partiturasCover}
+        ></HomeContainer>
+      </div>
+    </>
   )
 }
 

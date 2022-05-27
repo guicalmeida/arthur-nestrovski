@@ -1,12 +1,20 @@
 import client from 'graphql/client'
 import GET_DVDS from 'graphql/queries/getDvds'
 import type { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
 import universalSlugify from 'services/slugifyHelper'
 import DVD from 'templates/DVDs/dvd'
 import { DVDProps, DVDUnitProps } from 'types/api'
 
 export default function DVDUnit({ dvd }: DVDUnitProps) {
-  return <DVD dvd={dvd} />
+  return (
+    <>
+      <Head>
+        <title>{dvd.titulo} · Arthur Nestrovski</title>
+      </Head>
+      <DVD dvd={dvd} />
+    </>
+  )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

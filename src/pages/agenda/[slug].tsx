@@ -1,12 +1,20 @@
 import client from 'graphql/client'
 import GET_EVENTOS from 'graphql/queries/getEventos'
 import type { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
 import universalSlugify from 'services/slugifyHelper'
 import Evento from 'templates/agenda/evento'
 import { EventoProps, EventoUnitProps } from 'types/api'
 
 export default function TextoUnit({ evento }: EventoUnitProps) {
-  return <Evento evento={evento} />
+  return (
+    <>
+      <Head>
+        <title>{evento.titulo} · Arthur Nestrovski</title>
+      </Head>
+      <Evento evento={evento} />
+    </>
+  )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

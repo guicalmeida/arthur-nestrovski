@@ -1,12 +1,20 @@
 import client from 'graphql/client'
 import GET_SHOWS from 'graphql/queries/getShows'
 import type { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
 import universalSlugify from 'services/slugifyHelper'
 import { ShowProps, ShowUnitProps } from 'types/api'
 import Show from '../../templates/Shows/show'
 
 export default function TextoUnit({ show }: ShowUnitProps) {
-  return <Show show={show} />
+  return (
+    <>
+      <Head>
+        <title>{show.titulo} · Arthur Nestrovski</title>
+      </Head>
+      <Show show={show} />
+    </>
+  )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

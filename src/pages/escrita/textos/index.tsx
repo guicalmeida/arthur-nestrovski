@@ -1,11 +1,19 @@
 import client from 'graphql/client'
 import GET_TEXTOS from 'graphql/queries/getTextos'
 import type { GetStaticProps } from 'next'
+import Head from 'next/head'
 import TextosPage from 'templates/textos'
 import { TextosProps } from 'types/api'
 
 export default function Textos({ textos }: TextosProps) {
-  return <TextosPage textos={textos} />
+  return (
+    <>
+      <Head>
+        <title>Textos · Arthur Nestrovski</title>
+      </Head>
+      <TextosPage textos={textos} />
+    </>
+  )
 }
 
 export const getStaticProps: GetStaticProps = async () => {

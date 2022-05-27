@@ -1,12 +1,20 @@
 import client from 'graphql/client'
 import GET_TEXTOS from 'graphql/queries/getTextos'
 import type { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
 import universalSlugify from 'services/slugifyHelper'
 import Texto from 'templates/textos/texto'
 import { TextoProps, TextoUnitProps } from 'types/api'
 
 export default function TextoUnit({ texto }: TextoUnitProps) {
-  return <Texto texto={texto} />
+  return (
+    <>
+      <Head>
+        <title>{texto.titulo} · Arthur Nestrovski</title>
+      </Head>
+      <Texto texto={texto} />
+    </>
+  )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

@@ -3,9 +3,17 @@ import GET_EVENTOS from 'graphql/queries/getEventos'
 import type { GetStaticProps } from 'next'
 import { EventoProps, EventosProps } from 'types/api'
 import AgendaPage from 'templates/agenda'
+import Head from 'next/head'
 
 export default function Agenda({ eventos }: EventosProps) {
-  return <AgendaPage eventos={eventos} />
+  return (
+    <>
+      <Head>
+        <title>Agenda · Arthur Nestrovski</title>
+      </Head>
+      <AgendaPage eventos={eventos} />
+    </>
+  )
 }
 
 export const getStaticProps: GetStaticProps = async () => {

@@ -1,12 +1,20 @@
 import client from 'graphql/client'
 import GET_NOTICIAS from 'graphql/queries/getNoticias'
 import type { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
 import universalSlugify from 'services/slugifyHelper'
 import Noticia from 'templates/noticias/noticia'
 import { NoticiaProps, NoticiaUnitProps } from 'types/api'
 
 export default function TextoUnit({ noticia }: NoticiaUnitProps) {
-  return <Noticia noticia={noticia} />
+  return (
+    <>
+      <Head>
+        <title>{noticia.titulo} · Arthur Nestrovski</title>
+      </Head>
+      <Noticia noticia={noticia} />
+    </>
+  )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

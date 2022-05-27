@@ -5,6 +5,7 @@ import GET_LYRICS from 'graphql/queries/getLyrics'
 import GET_COVERS from 'graphql/queries/getMusicCovers'
 import GET_MUSICSHEET from 'graphql/queries/getPartiturasECifras'
 import type { GetStaticProps } from 'next'
+import Head from 'next/head'
 import MusicPage from 'templates/Musica'
 import MusicProps from 'types/groups'
 
@@ -17,14 +18,19 @@ export default function Musica({
   partiturasCover,
 }: MusicProps) {
   return (
-    <MusicPage
-      cDs={cDs}
-      dvds={dvds}
-      letras={letras}
-      partiturasECifras={partiturasECifras}
-      letrasCover={letrasCover}
-      partiturasCover={partiturasCover}
-    />
+    <>
+      <Head>
+        <title>Música · Arthur Nestrovski</title>
+      </Head>
+      <MusicPage
+        cDs={cDs}
+        dvds={dvds}
+        letras={letras}
+        partiturasECifras={partiturasECifras}
+        letrasCover={letrasCover}
+        partiturasCover={partiturasCover}
+      />
+    </>
   )
 }
 

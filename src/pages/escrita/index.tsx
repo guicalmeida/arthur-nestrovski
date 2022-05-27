@@ -3,6 +3,7 @@ import GET_LIVROS from 'graphql/queries/getLivros'
 import GET_COVERS from 'graphql/queries/getMusicCovers'
 import GET_TEXTOS from 'graphql/queries/getTextos'
 import { GetStaticProps } from 'next'
+import Head from 'next/head'
 import EscritaPage from 'templates/escrita'
 import { EscritaProps } from 'types/groups'
 
@@ -12,11 +13,16 @@ export default function Escrita({
   partiturasCover,
 }: EscritaProps) {
   return (
-    <EscritaPage
-      livros={livros}
-      textos={textos}
-      partiturasCover={partiturasCover}
-    />
+    <>
+      <Head>
+        <title>Textos · Arthur Nestrovski</title>
+      </Head>
+      <EscritaPage
+        livros={livros}
+        textos={textos}
+        partiturasCover={partiturasCover}
+      />
+    </>
   )
 }
 

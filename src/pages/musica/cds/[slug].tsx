@@ -1,12 +1,20 @@
 import client from 'graphql/client'
 import GET_CDS from 'graphql/queries/getCds'
 import type { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
 import universalSlugify from 'services/slugifyHelper'
 import CD from 'templates/CDs/cd'
 import { CDProps, CDUnitProps } from 'types/api'
 
 export default function CDUnit({ cD }: CDUnitProps) {
-  return <CD cD={cD} />
+  return (
+    <>
+      <Head>
+        <title>{cD.titulo} · Arthur Nestrovski</title>
+      </Head>
+      <CD cD={cD} />
+    </>
+  )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
