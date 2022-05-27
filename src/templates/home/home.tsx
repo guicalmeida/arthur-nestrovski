@@ -161,6 +161,7 @@ const HomeContainer = ({
               title="Letras"
               latestTitle={letras?.[0]?.titulo}
               path="musica/letras"
+              hasQParam
             >
               <MostRecent
                 publisher={letras?.[0]?.composicao}
@@ -172,6 +173,7 @@ const HomeContainer = ({
               title="Partituras e Cifras"
               latestTitle={partiturasECifras?.[0]?.titulo}
               path="musica/partituras-e-cifras"
+              hasQParam
             >
               <MostRecent
                 publisher={partiturasECifras?.[0]?.composicao}

@@ -63,6 +63,9 @@ export default function DividedView({ partiturasECifras, letras }: Props) {
       shallow: true,
     })
   }
+  if (typeof document !== 'undefined') {
+    document.getElementById(`${query.selecionado}`)?.scrollIntoView(true)
+  }
   return (
     <Container
       style={{
@@ -86,6 +89,7 @@ export default function DividedView({ partiturasECifras, letras }: Props) {
             return (
               <Fragment key={slug}>
                 <ListItem
+                  id={slug}
                   sx={{
                     cursor: 'pointer',
                     minHeight: '100px',

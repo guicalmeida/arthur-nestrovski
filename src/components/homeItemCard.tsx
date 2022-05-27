@@ -35,6 +35,7 @@ export default function HomeItemCard({
   imageUrl,
   title,
   latestTitle,
+  hasQParam = false,
 }: Props) {
   const slug = universalSlugify(latestTitle)
   return (
@@ -62,7 +63,10 @@ export default function HomeItemCard({
           <Typography component="div">{children}</Typography>
         </CardContent>
         <CardActions>
-          <Link href={`${path}/${slug}`} passHref>
+          <Link
+            href={hasQParam ? `${path}?selecionado=${slug}` : `${path}/${slug}`}
+            passHref
+          >
             <Button
               size="medium"
               variant="outlined"
@@ -93,4 +97,5 @@ interface Props {
   imageUrl?: string
   title?: string
   latestTitle?: string
+  hasQParam?: boolean
 }

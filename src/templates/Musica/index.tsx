@@ -60,6 +60,7 @@ const MusicPage = ({
           title="Letras"
           latestTitle={latestLyric?.titulo}
           path="musica/letras"
+          hasQParam
         >
           <MostRecent
             publisher={latestLyric?.composicao}
@@ -72,6 +73,7 @@ const MusicPage = ({
           title="Partituras e Cifras"
           latestTitle={latestPartitura?.titulo}
           path="musica/partituras-e-cifras"
+          hasQParam
         >
           <MostRecent
             publisher={latestPartitura?.composicao}

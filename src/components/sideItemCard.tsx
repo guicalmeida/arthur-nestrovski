@@ -43,6 +43,7 @@ export default function SideItemCard({
   title,
   showLatest = true,
   latestTitle,
+  hasQParam = false,
 }: Props) {
   const slug = universalSlugify(latestTitle)
   return (
@@ -70,7 +71,12 @@ export default function SideItemCard({
         </CardContent>
         <CardActions>
           {showLatest && (
-            <Link href={`${path}/${slug}`} passHref>
+            <Link
+              href={
+                hasQParam ? `${path}?selecionado=${slug}` : `${path}/${slug}`
+              }
+              passHref
+            >
               <Button
                 size="medium"
                 variant="outlined"
@@ -103,4 +109,5 @@ interface Props {
   title?: string
   showLatest?: boolean
   latestTitle?: string
+  hasQParam?: boolean
 }
