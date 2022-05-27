@@ -14,7 +14,7 @@ import logo from '../../public/logo.svg'
 import Link from './link'
 
 const StyledCard = styled(Card)`
-  width: 330px;
+  width: 345px;
   height: 530px;
   display: flex;
   flex-direction: column;

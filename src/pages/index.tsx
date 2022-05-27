@@ -56,8 +56,6 @@ export const getStaticProps: GetStaticProps = async () => {
   ).catch(console.error)
 
   home.eventos = mappedEventos || []
-
-  console.log(home)
   return {
     props: {
       home,

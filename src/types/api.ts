@@ -278,6 +278,7 @@ export interface HomeProps {
     subtitulo: string
     titulo: string
     texto: RichTextProps
+    createdAt: string
   }[]
   partiturasECifras: {
     composicao: string

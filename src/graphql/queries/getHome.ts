@@ -56,6 +56,7 @@ const GET_HOME = /* GraphQL */ `
       texto {
         html
       }
+      createdAt
     }
     partiturasECifras(first: 1, orderBy: publishedAt_DESC) {
       composicao

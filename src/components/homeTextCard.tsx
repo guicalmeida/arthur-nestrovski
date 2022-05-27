@@ -32,6 +32,7 @@ export default function HomeTextCard({
   text,
   path,
   calendar = false,
+  title,
 }: Props) {
   return (
     <StyledCard>
@@ -47,7 +48,7 @@ export default function HomeTextCard({
               mb: '24px',
             }}
           >
-            Textos
+            {title}
           </Typography>
 
           <div style={{ cursor: 'pointer' }}>
@@ -114,4 +115,5 @@ interface Props {
   }
   path: string
   calendar?: boolean
+  title?: string
 }

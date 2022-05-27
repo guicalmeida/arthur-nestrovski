@@ -39,6 +39,9 @@ const HomeContainer = ({
   const textSlug = universalSlugify(textos[0].titulo)
   const textShort = getShortDescription(textos?.[0]?.texto.html)
 
+  const newsSlug = universalSlugify(noticias[0].titulo)
+  const newsShort = getShortDescription(noticias?.[0]?.texto?.html)
+
   const eventProps = {
     title: eventTitle,
     date: eventDate,
@@ -53,7 +56,7 @@ const HomeContainer = ({
       <NavDrawer />
       <Container sx={{ mb: '100px' }}>
         <Box
-          id="secondRow"
+          id="firstRow"
           sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -72,13 +75,14 @@ const HomeContainer = ({
             <Box>
               <HomeTextCard
                 text={{
-                  title: textos?.[0]?.titulo,
-                  subtitle: textos?.[0]?.subtitulo,
-                  date: formatIsoString(textos?.[0]?.createdAt),
+                  title: noticias?.[0]?.titulo,
+                  subtitle: noticias?.[0]?.subtitulo,
+                  date: formatIsoString(noticias?.[0]?.createdAt),
                 }}
-                path={`/escrita/textos/${textSlug}`}
+                title="Notícias"
+                path={`noticias/${newsSlug}`}
               >
-                {textShort}
+                {newsShort}
               </HomeTextCard>
             </Box>
 
@@ -86,7 +90,7 @@ const HomeContainer = ({
           </Box>
         </Box>
         <Box
-          id="firstRow"
+          id="secondRow"
           sx={{
             mt: 8,
             display: 'flex',
@@ -149,7 +153,7 @@ const HomeContainer = ({
           }}
         />
         <Box
-          id="secondRow"
+          id="thirdRow"
           sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -184,6 +188,7 @@ const HomeContainer = ({
                   date: formatIsoString(textos?.[0]?.createdAt),
                 }}
                 path={`/escrita/textos/${textSlug}`}
+                title="Textos"
               >
                 {textShort}
               </HomeTextCard>
