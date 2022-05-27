@@ -64,6 +64,10 @@ const GET_HOME = /* GraphQL */ `
         html
       }
       subtitulo
+      capa {
+        url
+      }
+      createdAt
     }
     videos(first: 3, orderBy: publishedAt_DESC) {
       linkDoVideoYouTube

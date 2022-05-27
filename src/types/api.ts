@@ -293,6 +293,8 @@ export interface HomeProps {
     titulo: string
     texto: RichTextProps
     subtitulo: string
+    capa: ImageProps
+    createdAt: string
   }[]
   videos: {
     linkDoVideoYouTube: string
