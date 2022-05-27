@@ -65,7 +65,7 @@ const NavDrawer = () => {
             justifyContent: 'space-between',
             height: '100%',
             width: '100%',
-            margin: isSmallScreen ? ' 0 16px' : '20px 0',
+            p: isSmallScreen ? ' 0 16px' : '20px 0',
           }}
           disableGutters={true}
         >

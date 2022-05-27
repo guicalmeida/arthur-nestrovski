@@ -6,7 +6,7 @@ const homeStyle = {
     backgroundImage:
       'url(https://www.arthurnestrovski.com.br/wp-content/uploads/2021/02/arthur-3-lq.jpg)',
     backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    backgroundPosition: 'right',
   },
   container: {
     height: '100%',

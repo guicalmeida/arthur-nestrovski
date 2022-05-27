@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Box, Card, CardMedia, Container, Divider } from '@mui/material'
 import HeroSection from 'components/heroSection'
 import HomeItemCard from 'components/homeItemCard'
@@ -13,13 +14,20 @@ import HomeEventCard from 'components/homeEventCard'
 import { SpotifyEmbed } from 'services/spotfyEmbedHelper'
 import { getYoutubeEmbedLink } from 'services/youtubeHelper'
 import HomeVideoCard from 'components/HomeVideoCard'
+import useWindowSize from 'hooks/useWindowResize'
 
-const MainDivider = ({ margin }: { margin: string }) => {
+const MainDivider = ({
+  margin,
+  width = '500px',
+}: {
+  margin: string
+  width?: string
+}) => {
   return (
     <Divider
       variant="middle"
       sx={{
-        width: '500px',
+        width,
         height: '3px',
         borderTop: '2px solid',
         borderColor: 'primary.main',
@@ -69,11 +77,26 @@ const HomeContainer = ({
     cover: capa?.url,
     startDate: inicio,
   }
+
+  const { width } = useWindowSize() || {}
+  const isMobile = width! <= 1000
+
+  const MobileSpacing = () => {
+    if (isMobile) {
+      return (
+        <div
+          id="DIVISOR"
+          style={{ margin: '16px 0', width: '100%', height: '1px' }}
+        ></div>
+      )
+    }
+    return <></>
+  }
   return (
     <>
       <HeroSection />
       <NavDrawer />
-      <MainDivider margin="64px auto" />
+      <MainDivider margin="64px auto" width={isMobile ? '80%' : '500px'} />
       <Container sx={{ mb: '100px' }}>
         <Box
           id="firstRow"
@@ -88,8 +111,9 @@ const HomeContainer = ({
               mt: 3,
               width: '100%',
               display: 'flex',
-              justifyContent: 'space-between',
+              justifyContent: isMobile ? 'center' : 'space-between',
               alignItems: 'flex-end',
+              flexWrap: 'wrap',
             }}
           >
             <Box
@@ -97,19 +121,20 @@ const HomeContainer = ({
                 height: '530px',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'space-between',
+                justifyContent: isMobile ? 'center' : 'space-between',
                 alignItems: 'flex-end',
               }}
             >
               <div
                 style={{
-                  width: '500px',
+                  width: isMobile ? '100%' : '500px',
                   maxHeight: '160px',
                   margin: '0 0 auto auto',
                 }}
               >
                 <SpotifyEmbed url={cDs?.[0]?.linkEmSpotify} />
               </div>
+              <MobileSpacing />
               <HomeTextCard
                 text={{
                   title: noticias?.[0]?.titulo,
@@ -122,7 +147,7 @@ const HomeContainer = ({
                 {newsShort}
               </HomeTextCard>
             </Box>
-
+            <MobileSpacing />
             <HomeEventCard props={eventProps}></HomeEventCard>
           </Box>
         </Box>
@@ -140,8 +165,9 @@ const HomeContainer = ({
             sx={{
               mt: 3,
               display: 'flex',
-              justifyContent: 'space-between',
+              justifyContent: isMobile ? 'center' : 'space-between',
               width: '100%',
+              flexWrap: 'wrap',
             }}
           >
             <HomeItemCard
@@ -156,6 +182,7 @@ const HomeContainer = ({
                 year={cDs?.[0]?.ano?.ano}
               />
             </HomeItemCard>
+            <MobileSpacing />
             <HomeItemCard
               imageUrl={letrasCover?.foto?.url}
               title="Letras"
@@ -168,6 +195,7 @@ const HomeContainer = ({
                 title={letras?.[0]?.titulo}
               />
             </HomeItemCard>
+            <MobileSpacing />
             <HomeItemCard
               imageUrl={partiturasCover?.foto?.url}
               title="Partituras e Cifras"
@@ -195,44 +223,58 @@ const HomeContainer = ({
               mt: 3,
               display: 'flex',
               width: '100%',
-              justifyContent: 'space-between',
+              justifyContent: isMobile ? 'center' : 'space-between',
+              flexWrap: 'wrap',
             }}
           >
             <Box
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'space-between',
+                justifyContent: isMobile ? 'center' : 'space-between',
               }}
             >
-              <HomeItemCard
-                imageUrl={livros?.[0]?.capa?.url}
-                title="Livros"
-                latestTitle={livros?.[0]?.titulo}
-                path="escrita/livros"
-              >
-                <MostRecent
-                  publisher={livros?.[0]?.editora?.titulo}
-                  title={livros?.[0]?.titulo}
-                  year={livros?.[0]?.ano?.ano}
-                />
-              </HomeItemCard>
-              <HomeVideoCard>
-                <MostRecent title={videos?.[0]?.titulo} />
-              </HomeVideoCard>
+              <div>
+                <HomeItemCard
+                  imageUrl={livros?.[0]?.capa?.url}
+                  title="Livros"
+                  latestTitle={livros?.[0]?.titulo}
+                  path="escrita/livros"
+                >
+                  <MostRecent
+                    publisher={livros?.[0]?.editora?.titulo}
+                    title={livros?.[0]?.titulo}
+                    year={livros?.[0]?.ano?.ano}
+                  />
+                </HomeItemCard>
+              </div>
+              <MobileSpacing />
+              <div>
+                <HomeVideoCard>
+                  <MostRecent title={videos?.[0]?.titulo} />
+                </HomeVideoCard>
+              </div>
             </Box>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <HomeTextCard
-                text={{
-                  title: textos?.[0]?.titulo,
-                  subtitle: textos?.[0]?.subtitulo,
-                  date: formatIsoString(textos?.[0]?.createdAt),
-                }}
-                path={`/escrita/textos/${textSlug}`}
-                title="Textos"
-              >
-                {textShort}
-              </HomeTextCard>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                flexWrap: 'wrap',
+              }}
+            >
+              <div style={{ order: isMobile ? 1 : 0 }}>
+                <HomeTextCard
+                  text={{
+                    title: textos?.[0]?.titulo,
+                    subtitle: textos?.[0]?.subtitulo,
+                    date: formatIsoString(textos?.[0]?.createdAt),
+                  }}
+                  path={`/escrita/textos/${textSlug}`}
+                  title="Textos"
+                >
+                  {textShort}
+                </HomeTextCard>
+              </div>
               <div
                 style={{
                   display: 'flex',
@@ -241,7 +283,14 @@ const HomeContainer = ({
                   flexGrow: 1,
                 }}
               >
-                <Card sx={{ width: '740px', mt: '36px', height: '450px' }}>
+                <Card
+                  sx={{
+                    order: isMobile ? 0 : 1,
+                    width: isMobile ? '100%' : '740px',
+                    mt: '36px',
+                    height: isMobile ? '200px' : '450px',
+                  }}
+                >
                   <CardMedia
                     src={youtubeEmbed}
                     component="iframe"
@@ -249,6 +298,7 @@ const HomeContainer = ({
                     loading="lazy"
                   />
                 </Card>
+                <MobileSpacing />
               </div>
             </Box>
           </Box>
