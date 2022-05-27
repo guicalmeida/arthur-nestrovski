@@ -18,14 +18,13 @@ import RenderLyrics from './renderLyrics'
 import RenderPDF from './renderPDF'
 
 export default function DividedView({ partiturasECifras, letras }: Props) {
-  const items = partiturasECifras || letras
-
+  let items = partiturasECifras || letras
+  items = items?.sort((a, b) => a.titulo.localeCompare(b.titulo))
   const router = useRouter()
   const { query } = router
 
   const [pdf, setPdf] = useState<string>()
   const [letra, setLetra] = useState<SetLetraProps>()
-  const [selectedIndex, setSelectedIndex] = useState<number>()
   const [original, setOriginal] = useState(false)
 
   useEffect(() => {
@@ -47,12 +46,10 @@ export default function DividedView({ partiturasECifras, letras }: Props) {
         showOriginal: original,
       })
     }
-    setSelectedIndex(Number(query.index))
   }, [letras, original, partiturasECifras, query])
 
   const handleListItemClick = (
     slug: string,
-    index: number,
     url?: string,
     letras?: SetLetraProps
   ) => {
@@ -62,8 +59,7 @@ export default function DividedView({ partiturasECifras, letras }: Props) {
       setLetra(letras)
       setOriginal(false)
     }
-    setSelectedIndex(index)
-    router.push(`?selecionado=${slug}&index=${index}`, undefined, {
+    router.push(`?selecionado=${slug}`, undefined, {
       shallow: true,
     })
   }
@@ -85,7 +81,7 @@ export default function DividedView({ partiturasECifras, letras }: Props) {
             height: '100%',
           }}
         >
-          {items?.map((item, i) => {
+          {items?.map((item) => {
             const slug = universalSlugify(item.titulo)
             return (
               <Fragment key={slug}>
@@ -96,13 +92,13 @@ export default function DividedView({ partiturasECifras, letras }: Props) {
                   }}
                   onClick={() =>
                     'letra' in item
-                      ? handleListItemClick(slug, i, undefined, {
+                      ? handleListItemClick(slug, undefined, {
                           letra: item?.letra?.html,
                           letraOriginal: item?.letraOriginal?.html,
                         })
-                      : handleListItemClick(slug, i, item?.pdf?.url)
+                      : handleListItemClick(slug, item?.pdf?.url)
                   }
-                  selected={selectedIndex === i}
+                  selected={slug === query.selecionado}
                 >
                   <ListItemAvatar>
                     <Avatar sx={{ backgroundColor: 'primary.main' }}>
