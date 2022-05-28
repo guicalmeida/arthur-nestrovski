@@ -125,19 +125,25 @@ const HomeContainer = ({
           >
             <Box
               sx={{
-                height: '530px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: isMobile ? 'center' : 'space-between',
                 alignItems: 'flex-end',
               }}
             >
-              <Box sx={{ display: 'flex', width: '100%' }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  width: '100%',
+                  flexDirection: isMobile ? 'column' : 'row',
+                }}
+              >
                 <Box
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
                     margin: 'auto',
+                    marginBottom: '24px',
                   }}
                 >
                   <div
