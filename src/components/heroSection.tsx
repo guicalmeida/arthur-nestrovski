@@ -1,19 +1,19 @@
 import { Paper, Container, Typography, Grid } from '@mui/material'
-import { useState } from 'react'
+// import { useState } from 'react'
 
 const HeroSection = () => {
-  const [image, setImage] = useState(
-    'https://media.graphassets.com/z8hK7XzHTFulOXlm9ERw'
-  )
+  // const [image, setImage] = useState(
+  //   'https://media.graphassets.com/z8hK7XzHTFulOXlm9ERw'
+  // )
 
   //TODO: intercalar imagens
-  const img1 = 'https://media.graphassets.com/z8hK7XzHTFulOXlm9ERw'
-  const img2 = 'https://media.graphassets.com/I60zy8XYTMmxbBrDncQ1'
+  // const img1 = 'https://media.graphassets.com/z8hK7XzHTFulOXlm9ERw'
+  // const img2 = 'https://media.graphassets.com/I60zy8XYTMmxbBrDncQ1'
 
   const homeStyle = {
     paper: {
       height: '100vh',
-      backgroundImage: `url(${image})`,
+      backgroundImage: `url(${'https://media.graphassets.com/z8hK7XzHTFulOXlm9ERw'})`,
       backgroundSize: 'cover',
       backgroundPosition: 'right',
     },
