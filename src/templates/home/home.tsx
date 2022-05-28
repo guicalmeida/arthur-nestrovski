@@ -1,4 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import AmazonMusic from 'icons/AmazonMusic'
+import AppleMusic from 'icons/appleMusic'
+import Deezer from 'icons/Deezer'
+import Spotify from 'icons/spotify'
+import Tidal from 'icons/Tidal'
+import YoutubeMusic from 'icons/YoutubeMusic'
 import { Box, Card, CardMedia, Container, Divider } from '@mui/material'
 import HeroSection from 'components/heroSection'
 import HomeItemCard from 'components/homeItemCard'
@@ -15,6 +21,7 @@ import { SpotifyEmbed } from 'services/spotfyEmbedHelper'
 import { getYoutubeEmbedLink } from 'services/youtubeHelper'
 import HomeVideoCard from 'components/HomeVideoCard'
 import useWindowSize from 'hooks/useWindowResize'
+import CustomizedIcon from 'components/CustomIconButton'
 
 const MainDivider = ({
   margin,
@@ -125,15 +132,58 @@ const HomeContainer = ({
                 alignItems: 'flex-end',
               }}
             >
-              <div
-                style={{
-                  width: isMobile ? '100%' : '500px',
-                  maxHeight: '160px',
-                  margin: '0 0 auto auto',
-                }}
-              >
-                <SpotifyEmbed url={cDs?.[0]?.linkEmSpotify} />
-              </div>
+              <Box sx={{ display: 'flex', width: '100%' }}>
+                <Box
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    margin: 'auto',
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      gap: '24px',
+                    }}
+                  >
+                    <CustomizedIcon linkUrl="https://music.amazon.com.br/artists/B000TOMX48/arthur-nestrovski">
+                      <AmazonMusic />
+                    </CustomizedIcon>
+                    <CustomizedIcon linkUrl="https://music.apple.com/br/artist/arthur-nestrovski/1380781367">
+                      <AppleMusic />
+                    </CustomizedIcon>
+                    <CustomizedIcon linkUrl="https://open.spotify.com/artist/1dAXvu8Acv0udPk13oIy1p">
+                      <Spotify />
+                    </CustomizedIcon>
+                  </div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      gap: '24px',
+                      marginTop: '16px',
+                    }}
+                  >
+                    <CustomizedIcon linkUrl="https://www.deezer.com/br/artist/1294721">
+                      <Deezer />
+                    </CustomizedIcon>
+                    <CustomizedIcon linkUrl="https://tidal.com/browse/artist/4255413">
+                      <Tidal />
+                    </CustomizedIcon>
+                    <CustomizedIcon linkUrl="https://music.youtube.com/channel/UCeOsXAob_TlCTXulpgKEbMA">
+                      <YoutubeMusic />
+                    </CustomizedIcon>
+                  </div>
+                </Box>
+                <div
+                  style={{
+                    width: isMobile ? '100%' : '500px',
+                    maxHeight: '160px',
+                    margin: '0 0 auto auto',
+                  }}
+                >
+                  <SpotifyEmbed url={cDs?.[0]?.linkEmSpotify} />
+                </div>
+              </Box>
               <MobileSpacing />
               <HomeTextCard
                 text={{

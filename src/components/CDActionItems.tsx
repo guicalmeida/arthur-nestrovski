@@ -1,30 +1,12 @@
-import { CardActions, IconButton } from '@mui/material'
+import { CardActions } from '@mui/material'
 import AmazonMusic from 'icons/AmazonMusic'
 import AppleMusic from 'icons/appleMusic'
 import Deezer from 'icons/Deezer'
 import Spotify from 'icons/spotify'
 import Tidal from 'icons/Tidal'
 import YoutubeMusic from 'icons/YoutubeMusic'
-import { ReactNode } from 'react'
 import { CDUnitProps } from 'types/api'
-
-function CustomizedIcon({ children, linkUrl }: IconProps) {
-  if (linkUrl) {
-    return (
-      <IconButton
-        size="large"
-        color="primary"
-        href={linkUrl}
-        target="_blank"
-        sx={{ padding: '8px' }}
-      >
-        {children}
-      </IconButton>
-    )
-  } else {
-    return <></>
-  }
-}
+import CustomizedIcon from './CustomIconButton'
 
 export default function CDsActionItems({ cD }: CDUnitProps, showAll = false) {
   const {
@@ -78,9 +60,4 @@ export default function CDsActionItems({ cD }: CDUnitProps, showAll = false) {
   } else {
     return <></>
   }
-}
-
-interface IconProps {
-  children: ReactNode
-  linkUrl?: string
 }

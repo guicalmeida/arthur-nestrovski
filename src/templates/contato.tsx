@@ -11,7 +11,14 @@ export default function ContatoPage() {
     <>
       <NavDrawer />
       <NavHeader breadcrumbs={bc}>CONTATO</NavHeader>
-      <Container sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
+      <Container
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          mt: 5,
+        }}
+      >
         <Box sx={{ width: '100%', maxWidth: '600px' }}>
           <form
             style={{ display: 'flex', flexDirection: 'column' }}

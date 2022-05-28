@@ -38,3 +38,8 @@ a {
 .MuiBreadcrumbs-ol {
   justify-content: center !important;
 }
+
+.navbarIconsList > a > svg {
+  height: 32px;
+  width: 32px;
+}

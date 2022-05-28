@@ -24,6 +24,8 @@ import logo from '../../public/logo.svg'
 import sections from '../services/sectionsHelper'
 import Link from './link'
 import useWindowSize from 'hooks/useWindowResize'
+import YoutubeIcon from 'icons/Youtube'
+import Instagram from 'icons/instagram'
 
 const NavDrawer = () => {
   const [drawer, setDrawer] = useState<boolean>(false)
@@ -128,7 +130,7 @@ const NavDrawer = () => {
             const slug = universalSlugify(name)
             const hasSubItems = typeof item[1] !== 'string'
             return (
-              <div key={slug} style={{ position: 'relative' }}>
+              <li key={slug} style={{ position: 'relative' }}>
                 <Link link={hasSubItems ? `/${slug}` : `/${item[1]}`}>
                   <ListItemButton onClick={toggleDrawer(false)}>
                     <ListItemText primary={name} />
@@ -172,9 +174,31 @@ const NavDrawer = () => {
                       </Collapse>
                     )
                   })}
-              </div>
+              </li>
             )
           })}
+
+          <li
+            style={{ display: 'flex', gap: '24px', margin: '16px' }}
+            className="navbarIconsList"
+          >
+            <a
+              style={{ display: 'flex', alignItems: 'center' }}
+              href="https://youtube.com/channel/UCyzE8SG0XtlE4meDIuKfgOQ"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <YoutubeIcon />
+            </a>
+            <a
+              style={{ display: 'flex', alignItems: 'center' }}
+              href="https://www.instagram.com/arthur_nestrovski/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Instagram />
+            </a>
+          </li>
         </List>
       </Box>
     )
