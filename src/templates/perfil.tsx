@@ -1,20 +1,14 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
-import {
-  Box,
-  Button,
-  Container,
-  Paper,
-  Tab,
-  Tabs,
-  Typography,
-} from '@mui/material'
+import { Box, Button, Tab, Tabs, Typography } from '@mui/material'
 import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
 import TabPanel from 'components/tabPanel'
+import useWindowSize from 'hooks/useWindowResize'
 import { useState } from 'react'
 import { PerfilProps } from 'types/api'
 
-export default function PerfilPage({ foto, cv }: PerfilProps) {
+export default function PerfilPage({ cv }: PerfilProps) {
   const bc = {
     Perfil: 'perfil',
   }
@@ -24,54 +18,31 @@ export default function PerfilPage({ foto, cv }: PerfilProps) {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTab(newValue)
   }
+
+  const { width } = useWindowSize() || {}
+  const breakLine = width! <= 900
+
   return (
-    <>
+    <div style={{ maxHeight: '100vh' }}>
       <NavDrawer />
       <NavHeader breadcrumbs={bc}>PERFIL</NavHeader>
-      <Container
-        sx={{
+      <div
+        style={{
           display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          mt: 3,
+          flexDirection: breakLine ? 'column' : 'row',
+          justifyContent: breakLine ? 'start' : 'space-between',
+          alignItems: breakLine ? 'center' : 'start',
+          minHeight: 'calc(100vh - 155px)',
         }}
       >
-        <Paper
-          elevation={4}
+        <Box
           sx={{
-            display: 'flex',
-            flexDirection: {
-              xs: 'column',
-              sm: 'column',
-              md: 'row',
-            },
-            alignItems: 'center',
-            padding: '24px',
-            gap: '48px',
+            pl: 3,
+            pt: 3,
+            height: 'fit-content',
+            maxWidth: breakLine ? '100%' : '50%',
           }}
         >
-          <img
-            style={{ width: 300, height: 350, objectFit: 'contain' }}
-            src={foto?.url}
-            alt="foto de perfil de Arthur Nestrovski"
-          ></img>
-          <Typography
-            component="h2"
-            variant="h2"
-            sx={{
-              letterSpacing: '5px',
-              color: 'primary.main',
-              fontSize: {
-                xs: 40,
-                sm: 40,
-                md: 60,
-              },
-            }}
-          >
-            ARTHUR NESTROVSKI
-          </Typography>
-        </Paper>
-        <Box sx={{ p: 3 }}>
           <Box>
             <Tabs value={tab} onChange={handleChange}>
               <Tab label="Português"></Tab>
@@ -84,25 +55,23 @@ export default function PerfilPage({ foto, cv }: PerfilProps) {
               artístico da Orquestra Sinfônica do Estado de São Paulo, desde
               2010. Em 2012, foi nomeado também diretor artístico do Festival de
               Inverno de Campos do Jordão.
-            </Typography>
-            <br />
-            <Typography>
+              <br />
+              <br />
               Doutor em literatura e música pela Universidade de Iowa (EUA), foi
               professor titular de literatura comparada na PUC/SP, articulista
-              da <em>Folha de S.Paulo</em> e editor da PubliFolha. Autor de{' '}
-              <em>Tudo Tem a Ver</em> – Literatura e Música (2019) e{' '}
-              <em>Outras Notas Musicais</em> (2009), entre outros livros –
+              da <em>Folha de S.Paulo</em> e editor da PubliFolha. Autor de
+              <em> Tudo Tem a Ver</em> – Literatura e Música (2019) e
+              <em> Outras Notas Musicais</em> (2009), entre outros livros –
               incluindo vários premiados títulos de literatura infantil –,
               mantém também atividade musical como violonista e compositor,
               apresentando-se e gravando com artistas como Zé Miguel Wisnik,
               Zélia Duncan e Adriana Calcanhotto, no Brasil e no exterior.
-            </Typography>
-            <br />
-            <Typography>
-              Lançou, entre outros, os CDs solo <em>Jobim Violão</em>e{' '}
-              <em>Chico Violão</em>, o DVD
-              <em>O Fim da Canção</em> (com Wisnik e Luiz Tatit), e dois CDs de
-              canções com Lívia Nestrovski: <em>Pós Você e Eu</em>
+              <br />
+              <br />
+              Lançou, entre outros, os CDs solo <em> Jobim Violão </em>e
+              <em> Chico Violão</em>, o DVD
+              <em> O Fim da Canção</em> (com Wisnik e Luiz Tatit), e dois CDs de
+              canções com Lívia Nestrovski: <em> Pós Você e Eu </em>
               (2016) e <em>Sarabanda</em> (2020).
             </Typography>
             <Button
@@ -110,8 +79,8 @@ export default function PerfilPage({ foto, cv }: PerfilProps) {
               size="large"
               sx={{
                 width: 'fit-content',
-                margin: '24px auto',
                 color: 'primary.dark',
+                marginTop: '12px',
               }}
               href={cv?.url}
               target="__blank"
@@ -121,7 +90,27 @@ export default function PerfilPage({ foto, cv }: PerfilProps) {
           </TabPanel>
           <TabPanel value={tab} index={1}></TabPanel>
         </Box>
-      </Container>
-    </>
+        <Box
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'flex-end',
+            marginTop: 'auto',
+          }}
+        >
+          <img
+            src="https://media.graphassets.com/gw26B3PTQrCQeMZtYa9v"
+            alt="foto de perfil de Arthur Nestrovski"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'scale-down',
+              objectPosition: 'right bottom',
+              paddingLeft: '24px',
+            }}
+          ></img>
+        </Box>
+      </div>
+    </div>
   )
 }
