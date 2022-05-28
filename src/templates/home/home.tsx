@@ -184,7 +184,7 @@ const HomeContainer = ({
                 <div
                   style={{
                     width: isMobile ? '100%' : '500px',
-                    maxHeight: '160px',
+                    height: '155px',
                     margin: '0 0 auto auto',
                   }}
                 >
