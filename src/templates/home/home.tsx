@@ -136,6 +136,7 @@ const HomeContainer = ({
                   display: 'flex',
                   width: '100%',
                   flexDirection: isMobile ? 'column' : 'row',
+                  marginBottom: '24px',
                 }}
               >
                 <Box
