@@ -27,13 +27,14 @@ export default function NoticiasPage({ noticias }: NoticiasProps) {
           alignItems: 'center',
           gap: '24px',
           margin: '24px',
+          marginBottom: '100px',
         }}
       >
         {sorted.map((noticia) => {
           const shortText = getShortDescription(noticia?.texto?.html)
           const slug = universalSlugify(noticia?.titulo)
           return (
-            <div style={{ marginBottom: '100px' }} key={slug}>
+            <div key={slug}>
               <TextsCard
                 text={{
                   title: noticia?.titulo,
