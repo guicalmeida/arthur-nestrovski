@@ -21,7 +21,7 @@ export default function ShowsPage({ shows }: ShowsProps) {
     <>
       <NavDrawer />
       <NavHeader breadcrumbs={bc}>SHOWS</NavHeader>
-      <Container>
+      <Container sx={{ mb: '100px' }}>
         <Grid container justifyContent="center">
           {sorted.map((show) => {
             const shortDesc = getShortDescription(show?.descricao?.html)

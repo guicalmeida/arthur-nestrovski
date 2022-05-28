@@ -72,7 +72,7 @@ const Show = ({ show }: ShowUnitProps) => {
       <NavHeader breadcrumbs={bc} technicalInfo={techInfo}>
         {titulo?.toUpperCase()}
       </NavHeader>
-      <Container>
+      <Container sx={{ mb: '100px' }}>
         <StyledPaper>
           <div
             style={
