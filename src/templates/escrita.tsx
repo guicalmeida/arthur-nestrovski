@@ -54,7 +54,7 @@ export default function EscritaPage({
           imageUrl={latestBook?.capa?.url}
           title="Livros"
           latestTitle={latestBook?.titulo}
-          path="/escrita/textos"
+          path="/escrita/livros"
         >
           <MostRecent
             publisher={latestBook?.editora.titulo}

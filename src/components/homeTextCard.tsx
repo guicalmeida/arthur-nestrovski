@@ -1,3 +1,4 @@
+import universalSlugify from 'services/slugifyHelper'
 import { ChevronRight } from '@mui/icons-material'
 import {
   Box,
@@ -34,6 +35,7 @@ export default function HomeTextCard({
   calendar = false,
   title,
 }: Props) {
+  const unitPath = `${path}/${universalSlugify(text.title)}`
   return (
     <StyledCard>
       <StyledBox>
@@ -80,7 +82,7 @@ export default function HomeTextCard({
           <Typography>{children}</Typography>
         </CardContent>
         <CardActions>
-          <Link link={path} underline={false}>
+          <Link link={unitPath} underline={false}>
             <Button
               size="medium"
               variant="outlined"

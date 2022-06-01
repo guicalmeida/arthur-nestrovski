@@ -68,10 +68,7 @@ const HomeContainer = ({
   const eventSlug = universalSlugify(eventTitle)
   const eventDate = getEventDateInfo(inicio, fim)
 
-  const textSlug = universalSlugify(textos[0].titulo)
   const textShort = getShortDescription(textos?.[0]?.texto.html)
-
-  const newsSlug = universalSlugify(noticias?.[0]?.titulo)
   const newsShort = getShortDescription(noticias?.[0]?.texto?.html)
 
   const youtubeEmbed = getYoutubeEmbedLink(videos?.[0].linkDoVideoYouTube)
@@ -199,7 +196,7 @@ const HomeContainer = ({
                   date: formatIsoString(noticias?.[0]?.createdAt),
                 }}
                 title="Notícias"
-                path={`noticias/${newsSlug}`}
+                path="noticias"
               >
                 {newsShort}
               </HomeTextCard>
@@ -326,7 +323,7 @@ const HomeContainer = ({
                     subtitle: textos?.[0]?.subtitulo,
                     date: formatIsoString(textos?.[0]?.createdAt),
                   }}
-                  path={`/escrita/textos/${textSlug}`}
+                  path={`escrita/textos`}
                   title="Textos"
                 >
                   {textShort}

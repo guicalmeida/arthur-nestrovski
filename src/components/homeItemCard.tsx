@@ -16,7 +16,7 @@ import logo from '../../public/logo.svg'
 
 const StyledCard = styled(Card)`
   max-width: 330px;
-  max-height: 570px;
+  max-height: 600px;
 
   display: flex;
   flex-direction: column;
