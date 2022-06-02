@@ -13,8 +13,12 @@ import { memo, useEffect, useRef, useState } from 'react'
 import { formatIsoString } from 'services/datesHelper'
 import { ProducoesIntelectuaisProps } from 'types/api'
 import useWindowSize from 'hooks/useWindowResize'
-import dayjs, { Dayjs } from 'dayjs'
+import dayjs from 'dayjs'
+import 'dayjs/locale/pt-br'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
 
+dayjs.locale('pt-br')
+dayjs.extend(customParseFormat)
 interface GridCellExpandProps {
   value: string
   width: number
@@ -146,14 +150,42 @@ export default function IntelectualPage({
     'Resenhas, artigos e ensaios': 'resenhas-artigos-e-ensaios',
   }
 
-  let allRows
+  let allRows = page1
 
   if (page2) {
     allRows = page1?.concat(page2)
   }
 
+  allRows = allRows.sort((a, b) => {
+    let aFormatted = dayjs(a.data),
+      bFormatted = dayjs(b.data)
+    if (!aFormatted.isValid()) {
+      let alternateDate = dayjs(a.observacao, 'MM/YYYY')
+
+      alternateDate = alternateDate.isValid()
+        ? alternateDate
+        : dayjs(a.observacao, 'YYYY')
+
+      aFormatted = alternateDate.isValid()
+        ? alternateDate
+        : dayjs('01/01/1950', 'DD/MM/YYYY')
+    }
+    if (!bFormatted.isValid()) {
+      let alternateDate = dayjs(b.observacao, 'MM/YYYY')
+
+      alternateDate = alternateDate.isValid()
+        ? alternateDate
+        : dayjs(b.observacao, 'YYYY')
+
+      bFormatted = alternateDate.isValid()
+        ? alternateDate
+        : dayjs('01/01/1950', 'DD/MM/YYYY')
+    }
+    return aFormatted.isAfter(bFormatted) ? -1 : 1
+  })
+
   const dateComparator: GridComparatorFn = (a, b) => {
-    return dayjs(a as Dayjs).isAfter(b as Dayjs) ? 1 : -1
+    return dayjs(a as dayjs.Dayjs).isAfter(b as dayjs.Dayjs) ? 1 : -1
   }
 
   const cols: GridColDef[] = [
