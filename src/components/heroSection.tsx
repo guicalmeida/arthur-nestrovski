@@ -29,16 +29,10 @@ const HeroSection = () => {
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let pic: any
-    const updatePic = () => {
-      pic =
-        !pic &&
-        setInterval(() => {
-          const nextImage = image === img1 ? img2 : img1
-          setImage(nextImage)
-        }, 5000)
-    }
-    updatePic()
+    const pic = setInterval(() => {
+      const nextImage = image === img1 ? img2 : img1
+      setImage(nextImage)
+    }, 5000)
 
     return () => clearInterval(pic)
   }, [image])
