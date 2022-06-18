@@ -1,21 +1,18 @@
 import { Paper, Container, Typography, Grid } from '@mui/material'
-// import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const HeroSection = () => {
-  // const [image, setImage] = useState(
-  //   'https://media.graphassets.com/z8hK7XzHTFulOXlm9ERw'
-  // )
-
-  //TODO: intercalar imagens
-  // const img1 = 'https://media.graphassets.com/z8hK7XzHTFulOXlm9ERw'
-  // const img2 = 'https://media.graphassets.com/I60zy8XYTMmxbBrDncQ1'
+  const img1 = 'https://media.graphassets.com/z8hK7XzHTFulOXlm9ERw'
+  const img2 = 'https://media.graphassets.com/I60zy8XYTMmxbBrDncQ1'
+  const [image, setImage] = useState(img1)
 
   const homeStyle = {
     paper: {
       height: '100vh',
-      backgroundImage: `url(${'https://media.graphassets.com/z8hK7XzHTFulOXlm9ERw'})`,
+      backgroundImage: `url(${image})`,
       backgroundSize: 'cover',
       backgroundPosition: 'right',
+      borderRadius: 'none',
     },
     container: {
       height: '100%',
@@ -29,6 +26,23 @@ const HeroSection = () => {
       textTransform: 'uppercase',
     },
   }
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let pic: any
+    const updatePic = () => {
+      pic =
+        !pic &&
+        setInterval(() => {
+          const nextImage = image === img1 ? img2 : img1
+          setImage(nextImage)
+        }, 5000)
+    }
+    updatePic()
+
+    return () => clearInterval(pic)
+  }, [image])
+
   return (
     <Paper sx={homeStyle.paper}>
       <Container sx={homeStyle.container}>
