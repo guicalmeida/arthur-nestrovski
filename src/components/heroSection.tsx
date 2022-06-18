@@ -28,7 +28,6 @@ const HeroSection = () => {
   }
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const pic = setInterval(() => {
       const nextImage = image === img1 ? img2 : img1
       setImage(nextImage)
