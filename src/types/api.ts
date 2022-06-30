@@ -295,3 +295,17 @@ export interface HomeProps {
     titulo: string
   }[]
 }
+
+export interface AllProps {
+  cDs: CDProps[]
+  eventos: EventoProps[]
+  letras: LetraProps[]
+  livros: LivroProps[]
+  noticias: NoticiaProps[]
+  partiturasECifras: PartituraECifraProps[]
+  textos: TextoProps[]
+  videos: VideoProps[]
+  perfil: PerfilProps
+  dvds: DVDProps[]
+  shows: ShowProps[]
+}
