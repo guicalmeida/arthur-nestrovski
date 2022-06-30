@@ -6,10 +6,11 @@ import CustomBreadcrumbs from './customBreadcrumbs'
 //no objeto de breadcrumbs, a chave é a label e o valor o caminho para o router
 //além disso, as breadcrumbs serão mostradas na ordem do objeto, do 1º ao último
 export default function NavHeader({
-  breadcrumbs,
   children,
   technicalInfo,
   titleStyle,
+  breadcrumbs,
+  isSearch,
 }: Props) {
   const { production, year } = technicalInfo || {}
 
@@ -39,9 +40,11 @@ export default function NavHeader({
           alignItems="center"
           justifyContent="center"
         >
-          <Grid item>
-            <CustomBreadcrumbs breadcrumbs={breadcrumbs}></CustomBreadcrumbs>
-          </Grid>
+          {breadcrumbs && (
+            <Grid item>
+              <CustomBreadcrumbs breadcrumbs={breadcrumbs}></CustomBreadcrumbs>
+            </Grid>
+          )}
           <Grid item>
             <Typography
               sx={{
@@ -49,6 +52,7 @@ export default function NavHeader({
                 fontWeight: 400,
                 letterSpacing: '5px',
                 marginTop: '10px',
+                fontSize: isSearch ? '42px' : '60px',
               }}
               variant="h2"
               component="h1"
@@ -82,7 +86,7 @@ export default function NavHeader({
 
 interface Props {
   children: ReactNode
-  breadcrumbs: {
+  breadcrumbs?: {
     [index: string]: string
   }
   technicalInfo?: {
@@ -90,4 +94,5 @@ interface Props {
     year?: number | string
   }
   titleStyle?: CSSProperties
+  isSearch?: boolean
 }
