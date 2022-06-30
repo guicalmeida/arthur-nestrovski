@@ -6,6 +6,7 @@ import {
   GridComparatorFn,
   GridRenderCellParams,
   GridRowsProp,
+  GridToolbar,
 } from '@mui/x-data-grid'
 import NavDrawer from 'components/navDrawer'
 import NavHeader from 'components/navHeader'
@@ -272,6 +273,13 @@ export default function IntelectualPage({
             initialState={{
               sorting: {
                 sortModel: [{ field: 'col2', sort: 'desc' }],
+              },
+            }}
+            components={{ Toolbar: GridToolbar }}
+            componentsProps={{
+              toolbar: {
+                showQuickFilter: true,
+                quickFilterProps: { debounceMs: 500 },
               },
             }}
           />
