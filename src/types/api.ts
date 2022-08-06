@@ -1,4 +1,5 @@
 export interface LivroProps {
+  id: number
   titulo: string
   subtitulo: string
   linkParaCompra: string
@@ -11,6 +12,7 @@ export interface LivroProps {
   capa: ImageProps
   autor: string
   ano: AnoProps
+  createdAt?: string
 }
 
 export interface RealizacaoProps {
@@ -45,6 +47,7 @@ export interface ImageProps {
 }
 
 export interface CDProps {
+  id: number
   titulo: string
   linkParaCompra: string
   linkEmYoutubeMusic: string
@@ -62,6 +65,7 @@ export interface CDProps {
   creditos: string
   capa: ImageProps
   ano: AnoProps
+  createdAt?: string
 }
 
 export interface CDsProps {
@@ -73,6 +77,7 @@ export interface CDUnitProps {
 }
 
 export interface DVDProps {
+  id: number
   artistas: string
   capa: ImageProps
   descricao: RichTextProps
@@ -81,6 +86,7 @@ export interface DVDProps {
   realizacao: RealizacaoProps
   titulo: string
   ano: AnoProps
+  createdAt?: string
 }
 
 export interface DVDsProps {
@@ -92,10 +98,12 @@ export interface DVDUnitProps {
 }
 
 export interface PartituraECifraProps {
+  id: number
   titulo: string
   pdf: ImageProps
   composicao: string
   ano: AnoProps
+  createdAt?: string
 }
 
 export interface partiturasECifrasProps {
@@ -107,6 +115,7 @@ export interface PartituraECifraUnitProps {
 }
 
 export interface LetraProps {
+  id: number
   composicao: string
   copyright: string
   letra: RichTextProps
@@ -114,6 +123,7 @@ export interface LetraProps {
   titulo: string
   tituloOriginal: string
   ano: AnoProps
+  createdAt?: string
 }
 
 export interface LetrasProps {
@@ -136,6 +146,7 @@ export interface GaleriasProps {
 }
 
 export interface TextoProps {
+  id: number
   autores: string
   linkOriginal: string
   subtitulo: string
@@ -155,6 +166,7 @@ export interface TextoUnitProps {
 }
 
 export interface NoticiaProps {
+  id: number
   titulo: string
   subtitulo: string
   createdAt: string
@@ -180,9 +192,11 @@ export interface PerfilProps {
 }
 
 export interface VideoProps {
+  id: number
   titulo: string
   linkDoVideoYouTube: string
   descricao: RichTextProps
+  createdAt?: string
 }
 
 export interface VideosProps {
@@ -190,6 +204,7 @@ export interface VideosProps {
 }
 
 export interface ShowProps {
+  id: number
   artistas: string
   createdAt: string
   descricao: RichTextProps
@@ -225,6 +240,7 @@ export interface ProducoesIntelectuaisProps {
 }
 
 export interface EventoProps {
+  id: number
   descricao?: RichTextProps
   fim: string
   inicio: string
@@ -236,6 +252,7 @@ export interface EventoProps {
   url?: string
   capa: ImageProps
   endereco?: string
+  createdAt?: string
 }
 
 export interface EventosProps {

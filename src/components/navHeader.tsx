@@ -10,7 +10,6 @@ export default function NavHeader({
   technicalInfo,
   titleStyle,
   breadcrumbs,
-  isSearch,
 }: Props) {
   const { production, year } = technicalInfo || {}
 
@@ -52,7 +51,7 @@ export default function NavHeader({
                 fontWeight: 400,
                 letterSpacing: '5px',
                 marginTop: '10px',
-                fontSize: isSearch ? '42px' : '60px',
+                fontSize: '42px',
               }}
               variant="h2"
               component="h1"
@@ -70,7 +69,7 @@ export default function NavHeader({
             <Divider
               variant="middle"
               sx={{
-                width: '280px',
+                width: '250px',
                 height: '3px',
                 borderTop: '2px solid',
                 borderColor: 'primary.main',

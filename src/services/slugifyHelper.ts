@@ -6,3 +6,10 @@ export default function universalSlugify(string = '') {
     remove: /[.,:/"()]/g,
   })
 }
+
+export function searchSlugify(string = '') {
+  return slugify(string, {
+    replacement: ' ',
+    lower: true,
+  })
+}

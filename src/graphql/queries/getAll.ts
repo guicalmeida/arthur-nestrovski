@@ -1,6 +1,7 @@
 const GET_ALL = /* GraphQL */ `
   query GET_ALL {
     cDs {
+      id
       ano {
         ano
       }
@@ -19,6 +20,7 @@ const GET_ALL = /* GraphQL */ `
       createdAt
     }
     dvds {
+      id
       ano {
         ano
       }
@@ -37,6 +39,7 @@ const GET_ALL = /* GraphQL */ `
       createdAt
     }
     eventos {
+      id
       capa {
         url
       }
@@ -47,6 +50,7 @@ const GET_ALL = /* GraphQL */ `
       titulo
     }
     letras {
+      id
       composicao
       letra {
         html
@@ -59,6 +63,7 @@ const GET_ALL = /* GraphQL */ `
       createdAt
     }
     livros {
+      id
       ano {
         ano
       }
@@ -85,6 +90,7 @@ const GET_ALL = /* GraphQL */ `
       titulo
     }
     noticias {
+      id
       subtitulo
       titulo
       texto {
@@ -93,10 +99,12 @@ const GET_ALL = /* GraphQL */ `
       createdAt
     }
     partiturasECifras {
+      id
       composicao
       titulo
     }
     shows {
+      id
       createdAt
       descricao {
         html
@@ -110,6 +118,7 @@ const GET_ALL = /* GraphQL */ `
       titulo
     }
     textos {
+      id
       autores
       createdAt
       capa {
@@ -120,6 +129,7 @@ const GET_ALL = /* GraphQL */ `
       veiculoDeDivulgacao
     }
     videos {
+      id
       createdAt
       descricao {
         html
