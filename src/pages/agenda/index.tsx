@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
       if (latitude && longitude) {
         const call = await fetch(
-          `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+          `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&email=guica.almeida@gmail.com`
         )
           .then((res) => {
             return res.json()
