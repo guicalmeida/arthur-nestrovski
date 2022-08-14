@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Container, Divider, TextField } from '@mui/material'
+import { Box, Container, Divider, TextField } from '@mui/material'
 import NavDrawer from 'components/navDrawer'
+import SearchResultCard from 'components/searchResultCard'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { isDate1AfterDate2 } from 'services/datesHelper'
 import { searchSlugify } from 'services/slugifyHelper'
 import { stripHtml } from 'string-strip-html'
 import { AllProps } from 'types/api'
@@ -34,21 +36,27 @@ export default function SearchPage({ everything }: { everything: AllProps }) {
   })
   const sluggedSearch = searchSlugify(query?.termos?.toString())
 
-  const results = valuesOnly.filter((result) => {
-    const sluggedResults = Object.values(result).map((value: any) => {
-      let actualValue = value
-      if (value && typeof value === 'object') {
-        actualValue = stripHtml(
-          Object.values(value as string | number)[0].toString()
-        ).result
-      }
-      actualValue = searchSlugify(actualValue?.toString())
-      return actualValue
+  const results = valuesOnly
+    .filter((result) => {
+      const sluggedResults = Object.values(result).map((value: any) => {
+        let actualValue = value
+        if (value && typeof value === 'object') {
+          actualValue = stripHtml(
+            Object.values(value as string | number)[0].toString()
+          ).result
+        }
+        actualValue = searchSlugify(actualValue?.toString())
+        return actualValue
+      })
+      return sluggedResults.some((result: string) => {
+        return result.includes(sluggedSearch)
+      })
     })
-    return sluggedResults.some((result: string) => {
-      return result.includes(sluggedSearch)
+    .sort((a: any, b: any) => {
+      const aDateType = a?.ano?.ano ?? a?.createdAt
+      const bDateType = b?.ano?.ano ?? b?.createdAt
+      return isDate1AfterDate2(aDateType, bDateType) ? -1 : 1
     })
-  })
 
   return (
     <>
@@ -79,9 +87,19 @@ export default function SearchPage({ everything }: { everything: AllProps }) {
             margin: '15px 0',
           }}
         />
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '24px',
+            mb: '100px',
+          }}
+        >
+          {results.map((result) => {
+            return <SearchResultCard result={result} key={result?.id} />
+          })}
+        </Box>
       </Container>
-
-      <div></div>
     </>
   )
 }
