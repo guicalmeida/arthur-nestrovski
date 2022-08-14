@@ -2,12 +2,16 @@
 import {
   AppBar,
   Box,
+  Card,
   Collapse,
   Drawer,
   IconButton,
+  Input,
+  InputAdornment,
   List,
   ListItemButton,
   ListItemText,
+  Modal,
   Toolbar,
 } from '@mui/material'
 
@@ -26,9 +30,15 @@ import Link from './link'
 import useWindowSize from 'hooks/useWindowResize'
 import YoutubeIcon from 'icons/Youtube'
 import Instagram from 'icons/instagram'
+import Search from '@mui/icons-material/Search'
+import { useRouter } from 'next/router'
 
 const NavDrawer = () => {
   const [drawer, setDrawer] = useState<boolean>(false)
+  const [openSearch, setOpenSearch] = useState(false)
+  const [searchText, setSearchText] = useState('')
+  const handleClose = () => setOpenSearch(false)
+  const router = useRouter()
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -82,7 +92,7 @@ const NavDrawer = () => {
             </IconButton>
           </div>
           <div style={{ order: 3 }}>
-            <IconButton color="inherit">
+            <IconButton color="inherit" onClick={() => setOpenSearch(true)}>
               <SearchIcon />
             </IconButton>
           </div>
@@ -206,6 +216,51 @@ const NavDrawer = () => {
 
   return (
     <>
+      <Modal
+        open={openSearch}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+      >
+        <Card sx={{ width: 'fit-content' }}>
+          <div
+            style={{ padding: '16px 32px', width: '80vw', maxWidth: '650px' }}
+          >
+            <Input
+              id="filled-basic"
+              sx={{ width: '100%' }}
+              onChange={(event) => {
+                setSearchText(event?.target?.value)
+              }}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') {
+                  router.push({
+                    pathname: '/busca',
+                    query: { termos: searchText },
+                  })
+                  handleClose()
+                }
+              }}
+              endAdornment={
+                <InputAdornment
+                  position="start"
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    router.push({
+                      pathname: '/busca',
+                      query: { termos: searchText },
+                    })
+                    handleClose()
+                  }}
+                >
+                  <Search />
+                </InputAdornment>
+              }
+            />
+          </div>
+        </Card>
+      </Modal>
       <Drawer anchor="left" open={drawer} onClose={toggleDrawer(false)}>
         <ListComp />
       </Drawer>
