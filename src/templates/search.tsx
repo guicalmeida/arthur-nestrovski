@@ -86,6 +86,7 @@ export default function SearchPage({ everything }: { everything: AllProps }) {
           {results.map((result) => {
             return <SearchResultCard result={result} key={result?.id} />
           })}
+          {results.length === 0 && <p> Nenhum resultado encontrado</p>}
         </Box>
       </Container>
     </>
