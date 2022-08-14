@@ -107,7 +107,7 @@ const Evento = ({ evento }: EventoUnitProps) => {
               )}
             </Typography>
             {url && (
-              <a href={url} style={{ textDecoration: 'underline' }}>
+              <a href={`/${url}`} style={{ textDecoration: 'underline' }}>
                 <Typography>{url}</Typography>
               </a>
             )}

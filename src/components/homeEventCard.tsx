@@ -34,7 +34,7 @@ export default function HomeEventCard({ props }: Props) {
   const link = `agenda/${path}` || ''
   return (
     <StyledCard>
-      <Link link={link} underline={false}>
+      <Link link={`/${link}`} underline={false}>
         <CardMedia
           component="img"
           image={cover ?? logo.src}
@@ -59,7 +59,7 @@ export default function HomeEventCard({ props }: Props) {
         {upComing ? (
           <CardContent>
             <div>
-              <Link link={link} underline={false}>
+              <Link link={`/${link}`} underline={false}>
                 <Typography variant="h5" component="h2" color="text.secondary">
                   {title}
                 </Typography>
@@ -88,7 +88,7 @@ export default function HomeEventCard({ props }: Props) {
         )}
         <CardActions>
           {upComing && (
-            <Link link={link}>
+            <Link link={`/${link}`}>
               <Button
                 size="medium"
                 variant="outlined"
