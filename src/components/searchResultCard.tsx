@@ -54,6 +54,8 @@ export default function SearchResultCard({ result }: Props) {
     link = `/${path}?selecionado=${slug}`
   } else if (mediaType === 'videos') {
     link = `/${path}`
+  } else {
+    link = `/${path}/${slug}`
   }
 
   return (
