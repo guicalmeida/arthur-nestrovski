@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Container, Divider, TextField } from '@mui/material'
+import { Box, Container, Divider, Typography } from '@mui/material'
 import NavDrawer from 'components/navDrawer'
 import SearchResultCard from 'components/searchResultCard'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 import { isDate1AfterDate2 } from 'services/datesHelper'
 import { searchSlugify } from 'services/slugifyHelper'
 import { stripHtml } from 'string-strip-html'
@@ -12,17 +11,7 @@ import { AllProps } from 'types/api'
 export default function SearchPage({ everything }: { everything: AllProps }) {
   const router = useRouter()
   const { query } = router
-  const [text, setText] = useState('')
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value)
-  }
-
-  useEffect(() => {
-    if (query.termos) {
-      setText(query.termos.toString())
-    }
-  }, [query.termos])
+  const searchtext = query?.termos?.toString()
 
   const valuesOnly: any[] = []
   Object.entries(everything).forEach((arr) => {
@@ -34,7 +23,7 @@ export default function SearchPage({ everything }: { everything: AllProps }) {
     })
     valuesOnly.push(...withKey)
   })
-  const sluggedSearch = searchSlugify(query?.termos?.toString())
+  const sluggedSearch = searchSlugify(searchtext)
 
   const results = valuesOnly
     .filter((result) => {
@@ -68,15 +57,14 @@ export default function SearchPage({ everything }: { everything: AllProps }) {
           alignItems: 'center',
         }}
       >
-        <TextField
-          id="filled-basic"
-          label="Pesquisar"
-          value={text}
-          variant="filled"
-          onChange={handleChange}
-          size="medium"
-          sx={{ width: '100%', maxWidth: '600px' }}
-        />
+        <Typography
+          component="h1"
+          variant="h3"
+          sx={{ mt: '32px', mb: '16px', textAlign: 'center' }}
+        >
+          Você pesquisou por &quot;{searchtext}&quot;
+        </Typography>
+
         <Divider
           variant="middle"
           sx={{
