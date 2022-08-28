@@ -36,20 +36,22 @@ export default function Noticia({ noticia }: NoticiaUnitProps) {
           >
             {subtitulo}
           </Typography>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              margin: '24px 0',
-            }}
-          >
-            <img
-              src={capa.url}
-              alt="capa da notícia"
-              style={{ maxWidth: '100%', maxHeight: '400px' }}
-            />
-          </div>
+          {capa?.url && (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                margin: '24px 0',
+              }}
+            >
+              <img
+                src={capa?.url}
+                alt="capa da notícia"
+                style={{ maxWidth: '100%', maxHeight: '400px' }}
+              />
+            </div>
+          )}
           <br />
           <Typography sx={{ fontWeight: 500 }}>{date ? date : ''}</Typography>
           <Typography component="div">
