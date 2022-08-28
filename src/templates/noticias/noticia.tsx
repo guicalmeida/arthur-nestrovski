@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Container, Paper, Typography } from '@mui/material'
 import CustomBreadcrumbs from 'components/customBreadcrumbs'
 import NavDrawer from 'components/navDrawer'
@@ -7,7 +8,7 @@ import universalSlugify from 'services/slugifyHelper'
 import { NoticiaUnitProps } from 'types/api'
 
 export default function Noticia({ noticia }: NoticiaUnitProps) {
-  const { createdAt, subtitulo, texto: conteudo, titulo } = noticia
+  const { createdAt, subtitulo, texto: conteudo, titulo, capa } = noticia
   const slug = universalSlugify(titulo)
   const date = createdAt ? formatIsoString(createdAt) : undefined
   const bc = {
@@ -35,6 +36,20 @@ export default function Noticia({ noticia }: NoticiaUnitProps) {
           >
             {subtitulo}
           </Typography>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              margin: '24px 0',
+            }}
+          >
+            <img
+              src={capa.url}
+              alt="capa da notícia"
+              style={{ maxWidth: '100%', maxHeight: '400px' }}
+            />
+          </div>
           <br />
           <Typography sx={{ fontWeight: 500 }}>{date ? date : ''}</Typography>
           <Typography component="div">
