@@ -43,3 +43,8 @@ a {
   height: 32px;
   width: 32px;
 }
+
+.rich-text-content a {
+  color: #e7c05f;
+  text-decoration: underline;
+}

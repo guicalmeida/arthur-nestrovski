@@ -20,6 +20,7 @@ export function TurnHtmlStringToTag({ string }: Props) {
       dangerouslySetInnerHTML={{
         __html: string,
       }}
+      className="rich-text-content"
     ></div>
   )
 }
