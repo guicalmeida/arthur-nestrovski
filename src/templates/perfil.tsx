@@ -51,28 +51,29 @@ export default function PerfilPage({ cv }: PerfilProps) {
           </Box>
           <TabPanel value={tab} index={0}>
             <Typography>
-              <strong>Arthur Nestrovski</strong> (Porto Alegre, 1959) é diretor
-              artístico da Orquestra Sinfônica do Estado de São Paulo, desde
-              2010. Em 2012, foi nomeado também diretor artístico do Festival de
-              Inverno de Campos do Jordão.
+              <b>Arthur Nestrovski </b> (Porto Alegre, 1959) é violonista,
+              compositor e ensaísta. Foi diretor artístico da Orquestra
+              Sinfônica do Estado de São Paulo (Osesp), de 2010 a 2022 e também
+              diretor artístico do Festival de Inverno de Campos do Jordão, de
+              2012 a 2022.
               <br />
               <br />
               Doutor em literatura e música pela Universidade de Iowa (EUA), foi
               professor titular de literatura comparada na PUC/SP, articulista
-              da <em>Folha de S.Paulo</em> e editor da PubliFolha. Autor de
-              <em> Tudo Tem a Ver</em> – Literatura e Música (2019) e
-              <em> Outras Notas Musicais</em> (2009), entre outros livros –
+              da <i>Folha de S.Paulo</i> e editor da PubliFolha. Autor de{' '}
+              <i>Tudo Tem a Ver</i> – <i>Literatura e Música</i> (2019) e{' '}
+              <i>Outras Notas Musicais</i> (2009), entre outros livros –
               incluindo vários premiados títulos de literatura infantil –,
               mantém também atividade musical como violonista e compositor,
               apresentando-se e gravando com artistas como Zé Miguel Wisnik,
               Zélia Duncan e Adriana Calcanhotto, no Brasil e no exterior.
               <br />
               <br />
-              Lançou, entre outros, os CDs solo <em> Jobim Violão </em>e
-              <em> Chico Violão</em>, o DVD
-              <em> O Fim da Canção</em> (com Wisnik e Luiz Tatit), e dois CDs de
-              canções com Lívia Nestrovski: <em> Pós Você e Eu </em>
-              (2016) e <em>Sarabanda</em> (2020).
+              Lançou, entre outros, os CDs solo{' '}
+              <i>Jobim Violão, Chico Violão </i>e <i>Violão Violão</i>, o DVD
+              <i> O Fim da Canção</i> (com Wisnik e Luiz Tatit), e dois CDs de
+              canções com Lívia Nestrovski: <i>Pós Você e Eu </i>(2016) e{' '}
+              <i>Sarabanda</i> (2020).
             </Typography>
             <Button
               variant="text"
@@ -88,7 +89,44 @@ export default function PerfilPage({ cv }: PerfilProps) {
               Ver currículo completo
             </Button>
           </TabPanel>
-          <TabPanel value={tab} index={1}></TabPanel>
+          <TabPanel value={tab} index={1}>
+            <Typography>
+              <b>
+                <span>Arthur Nestrovski </span>
+              </b>
+              (b. 1959) is classical guitarrist, composer and music scholar. He
+              was the artistic director of the São Paulo Symphony Orchestra from
+              2010 to 2022, and he was also the artistic director of the Campos
+              do Jordão Winter Festival – the largest music festival in South
+              America – from 2012 to 2022.
+              <br />
+              <br />
+              Nestrovski holds a Ph.D in Literature and Music from the Univ. of
+              Iowa (USA), and a B. A. in Music from York University (UK). He was
+              a tenured professor of comparative literature at the Catholic
+              University, São Paulo. For almost two decades a senior critic at{' '}
+              <i>Folha de S.Paulo </i>and also a senior editor at PubliFolha
+              (the newspaper’s publishing branch), he is the author of{' '}
+              <i>
+                <span>Tudo Tem a Ver</span>
+              </i>
+              – <i>Literatura e Música</i> (2019) and
+              <i> Outras Notas Musicais</i> (2009), among other titles –
+              including several award-winning books for children.
+              <br />
+              <br />
+              As a guitarrist and composer, he has performed and recorded next
+              to such leading Brazilian names as José Miguel Wisnik, Zélia
+              Duncan and Adriana Calcanhotto, both in Brazil and abroad. His
+              list of recorded albums includes three solo CDs –{' '}
+              <i>Jobim Violão, Chico Violão </i>
+              and <i>Violão Violão</i> –, one DVD,
+              <i> O Fim da Canção</i> (with Wisnik and Luiz Tatit), and two
+              discs of songs performed with his daughter Lívia Nestrovski:{' '}
+              <i>Pós Você e Eu </i>(2016) and
+              <i>Sarabanda</i> (2020).
+            </Typography>
+          </TabPanel>
         </Box>
         <Box
           style={{

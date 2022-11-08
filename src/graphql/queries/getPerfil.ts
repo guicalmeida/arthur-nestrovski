@@ -3,7 +3,7 @@ const GET_PERFIL = /* GraphQL */ `
     foto: asset(where: { id: "cl14ae9x09kzm0bkfwet1pn9n" }) {
       url
     }
-    cv: asset(where: { id: "cl3w9phpbzg9x0elrkmqxk1iv" }) {
+    cv: asset(where: { id: "cla88ni9f07vv0bkm8sk4st7o" }) {
       url
     }
   }
