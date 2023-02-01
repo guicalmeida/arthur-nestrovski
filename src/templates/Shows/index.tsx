@@ -15,7 +15,7 @@ export default function ShowsPage({ shows }: ShowsProps) {
   }
 
   const sorted = shows.sort((a, b) =>
-    dayjs(a.createdAt).isAfter(dayjs(b.createdAt)) ? -1 : 1
+    dayjs(a.createdAt).isAfter(dayjs(b.createdAt)) ? 1 : -1
   )
   return (
     <>

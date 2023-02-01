@@ -4,6 +4,7 @@ import type { GetStaticProps } from 'next'
 import { EventoProps, EventosProps } from 'types/api'
 import AgendaPage from 'templates/agenda'
 import Head from 'next/head'
+import delay from 'delay'
 
 export default function Agenda({ eventos }: EventosProps) {
   return (
@@ -23,6 +24,7 @@ export const getStaticProps: GetStaticProps = async () => {
       const { latitude, longitude } = evento?.localizacao ?? {}
 
       if (latitude && longitude) {
+        await delay(100)
         const call = await fetch(
           `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&email=guica.almeida@gmail.com`
         )

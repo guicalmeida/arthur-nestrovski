@@ -1,3 +1,4 @@
+import delay from 'delay'
 import client from 'graphql/client'
 import GET_HOME from 'graphql/queries/getHome'
 import GET_COVERS from 'graphql/queries/getMusicCovers'
@@ -39,6 +40,7 @@ export const getStaticProps: GetStaticProps = async () => {
       const { latitude, longitude } = evento?.localizacao ?? {}
 
       if (latitude && longitude) {
+        await delay(100)
         const call = await fetch(
           `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&email=guica.almeida@gmail.com`
         )
