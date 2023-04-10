@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       const { latitude, longitude } = evento?.localizacao ?? {}
 
       if (latitude && longitude) {
-        await delay(100)
+        await delay(1200)
         const call = await fetch(
           `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&email=guica.almeida@gmail.com`
         )

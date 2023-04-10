@@ -40,14 +40,15 @@ export const getStaticProps: GetStaticProps = async () => {
       const { latitude, longitude } = evento?.localizacao ?? {}
 
       if (latitude && longitude) {
-        await delay(100)
+        console.log()
+        await delay(1200)
         const call = await fetch(
           `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&email=guica.almeida@gmail.com`
         )
           .then((res) => {
             return res.json()
           })
-          .catch(console.error)
+          .catch(console.log)
         const { amenity, house_number, road, suburb, city, town } =
           (await call?.address) || {}
         const endereco = `${amenity ? amenity + ', ' : ''}${road ? road : ''}${
