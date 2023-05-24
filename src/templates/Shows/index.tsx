@@ -15,7 +15,7 @@ export default function ShowsPage({ shows }: ShowsProps) {
   }
 
   const sorted = shows.sort((a, b) =>
-    dayjs(a.createdAt).isAfter(dayjs(b.createdAt)) ? 1 : -1
+    dayjs(a.createdAt).isAfter(dayjs(b.createdAt)) ? -1 : 1
   )
   return (
     <>
@@ -31,30 +31,41 @@ export default function ShowsPage({ shows }: ShowsProps) {
             return (
               <Grid item key={slug}>
                 <ItemCard imageUrl={show?.fotos[0]?.url} url={url}>
-                  <Typography
-                    variant="h5"
-                    component="h2"
-                    color="text.secondary"
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      height: '100%',
+                    }}
                   >
-                    {show?.titulo}
-                  </Typography>
-                  <Typography variant="body2" sx={{ mb: '12px' }}>
-                    {show?.artistas}
-                  </Typography>
-                  {shortDesc && (
-                    <Typography variant="body2" sx={{ mb: '12px' }}>
-                      {shortDesc}
-                    </Typography>
-                  )}
-                  <Link link={url} underline={false}>
-                    <Button
-                      variant="outlined"
-                      size="medium"
-                      endIcon={<ChevronRightIcon />}
-                    >
-                      detalhes técnicos
-                    </Button>
-                  </Link>
+                    <div>
+                      <Typography
+                        variant="h5"
+                        component="h2"
+                        color="text.secondary"
+                      >
+                        {show?.titulo}
+                      </Typography>
+                      <Typography variant="body2" sx={{ mb: '12px' }}>
+                        {show?.artistas}
+                      </Typography>
+                      {shortDesc && (
+                        <Typography variant="body2" sx={{ mb: '12px' }}>
+                          {shortDesc}
+                        </Typography>
+                      )}
+                    </div>
+                    <Link link={url} underline={false}>
+                      <Button
+                        variant="outlined"
+                        size="medium"
+                        endIcon={<ChevronRightIcon />}
+                      >
+                        detalhes técnicos
+                      </Button>
+                    </Link>
+                  </div>
                 </ItemCard>
               </Grid>
             )

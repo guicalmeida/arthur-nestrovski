@@ -9,6 +9,9 @@ const StyledCard = styled(Card)`
   transition: all 0.2s ease-in-out;
   max-width: 320px;
   margin: 20px;
+  height: 575px;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     transition: all 0.2s ease-in-out;
@@ -62,9 +65,7 @@ export default function ItemCard({ children, url, imageUrl }: Props) {
           sx={imageUrl ? {} : { p: '24px', width: '65%', margin: 'auto' }}
         />
       </div>
-      <div>
-        <CardContent>{children}</CardContent>
-      </div>
+      <CardContent sx={{ height: '100%' }}>{children}</CardContent>
     </StyledCard>
   )
 }
