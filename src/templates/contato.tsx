@@ -23,7 +23,7 @@ export default function ContatoPage() {
           <form
             style={{ display: 'flex', flexDirection: 'column' }}
             name="contato"
-            method="post"
+            method="POST  "
             data-netlify="true"
           >
             <input type="hidden" name="contato" value="contato" />
@@ -37,6 +37,7 @@ export default function ContatoPage() {
               multiline
               minRows={6}
             />
+            <input type="hidden" name="form-name" value="contato" />
             <Button variant="contained" type="submit">
               Enviar
             </Button>
