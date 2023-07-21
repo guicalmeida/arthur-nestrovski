@@ -23,10 +23,11 @@ export default function ContatoPage() {
           <form
             style={{ display: 'flex', flexDirection: 'column' }}
             name="contato"
-            method="POST  "
+            method="post"
             data-netlify="true"
+            data-netlify-recaptcha="true"
           >
-            <input type="hidden" name="contato" value="contato" />
+            <input type="hidden" name="form-name" value="contato" />
             <TextField required label="Nome" variant="filled" />
             <TextField required label="E-mail" variant="filled" />
             <TextField required label="Assunto" variant="filled" />
@@ -37,7 +38,7 @@ export default function ContatoPage() {
               multiline
               minRows={6}
             />
-            <input type="hidden" name="form-name" value="contato" />
+            <div data-netlify-recaptcha="true"></div>
             <Button variant="contained" type="submit">
               Enviar
             </Button>
