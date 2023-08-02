@@ -16,6 +16,7 @@ export default function ContatoPage() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          alignItems: 'center',
           mt: 5,
         }}
       >
