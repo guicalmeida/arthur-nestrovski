@@ -27,11 +27,17 @@ export default function ContatoPage() {
             data-netlify="true"
           >
             <input type="hidden" name="form-name" value="contato2" />
-            <TextField required label="Nome" variant="filled" />
-            <TextField required label="E-mail" variant="filled" />
-            <TextField required label="Assunto" variant="filled" />
+            <TextField required name="nome" label="Nome" variant="filled" />
+            <TextField required name="email" label="E-mail" variant="filled" />
             <TextField
               required
+              name="assunto"
+              label="Assunto"
+              variant="filled"
+            />
+            <TextField
+              required
+              name="mensagem"
               label="Mensagem"
               variant="filled"
               multiline
