@@ -51,7 +51,7 @@ export default function HomeEventCard({ props }: Props) {
         variant="h4"
         component="h2"
         color="primary.dark"
-        sx={{ letterSpacing: '2px', pl: '32px' }}
+        sx={{ letterSpacing: '2px', pl: '32px', pt: '16px' }}
       >
         Eventos
       </Typography>

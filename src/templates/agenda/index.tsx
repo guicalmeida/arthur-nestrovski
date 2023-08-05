@@ -13,6 +13,40 @@ import ItemSlider from 'components/slider'
 dayjs.locale('pt-br')
 dayjs.extend(customParseFormat)
 
+function EventList({
+  monthEventArr,
+}: {
+  monthEventArr: [string, EventoProps[]]
+}) {
+  return (
+    <div key={monthEventArr[0]} style={{ width: '100%' }}>
+      <Typography
+        sx={{
+          fontWeight: 400,
+          letterSpacing: '5px',
+          margin: '16px 0',
+        }}
+        variant="h4"
+        component="h2"
+        color="text.secondary"
+      >
+        {monthEventArr[0].toUpperCase()}
+      </Typography>
+      <ItemSlider
+        initialSlides={
+          monthEventArr[1].length > 3 ? 3 : monthEventArr[1].length
+        }
+      >
+        {monthEventArr[1].map((evento) => {
+          const props = getEventProps(evento)
+
+          return <EventCard props={props} key={props.title} />
+        })}
+      </ItemSlider>
+    </div>
+  )
+}
+
 export default function AgendaPage({ eventos }: EventosProps) {
   const bc = {
     Agenda: 'agenda',
@@ -29,10 +63,25 @@ export default function AgendaPage({ eventos }: EventosProps) {
     months[dateIndex].push(evento)
   })
 
-  const thisMonthEvents = eventos?.filter((evento) =>
-    dayjs().isSame(dayjs(evento?.inicio), 'month')
+  const hasFutureEvents = eventos.some(
+    (event) =>
+      dayjs().isSame(dayjs(event.inicio), 'month') ||
+      dayjs().isAfter(dayjs(event.inicio), 'month')
   )
-  const hasEventsThisMonth = thisMonthEvents && thisMonthEvents.length > 0
+
+  const monthsSorted = Object.entries(months).sort((a, b) => {
+    return dayjs(a[0], 'MMMM YYYY').isAfter(dayjs(b[0], 'MMMM YYYY')) ? -1 : 1
+  })
+
+  const nextEvents = monthsSorted.filter(
+    (month) =>
+      dayjs(month[0], 'MMMM YYYY').isSame(dayjs(), 'month') ||
+      dayjs(month[0], 'MMMM YYYY').isAfter(dayjs(), 'month')
+  )
+
+  const prevEvents = monthsSorted.filter((month) => {
+    return dayjs(month[0], 'MMMM YYYY').isBefore(dayjs(), 'month')
+  })
 
   return (
     <>
@@ -48,7 +97,7 @@ export default function AgendaPage({ eventos }: EventosProps) {
             margin: '24px',
           }}
         >
-          {hasEventsThisMonth && (
+          {hasFutureEvents && (
             <>
               <Typography
                 sx={{
@@ -61,21 +110,11 @@ export default function AgendaPage({ eventos }: EventosProps) {
                 component="h2"
                 color="text.secondary"
               >
-                ESTE MÊS
+                PRÓXIMOS EVENTOS
               </Typography>
-              <div style={{ width: '100%' }}>
-                <ItemSlider
-                  initialSlides={
-                    thisMonthEvents.length > 3 ? 3 : thisMonthEvents.length
-                  }
-                >
-                  {thisMonthEvents.map((evento) => {
-                    const props = getEventProps(evento)
-
-                    return <EventCard props={props} key={props.title} />
-                  })}
-                </ItemSlider>
-              </div>
+              {nextEvents.map((month) => {
+                return <EventList monthEventArr={month} key={month[0]} />
+              })}
               <div
                 role="separator"
                 style={{
@@ -95,43 +134,13 @@ export default function AgendaPage({ eventos }: EventosProps) {
                 component="h2"
                 color="text.secondary"
               >
-                TODOS EVENTOS
+                EVENTOS PASSADOS
               </Typography>
             </>
           )}
-          {Object.entries(months)
-            .sort((a, b) => {
-              return dayjs(a[0], 'MMMM YYYY').isAfter(dayjs(b[0], 'MMMM YYYY'))
-                ? -1
-                : 1
-            })
-            .map((month) => {
-              return (
-                <div key={month[0]} style={{ width: '100%' }}>
-                  <Typography
-                    sx={{
-                      fontWeight: 400,
-                      letterSpacing: '5px',
-                      margin: '16px 0',
-                    }}
-                    variant="h4"
-                    component="h2"
-                    color="text.secondary"
-                  >
-                    {month[0].toUpperCase()}
-                  </Typography>
-                  <ItemSlider
-                    initialSlides={month[1].length > 3 ? 3 : month[1].length}
-                  >
-                    {month[1].map((evento) => {
-                      const props = getEventProps(evento)
-
-                      return <EventCard props={props} key={props.title} />
-                    })}
-                  </ItemSlider>
-                </div>
-              )
-            })}
+          {prevEvents.map((month) => {
+            return <EventList monthEventArr={month} key={month[0]} />
+          })}
         </div>
       </Container>
     </>

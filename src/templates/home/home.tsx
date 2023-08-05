@@ -14,7 +14,7 @@ import NavDrawer from 'components/navDrawer'
 import { formatIsoString } from 'services/datesHelper'
 import { getShortDescription } from 'services/descriptionHelper'
 import universalSlugify from 'services/slugifyHelper'
-import { GaleriaProps, HomeProps } from 'types/api'
+import { EventoProps, GaleriaProps, HomeProps } from 'types/api'
 import { getEventDateInfo } from 'services/datesHelper'
 import HomeEventCard from 'components/homeEventCard'
 import { SpotifyEmbed } from 'services/spotfyEmbedHelper'
@@ -22,6 +22,7 @@ import { getYoutubeEmbedLink } from 'services/youtubeHelper'
 import HomeVideoCard from 'components/HomeVideoCard'
 import useWindowSize from 'hooks/useWindowResize'
 import CustomizedIcon from 'components/CustomIconButton'
+import dayjs from 'dayjs'
 
 const MainDivider = ({
   margin,
@@ -64,7 +65,29 @@ const HomeContainer = ({
     videos,
   } = home || {}
 
-  const { capa, fim, inicio, titulo: eventTitle, endereco } = eventos?.[0]
+  function findNextEvent(events: EventoProps[]) {
+    const now = dayjs()
+    let closestEvent: EventoProps | null = null
+
+    events.forEach((event) => {
+      if (now.isBefore(event.inicio)) {
+        if (!!closestEvent) {
+          if (dayjs(closestEvent.inicio).isAfter(event.inicio)) {
+            closestEvent = event
+          }
+        } else {
+          closestEvent = event
+        }
+      }
+      console.log(event.titulo, closestEvent)
+    })
+
+    return closestEvent ?? events[0]
+  }
+
+  const nextEvent = findNextEvent(eventos)
+
+  const { capa, fim, inicio, titulo: eventTitle, endereco } = nextEvent!
   const eventSlug = universalSlugify(eventTitle)
   const eventDate = getEventDateInfo(inicio, fim)
 
