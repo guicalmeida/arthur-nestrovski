@@ -73,11 +73,15 @@ export default function AgendaPage({ eventos }: EventosProps) {
     return dayjs(a[0], 'MMMM YYYY').isAfter(dayjs(b[0], 'MMMM YYYY')) ? -1 : 1
   })
 
-  const nextEvents = monthsSorted.filter(
-    (month) =>
-      dayjs(month[0], 'MMMM YYYY').isSame(dayjs(), 'month') ||
-      dayjs(month[0], 'MMMM YYYY').isAfter(dayjs(), 'month')
-  )
+  const nextEvents = monthsSorted
+    .filter(
+      (month) =>
+        dayjs(month[0], 'MMMM YYYY').isSame(dayjs(), 'month') ||
+        dayjs(month[0], 'MMMM YYYY').isAfter(dayjs(), 'month')
+    )
+    .sort((a, b) =>
+      dayjs(a[0], 'MMMM YYYY').isAfter(dayjs(b[0], 'MMMM YYYY')) ? 1 : -1
+    )
 
   const prevEvents = monthsSorted.filter((month) => {
     return dayjs(month[0], 'MMMM YYYY').isBefore(dayjs(), 'month')
