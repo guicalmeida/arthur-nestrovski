@@ -1,4 +1,3 @@
-import delay from 'delay'
 import client from 'graphql/client'
 import GET_EVENTOS from 'graphql/queries/getEventos'
 import type { GetStaticPaths, GetStaticProps } from 'next'
@@ -31,22 +30,29 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  let { eventos } = await client.request(GET_EVENTOS)
-  eventos = await Promise.all(
-    eventos.map(async (evento: EventoProps) => {
-      const { latitude, longitude } = evento?.localizacao ?? {}
+  const { eventos } = await client.request(GET_EVENTOS)
 
-      if (latitude && longitude) {
-        await delay(1200)
+  async function delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms))
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const updatedEventos = [] as any
+
+  for (const evento of eventos) {
+    const { latitude, longitude } = evento?.localizacao ?? {}
+
+    if (latitude && longitude) {
+      await delay(500) // Add a 500ms delay here
+
+      try {
         const call = await fetch(
-          `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&email=guica.almeida@gmail.com`
+          `https://geocode.maps.co/reverse?lat=${latitude}&lon=${longitude}`
         )
-          .then((res) => {
-            return res.json()
-          })
-          .catch(console.error)
+
+        const data = await call.json()
         const { amenity, house_number, road, suburb, city, town } =
-          (await call?.address) || {}
+          data?.address || {}
         const endereco = `${amenity ? amenity + ', ' : ''}${road ? road : ''}${
           house_number ? ', ' + house_number : ''
         }${suburb ? ' - ' + suburb : ''}${
@@ -56,19 +62,23 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         const final = Object.fromEntries(
           Object.entries(result).filter(([, v]) => v != null)
         )
-        return final
-      } else {
-        return Object.fromEntries(
-          Object.entries(evento).filter(([, v]) => v != null)
-        )
+        updatedEventos.push(final)
+      } catch (error) {
+        console.error(error)
       }
-    })
-  ).catch(console.error)
+    } else {
+      const filteredEvento = Object.fromEntries(
+        Object.entries(evento).filter(([, v]) => v != null)
+      )
+      updatedEventos.push(filteredEvento)
+    }
+  }
 
-  const evento = eventos.find((evento: EventoProps) => {
+  const evento = updatedEventos.find((evento: EventoProps) => {
     const eventoSlug = universalSlugify(evento.titulo)
     return params?.slug === eventoSlug
   })
+
   return {
     props: {
       evento,
