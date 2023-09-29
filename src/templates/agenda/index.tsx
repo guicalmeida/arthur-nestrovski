@@ -63,28 +63,34 @@ export default function AgendaPage({ eventos }: EventosProps) {
     months[dateIndex].push(evento)
   })
 
-  const hasFutureEvents = eventos.some(
-    (event) =>
-      dayjs().isSame(dayjs(event.inicio), 'month') ||
-      dayjs().isAfter(dayjs(event.inicio), 'month')
-  )
-
   const monthsSorted = Object.entries(months).sort((a, b) => {
     return dayjs(a[0], 'MMMM YYYY').isAfter(dayjs(b[0], 'MMMM YYYY')) ? -1 : 1
   })
 
-  const nextEvents = monthsSorted
-    .filter(
-      (month) =>
-        dayjs(month[0], 'MMMM YYYY').isSame(dayjs(), 'month') ||
-        dayjs(month[0], 'MMMM YYYY').isAfter(dayjs(), 'month')
-    )
+  const deepClone = structuredClone(monthsSorted)
+
+  const nextEvents = deepClone
+    .filter((month) => {
+      month[1] = month[1].filter(
+        (event) =>
+          dayjs(event.inicio).isSame(dayjs(), 'day') ||
+          dayjs(event.inicio).isAfter(dayjs(), 'day')
+      )
+      return (
+        month[1].length > 0 &&
+        (dayjs(month[0], 'MMMM YYYY').isSame(dayjs(), 'month') ||
+          dayjs(month[0], 'MMMM YYYY').isAfter(dayjs(), 'month'))
+      )
+    })
     .sort((a, b) =>
-      dayjs(a[0], 'MMMM YYYY').isAfter(dayjs(b[0], 'MMMM YYYY')) ? 1 : -1
+      dayjs(a[0], 'MMMM YYYY').isAfter(dayjs(b[0], 'MMMM YYYY')) ? -1 : 1
     )
 
   const prevEvents = monthsSorted.filter((month) => {
-    return dayjs(month[0], 'MMMM YYYY').isBefore(dayjs(), 'month')
+    month[1] = month[1].filter((events) =>
+      dayjs(events.inicio).isBefore(dayjs(), 'day')
+    )
+    return dayjs(month[0], 'MMMM YYYY').isBefore(dayjs(), 'day')
   })
 
   return (
@@ -101,7 +107,7 @@ export default function AgendaPage({ eventos }: EventosProps) {
             margin: '24px',
           }}
         >
-          {hasFutureEvents && (
+          {nextEvents.length > 0 && (
             <>
               <Typography
                 sx={{
@@ -116,9 +122,10 @@ export default function AgendaPage({ eventos }: EventosProps) {
               >
                 PRÓXIMOS EVENTOS
               </Typography>
-              {nextEvents.map((month) => {
-                return <EventList monthEventArr={month} key={month[0]} />
-              })}
+              {nextEvents.length > 0 &&
+                nextEvents.map((month) => {
+                  return <EventList monthEventArr={month} key={month[0]} />
+                })}
               <div
                 role="separator"
                 style={{
