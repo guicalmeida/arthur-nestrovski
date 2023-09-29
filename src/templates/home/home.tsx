@@ -79,7 +79,6 @@ const HomeContainer = ({
           closestEvent = event
         }
       }
-      console.log(event.titulo, closestEvent)
     })
 
     return closestEvent ?? events[0]
