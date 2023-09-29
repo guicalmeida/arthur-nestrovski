@@ -162,7 +162,6 @@ const getEventProps = (evento: EventoProps) => {
   const { inicio, fim, titulo, capa, endereco } = evento || {}
 
   const path = universalSlugify(titulo)
-
   const date = getEventDateInfo(inicio, fim)
   return {
     date,
