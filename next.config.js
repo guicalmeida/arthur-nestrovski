@@ -4,5 +4,9 @@ module.exports = {
   images: {
     domains: ['https://media.graphcms.com/'],
   },
-  staticPageGenerationTimeout: 5000,
+  staticPageGenerationTimeout: 10000,
+  experimental: {
+    cpus: 1,
+    workerThreads: false,
+  },
 }
