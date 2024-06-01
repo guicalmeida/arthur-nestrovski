@@ -159,9 +159,9 @@ export default function AgendaPage({ eventos }: EventosProps) {
 }
 
 const getEventProps = (evento: EventoProps) => {
-  const { inicio, fim, titulo, capa, endereco } = evento || {}
+  const { inicio, fim, titulo, capa, endereco, id } = evento || {}
 
-  const path = universalSlugify(titulo)
+  const path = universalSlugify(evento.titulo) + `_${id}`
   const date = getEventDateInfo(inicio, fim)
   return {
     date,

@@ -18,10 +18,10 @@ export default function TextoUnit({ evento }: EventoUnitProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { eventos } = await client.request(GET_EVENTOS)
+  const { eventos } = await client.request<EventosProps>(GET_EVENTOS)
 
   const paths = eventos.map((evento: EventoProps) => {
-    const slug = universalSlugify(evento.titulo)
+    const slug = universalSlugify(evento.titulo) + `_${evento.id}`
     return {
       params: { slug },
     }
@@ -32,20 +32,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { eventos } = await client.request<EventosProps>(GET_EVENTOS)
 
-  async function delay(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms))
-  }
-
   const thisEvento = eventos.find(
-    (evento) => universalSlugify(evento?.titulo) === params?.slug
+    (evento) =>
+      universalSlugify(evento.titulo) + `_${evento.id}` === params?.slug
   )
   let formattedEvent = {}
 
   const { latitude, longitude } = thisEvento?.localizacao ?? {}
 
   if (latitude && longitude) {
-    await delay(500) // Add a 500ms delay here
-
     try {
       const call = await fetch(
         `https://geocode.maps.co/reverse?lat=${latitude}&lon=${longitude}&api_key=665b1e57efbcf548774954qlyb55f7d`

@@ -1,5 +1,5 @@
 export interface LivroProps {
-  id: number
+  id: string
   titulo: string
   subtitulo: string
   linkParaCompra: string
@@ -47,7 +47,7 @@ export interface ImageProps {
 }
 
 export interface CDProps {
-  id: number
+  id: string
   titulo: string
   linkParaCompra: string
   linkEmYoutubeMusic: string
@@ -77,7 +77,7 @@ export interface CDUnitProps {
 }
 
 export interface DVDProps {
-  id: number
+  id: string
   artistas: string
   capa: ImageProps
   descricao: RichTextProps
@@ -98,7 +98,7 @@ export interface DVDUnitProps {
 }
 
 export interface PartituraECifraProps {
-  id: number
+  id: string
   titulo: string
   pdf: ImageProps
   composicao: string
@@ -115,7 +115,7 @@ export interface PartituraECifraUnitProps {
 }
 
 export interface LetraProps {
-  id: number
+  id: string
   composicao: string
   copyright: string
   letra: RichTextProps
@@ -146,7 +146,7 @@ export interface GaleriasProps {
 }
 
 export interface TextoProps {
-  id: number
+  id: string
   autores: string
   linkOriginal: string
   subtitulo: string
@@ -166,7 +166,7 @@ export interface TextoUnitProps {
 }
 
 export interface NoticiaProps {
-  id: number
+  id: string
   titulo: string
   subtitulo: string
   createdAt: string
@@ -192,7 +192,7 @@ export interface PerfilProps {
 }
 
 export interface VideoProps {
-  id: number
+  id: string
   titulo: string
   linkDoVideoYouTube: string
   descricao: RichTextProps
@@ -204,7 +204,7 @@ export interface VideosProps {
 }
 
 export interface ShowProps {
-  id: number
+  id: string
   artistas: string
   createdAt: string
   descricao: RichTextProps
@@ -240,7 +240,7 @@ export interface ProducoesIntelectuaisProps {
 }
 
 export interface EventoProps {
-  id: number
+  id: string
   descricao?: RichTextProps
   fim: string
   inicio: string

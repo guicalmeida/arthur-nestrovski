@@ -86,8 +86,8 @@ const HomeContainer = ({
 
   const nextEvent = findNextEvent(eventos)
 
-  const { capa, fim, inicio, titulo: eventTitle, endereco } = nextEvent!
-  const eventSlug = universalSlugify(eventTitle)
+  const { capa, fim, inicio, titulo: eventTitle, endereco, id } = nextEvent!
+  const eventSlug = universalSlugify(eventTitle) + `_${id}`
   const eventDate = getEventDateInfo(inicio, fim)
 
   const textShort = getShortDescription(textos?.[0]?.texto.html)
