@@ -13,7 +13,7 @@ const GET_HOME = /* GraphQL */ `
       }
       linkEmSpotify
     }
-    eventos(first: 1, orderBy: publishedAt_DESC) {
+    eventos(first: 3, orderBy: publishedAt_DESC) {
       id
       capa {
         url
