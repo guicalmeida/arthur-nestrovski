@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
       try {
         const call = await fetch(
-          `https://geocode.maps.co/reverse?lat=${latitude}&lon=${longitude}`
+          `https://geocode.maps.co/reverse?lat=${latitude}&lon=${longitude}&api_key=665b1e57efbcf548774954qlyb55f7d`
         )
 
         const data = await call.json()
