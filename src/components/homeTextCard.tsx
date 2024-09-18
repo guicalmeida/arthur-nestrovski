@@ -35,7 +35,7 @@ export default function HomeTextCard({
   calendar = false,
   title,
 }: Props) {
-  const unitPath = `${path}/${universalSlugify(text.title)}`
+  const unitPath = `${path}/${universalSlugify(text.title + '-' + text?.date)}`
   return (
     <StyledCard>
       <StyledBox>

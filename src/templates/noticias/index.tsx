@@ -32,7 +32,9 @@ export default function NoticiasPage({ noticias }: NoticiasProps) {
       >
         {sorted.map((noticia) => {
           const shortText = getShortDescription(noticia?.texto?.html)
-          const slug = universalSlugify(noticia?.titulo)
+          const slug = universalSlugify(
+            noticia?.titulo + '-' + formatIsoString(noticia?.createdAt)
+          )
           return (
             <div key={slug}>
               <TextsCard

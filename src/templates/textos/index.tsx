@@ -33,7 +33,9 @@ const TextosPage = ({ textos }: TextosProps) => {
       >
         {sorted.map((texto) => {
           const shortText = getShortDescription(texto?.texto.html)
-          const slug = universalSlugify(texto.titulo)
+          const slug = universalSlugify(
+            texto?.titulo + '-' + formatIsoString(texto?.createdAt)
+          )
           return (
             <TextsCard
               key={slug}
