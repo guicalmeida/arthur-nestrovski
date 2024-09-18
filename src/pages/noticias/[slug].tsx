@@ -21,7 +21,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const { noticias } = await client.request(GET_NOTICIAS)
 
   const paths = noticias.map((noticia: NoticiaProps) => {
-    const slug = universalSlugify(noticia.titulo)
+    const slug = universalSlugify(noticia.titulo + '-' + noticia.id)
     return {
       params: { slug },
     }
