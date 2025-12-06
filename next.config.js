@@ -2,7 +2,12 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['https://media.graphcms.com/'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'media.graphcms.com',
+      },
+    ],
   },
   staticPageGenerationTimeout: 10000,
   experimental: {

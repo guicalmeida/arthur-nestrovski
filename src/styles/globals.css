@@ -8,11 +8,10 @@ body {
 
 html {
   margin-left: 80px;
-
 }
 @media screen and (max-width: 900px) {
   html {
-    margin-left: 0px;    
+    margin-left: 0px;
   }
 }
 
@@ -27,7 +26,7 @@ a {
 
 .slick-prev:before,
 .slick-next:before {
-  color: #e7c05f  !important;
+  color: #e7c05f !important;
 }
 
 .slick-initialized .slick-track {
