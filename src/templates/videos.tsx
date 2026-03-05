@@ -53,7 +53,7 @@ export default function VideosPage({ videos }: VideosProps) {
                 <Typography
                   component="div"
                   sx={{ overflowY: 'auto' }}
-                  dangerouslySetInnerHTML={{ __html: video.descricao.html }}
+                  dangerouslySetInnerHTML={{ __html: video.descricao?.html ?? '' }}
                 ></Typography>
               </CardContent>
             </Card>
